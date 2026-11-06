@@ -1,0 +1,11 @@
+title: Isaac William – Foredrag
+description: Informasjon om foredrag og bookingforespørsler.
+lang: "nb-NO"
+collections:
+  foredrag:
+    output: false
+exclude:
+  - README.md
+  - LICENSE
+  - node_modules
+  - vendor
