@@ -29,7 +29,7 @@ test('complete private booking and content workflow',async()=>{
 
  // Server-rendered text and metadata are present without running JavaScript.
  r=await request('/about','GET',undefined,false);let html=await r.text();
- assert.match(html,/<title>Om \| Isaac William Lunde<\/title>/);
+ assert.match(html,/<title>Om Isaac William Tufte Lunde \| Isaac William Lunde<\/title>/);
  assert.match(html,/Erfaringer som gir rom for samtale/);
  assert.equal((html.match(/<h1>/g)||[]).length,1);
  assert.doesNotMatch(html,/<a href="\/min-side">/);

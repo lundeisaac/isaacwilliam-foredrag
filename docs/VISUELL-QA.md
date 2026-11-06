@@ -59,3 +59,16 @@ Dette er fortsatt en gjennomgangskopi med stengte skjemaer. Ingen DNS-, e-post- 
 ## Mer personlig presentasjon – 7. november
 
 Hjem og Om viser flere originale bilder fra foredrag og scenesamtale. Bildetekstene beskriver bare det som vises; det er ikke lagt til påstander om kunder, presseomtale eller arrangementstitler. Introduksjon og bookingtekst er mer direkte og personlig. De genuine anmeldelsene og deres anonymiserte rolleetiketter er uendret. Abstrakte bannere er fjernet på booking, kontakt og priser. Browserkontroll bekreftet to korrekt viste galleribilder og ingen horisontal overløp på desktop; skjermbilde er lagret. Kodesjekk og fem tester passerer.
+
+## Biografi og eksterne kilder – 7. november
+
+Om-siden bruker Isaac William Tufte Lunde og bygger igjen hovedsakelig på eierens Durable-biografi: oppvekst, 14 års mobbeerfaring, autistisk perspektiv, psykiske utfordringer, hjelpetelefon, førstehjelp ved selvmordsfare og over sju års formidlingsrelatert erfaring. Den opprinnelige lengre personlige biografien er tilgjengelig i en lukket seksjon. Dette er eieropplysninger fra originalnettstedet, ikke nye påstander fra nettsøk.
+
+Verifiserte eksterne lenker er lagt til under Omtale og arrangementer:
+- Blikk, intervju 9. april 2025: https://www.blikk.no/idrett-likestilling-sport/isaac-william-vil-holde-pa-med-idretten-han-elsker-men-transmannen-finner-ikke-plass/267172
+- Blikk, oppfølging 24. juli 2025: https://www.blikk.no/askim-idrett-indre-ostfold/isaac-william-fikk-endelig-henvendelsen-han-hapet-pa-na-kan-jeg-drive-med-det-jeg-elsker/275663
+- FRI, program med Isaac i panelet Fellesskap, Sølvberget 31. mars 2023: https://www.friosloviken.no/events/transsynlighetsdage-2023-stavanger/
+
+Kun kort oppsummering og lenker, ingen kopierte pressebilder. Eksisterende egne bilder er beholdt. Artiklene er merket som mulige abonnementssaker. Politisk rolleinformasjon og katalogoppføringer er ikke tatt inn som foredragsreferanser.
+
+Browserkontroll: fullt navn, lenker og ny meny vises uten horisontal overløp på desktop. Tilbakemeldinger er synlig i hovedmenyen og har alle 13 anmeldelser; bookingknappen åpner egen side med ett skjema. Kodesjekk og fem tester passerer.

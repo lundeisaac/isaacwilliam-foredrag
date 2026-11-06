@@ -148,12 +148,12 @@
       ]
     },
     "about": {
-      "title": "Om",
+      "title": "Om Isaac William Tufte Lunde",
       "sections": [
         {
           "kind": "hero",
-          "title": "Hei, jeg er Isaac William.",
-          "text": "Jeg holder foredrag om livet bak fasaden – med egne erfaringer som utgangspunkt og plass til andres perspektiver.",
+          "title": "Isaac William Tufte Lunde",
+          "text": "Foredragsholder med personlig erfaring med mobbing, psykisk helse og utenforskap – og et autistisk perspektiv på tilhørighet, relasjoner og hverdagsliv.",
           "items": [],
           "links": [
             {
@@ -172,11 +172,25 @@
         {
           "kind": "intro",
           "title": "Erfaringer som gir rom for samtale",
-          "text": "Jeg er autist og har selv kjent på mobbing, utenforskap og psykiske utfordringer. I foredragene setter jeg ord på opplevelser som kan være vanskelige å forklare – og lette å overse.\n\nJeg ønsker å bidra til forståelse mellom unge og voksne, mellom kolleger og mellom mennesker med ulike erfaringer. Innhold og språk avtales ut fra hvem som skal lytte.",
+          "text": "Isaac William er autist og vokste opp på bygda, der utenforskap og sosial ekskludering preget skolehverdagen. Han opplevde mobbing gjennom 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet.\n\nEgne erfaringer med psykiske utfordringer, selvskading og selvmordstanker er en sentral del av bakgrunnen for foredragene. Han har jobbet på hjelpetelefon for unge og er sertifisert i førstehjelp ved selvmordsfare.\n\nGjennom foredrag ønsker Isaac William å gi stemme til dem som ikke blir sett, og bidra til at voksne og fagpersoner får bedre forståelse av hva barn og unge opplever.",
           "items": [],
           "links": [],
           "images": [],
           "eyebrow": ""
+        },
+        {
+          "kind": "intro",
+          "eyebrow": "Foredragserfaring",
+          "title": "Erfaring fra ulike arenaer",
+          "text": "Isaac William har over sju års erfaring med formidling og foredragsrelatert arbeid for skoler, bibliotek, kommuner og ungdomsorganisasjoner. Han holder også innlegg i panelsamtaler, på konferanser og i mindre grupper.\n\nHan har fulgt sosiale mediers fremvekst fra innsiden. Erfaringene fra en digital oppvekst er en del av grunnlaget for foredragene om nettkultur, digitale relasjoner og unges hverdag.",
+          "items": [],
+          "images": [],
+          "links": [
+            {
+              "label": "Se foredragstemaene",
+              "href": "/topics"
+            }
+          ]
         },
         {
           "kind": "intro",
@@ -230,7 +244,7 @@
           "items": [
             {
               "title": "Min personlige bakgrunn",
-              "text": "Isaac William Lunde skaper rolige og meningsbærende samtaler om temaer som mobbing, digital oppvekst, autisme, psykisk helse og forebygging av selvskading og selvmord. Det som skiller ham er ikke bare faglig innsikt, men personlig erfaring fra innsiden av utfordringene han snakker om.\n\nIsaac William er selv autist og vokste opp på bygda der utenforskap og sosial ekskludering preget skolehverdagen. Han opplevde mobbing som offer i 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet. Gjennom oppveksten bar han på en indre kamp med mørke tanker, og han har selv overlevd selvmordsforsøk. Han lever i dag med kroniske selvmordstanker, har en selvskadingshistorikk og er diagnostisert med depresjon, angst, tvangslidelse og spiseforstyrrelse. Han er sertifisert i førstehjelp ved selvmordsfare etter å ha jobbet på hjelpetelefon for unge.\n\nDisse erfaringene bærer han ikke som en byrde, men som et grunnlag for ekte og troverdig formidling. Isaac William snakker åpent og direkte for å gi stemme til de som ikke blir sett, og for å utruste voksne og fagpersoner med bedre forståelse av hva barn og unge faktisk opplever.\n\nMed en oppvekst fra tidlig 2000-tall, da internett fortsatt var i sin spede begynnelse, har Isaac William fulgt sosiale mediers fremvekst fra innsiden. Den erfaringen gir ham et unikt og nyansert perspektiv på internettets muligheter og fallgruver, særlig for unge som vokser opp i et digitalt landskap uten klare grenser."
+              "text": "Isaac William Tufte Lunde skaper rolige og meningsbærende samtaler om temaer som mobbing, digital oppvekst, autisme, psykisk helse og forebygging av selvskading og selvmord. Det som skiller ham er ikke bare faglig innsikt, men personlig erfaring fra innsiden av utfordringene han snakker om.\n\nIsaac William er selv autist og vokste opp på bygda der utenforskap og sosial ekskludering preget skolehverdagen. Han opplevde mobbing som offer i 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet. Gjennom oppveksten bar han på en indre kamp med mørke tanker, og han har selv overlevd selvmordsforsøk. Han lever i dag med kroniske selvmordstanker, har en selvskadingshistorikk og er diagnostisert med depresjon, angst, tvangslidelse og spiseforstyrrelse. Han er sertifisert i førstehjelp ved selvmordsfare etter å ha jobbet på hjelpetelefon for unge.\n\nDisse erfaringene bærer han ikke som en byrde, men som et grunnlag for ekte og troverdig formidling. Isaac William snakker åpent og direkte for å gi stemme til de som ikke blir sett, og for å utruste voksne og fagpersoner med bedre forståelse av hva barn og unge faktisk opplever.\n\nMed en oppvekst fra tidlig 2000-tall, da internett fortsatt var i sin spede begynnelse, har Isaac William fulgt sosiale mediers fremvekst fra innsiden. Den erfaringen gir ham et unikt og nyansert perspektiv på internettets muligheter og fallgruver, særlig for unge som vokser opp i et digitalt landskap uten klare grenser."
             },
             {
               "title": "Hvilke arrangementer passer foredragene for?",
@@ -240,6 +254,28 @@
           "links": [],
           "images": [],
           "eyebrow": ""
+        },
+        {
+          "kind": "intro",
+          "eyebrow": "Omtale og arrangementer",
+          "title": "Les mer utenfor denne nettsiden",
+          "text": "Blikk har intervjuet Isaac William om svømming, tilhørighet og inkludering i idretten, i april og juli 2025.\n\nI programmet for Transsynlighetsdagen på Sølvberget i Stavanger 31. mars 2023 er han oppført som deltaker i panelet om fellesskap.\n\nLenkene går til eksterne nettsider. Blikk-artiklene kan kreve abonnement.",
+          "items": [],
+          "images": [],
+          "links": [
+            {
+              "label": "Blikk · intervju 9. april 2025",
+              "href": "https://www.blikk.no/idrett-likestilling-sport/isaac-william-vil-holde-pa-med-idretten-han-elsker-men-transmannen-finner-ikke-plass/267172"
+            },
+            {
+              "label": "Blikk · oppfølging 24. juli 2025",
+              "href": "https://www.blikk.no/askim-idrett-indre-ostfold/isaac-william-fikk-endelig-henvendelsen-han-hapet-pa-na-kan-jeg-drive-med-det-jeg-elsker/275663"
+            },
+            {
+              "label": "FRI · panelprogram 31. mars 2023",
+              "href": "https://www.friosloviken.no/events/transsynlighetsdage-2023-stavanger/"
+            }
+          ]
         },
         {
           "kind": "intro",
