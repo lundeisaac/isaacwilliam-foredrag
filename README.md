@@ -6,11 +6,12 @@ En selvstendig rekonstruksjon av den publiserte Durable-nettsiden, med norsk inn
 
 - Alle åtte hovedsider: Hjem, Om, Foredragstemaer, Bestill foredrag, Kontakt, Priser & Tjenester, Ofte stilte spørsmål og Tilbakemeldinger.
 - Tekst, 21 lokale bildeoriginaler og lokale Inter-/Playfair-skrifter fra det inspiserte designet. Bilder er optimalisert som WebP. Ingen Durable-kode, Durable API-er eller eksternt CMS kreves.
+- Sidetekst, navigasjon og metadata leveres direkte fra serveren og kan leses uten JavaScript. Skjemaer krever JavaScript og er sperret før det er aktivert.
 - Responsiv navigasjon, fleksible rutenett, tastaturbetjente trekkspill, tydelige skjemaetiketter og en personvernside.
 - `/min-side` (og `/admin`): privat kontrollpanel med oversikt, neste steg og norsk redigerer for sidetekster, lenker, bilder, kort, spørsmål og anmeldelser. Bilder kan lastes opp direkte.
 - Private booking-/kontaktforespørsler i SQLite; status, interne notater, pristilbud i hele NOK, søk og filtrering.
 - Kalender med sperrede perioder og bekreftede bookinger. En bekreftet booking reserverer **hele datoen**, ikke bare klokkeslettet. Dato og klokkeslett gjelder norsk tid.
-- Passordbeskyttet administrasjon, HttpOnly-økt, CSRF-kontroll, servervalidering, begrensning av innsendingsforsøk og personopplysninger utenfor GitHub.
+- Passordbeskyttet administrasjon, HttpOnly-økt, automatisk øktstenging når eierpassordet endres, CSRF-kontroll, servervalidering, begrensning av innsendingsforsøk og personopplysninger utenfor GitHub.
 - Innholdseksport og innholdshistorikk på serveren. Ulagrede endringer varsles i redigereren.
 
 ## Lokal kjøring / første test
@@ -23,7 +24,7 @@ Krever **Node.js 24 eller nyere**. Prosjektet har ingen npm-avhengigheter.
 
 For å prøve innsending må både `BOOKING_ENABLED=true` i servermiljøet og «Åpne skjemaene» i administrasjonens innstillinger være aktivert. Begge er av som standard. Bruk kun testopplysninger du kontrollerer. `npm test` prøver hele forløpet i en egen midlertidig database uten å påvirke driftsdata.
 
-**Det sendes ikke automatiske e-postvarsler.** Nye henvendelser vises i administrasjonen. «Skriv e-post til arrangør» åpner e-postprogrammet med et utkast; du kontrollerer og sender selv. E-postkontoen `post@isaacwilliam.no` må opprettes og testes separat hos e-postleverandøren.
+**Det sendes ikke automatiske e-postvarsler.** Nye henvendelser vises i administrasjonen. «Skriv e-post til arrangør» åpner e-postprogrammet med et utkast; du kontrollerer og sender selv. Eieren opplyser at `post@isaacwilliam.no` finnes i Google Workspace. Tilgang og e-postoppsett er satt på pause etter eierens ønske; dette arbeidet endrer ikke Workspace eller e-postruting.
 
 ## Rediger selv
 
@@ -31,7 +32,7 @@ Bokmerk `/min-side`. Denne adressen åpner innloggingen til ditt kontrollpanel. 
 
 Åpne `/min-side` og velg **Rediger innhold**. Velg side, åpne seksjonen, endre tekst eller bilde og trykk **Lagre innhold**. Endringen vises direkte uten Durable eller ny bygging.
 
-Under **Innstillinger** kan navn, kontaktopplysninger og personverninformasjon endres. Innstillingene oppretter ikke e-postkontoer og endrer ikke DNS. Last ned en innholdseksport når du vil oppbevare en kopi i GitHub. Eksporten inneholder bare nettsideinnhold, ikke forespørsler eller økter.
+Under **Innstillinger** kan navn, kontaktopplysninger og personverninformasjon endres. Innstillingene oppretter ikke e-postkontoer og endrer ikke DNS. Under «Sikkerhetskopi og gjenoppretting» kan du laste ned en innholdseksport og senere gjenopprette den i kontrollpanelet. En kopi kan også oppbevares i GitHub. Eksporten inneholder bare nettsideinnhold, ikke forespørsler eller økter.
 
 `content/site.json` er det versjonerte startinnholdet. Det importeres **bare når databasen opprettes første gang**. Senere Git-pull eller utrulling overskriver ikke redigeringer du har gjort i administrasjonen. Ikke slett databasen for å oppdatere nettsidetekst.
 
@@ -39,7 +40,7 @@ Under **Innstillinger** kan navn, kontaktopplysninger og personverninformasjon e
 
 Dette er nå en Node-/SQLite-applikasjon, **ikke en Jekyll-side eller en ren GitHub Pages-side**. GitHub lagrer kildekoden. En server med vedvarende lagring og HTTPS kreves for bookingadministrasjonen.
 
-Se [driftsveiledningen](docs/DRIFT.md) for Docker, sikkerhetskopiering, test og kontrollert domenebytte. Ikke flytt domenet før erstatningen er gjennomgått og godkjent. Ikke slett Durable-siden ved denne utrullingen.
+Se [kort status før utrulling](docs/KLAR-FOR-DRIFT.md) og [driftsveiledningen](docs/DRIFT.md) for Docker, sikkerhetskopiering, test og kontrollert domenebytte. Ikke flytt domenet før erstatningen er gjennomgått og godkjent. Ikke slett Durable-siden ved denne utrullingen.
 
 ## Validering og status
 

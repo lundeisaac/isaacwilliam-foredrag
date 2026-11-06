@@ -6,7 +6,7 @@ import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {randomBytes} from 'node:crypto';
 const dir=mkdtempSync(join(tmpdir(),'iw-tests-')),password=randomBytes(32).toString('hex');let child,base,cookie,csrf,content;
-async function start(){child=spawn(process.execPath,['server/index.mjs'],{cwd:resolve('.'),env:{...process.env,PORT:'0',HOST:'127.0.0.1',DATA_DIR:dir,ADMIN_PASSWORD:password,PUBLIC_ORIGIN:'',BOOKING_ENABLED:'true',NODE_ENV:'test'},stdio:['ignore','pipe','pipe']});base=await new Promise((yes,no)=>{child.stdout.on('data',c=>{let m=String(c).match(/port (\d+)/);if(m)yes('http://127.0.0.1:'+m[1]);});child.on('exit',c=>no(Error('Server exited '+c)));child.on('error',no);});}
+async function start(overrides={}){child=spawn(process.execPath,['server/index.mjs'],{cwd:resolve('.'),env:{...process.env,PORT:'0',HOST:'127.0.0.1',DATA_DIR:dir,ADMIN_PASSWORD:password,PUBLIC_ORIGIN:'',BOOKING_ENABLED:'true',NODE_ENV:'test',...overrides},stdio:['ignore','pipe','pipe']});base=await new Promise((yes,no)=>{child.stdout.on('data',c=>{let m=String(c).match(/port (\d+)/);if(m)yes('http://127.0.0.1:'+m[1]);});child.on('exit',c=>no(Error('Server exited '+c)));child.on('error',no);});}
 async function stop(){await new Promise(resolve=>{child.once('exit',resolve);child.kill();});}
 async function request(path,method='GET',b,authenticated=true,extra={}){return fetch(base+path,{method,headers:{'Content-Type':'application/json',Origin:base,...(authenticated?{Cookie:cookie||'','X-CSRF-Token':csrf||''}:{}),...extra},body:b===undefined?undefined:JSON.stringify(b),redirect:'manual'});}
 async function login(){let r=await request('/api/login','POST',{password},false);assert.equal(r.status,200);cookie=r.headers.get('set-cookie').split(';')[0];csrf=(await r.json()).csrf;}
@@ -26,6 +26,18 @@ test('complete private booking and content workflow',async()=>{
  r=await request('/api/admin/content','PUT',{revision:content.revision,content},true, {'X-CSRF-Token':'wrong'});assert.equal(r.status,403);
  r=await request('/api/admin/content','PUT',{revision:content.revision,content});assert.equal(r.status,200);content.revision=(await r.json()).revision;
  r=await request('/api/admin/content','PUT',{revision:1,content});assert.equal(r.status,409);
+
+ // Server-rendered text and metadata are present without running JavaScript.
+ r=await request('/about','GET',undefined,false);let html=await r.text();
+ assert.match(html,/<title>Om \| Isaac William Lunde<\/title>/);
+ assert.match(html,/Foredragsholder med personlig erfaring/);
+ assert.equal((html.match(/<h1>/g)||[]).length,1);
+ assert.doesNotMatch(html,/<a href="\/min-side">/);
+ r=await request('/','GET',undefined,true);assert.match(await r.text(),/<a href="\/min-side">Mitt kontrollpanel<\/a>/);
+ const malicious=structuredClone(content);malicious.settings.name='Example $& </title><script>alert(1)</script>';
+ r=await request('/api/admin/content','PUT',{revision:content.revision,content:malicious});assert.equal(r.status,200);content.revision=(await r.json()).revision;
+ r=await request('/','GET',undefined,false);html=await r.text();assert.ok(html.includes('Example $&amp; &lt;/title&gt;&lt;script&gt;'));assert.ok(!html.includes('</title><script>alert(1)</script>'));assert.ok(html.includes('\\u003c/script>'));
+ r=await request('/api/admin/content','PUT',{revision:content.revision,content});assert.equal(r.status,200);content.revision=(await r.json()).revision;
  const sample={type:'booking',name:'Testperson',email:'test@example.invalid',organisation:'Testarrangør',organisationType:'Skole',topic:'Autisme',format:'Foredrag',audience:'Ansatte',location:'Digitalt',date:'2099-05-20',time:'12:30',participants:'50',message:'Dette er en automatisert test.',consent:true};
  r=await request('/api/enquiries','POST',sample,false,{Origin:'https://untrusted.invalid'});assert.equal(r.status,403);
  r=await request('/api/enquiries','POST',{...sample,email:'invalid'},false);assert.equal(r.status,400);
@@ -52,6 +64,13 @@ test('complete private booking and content workflow',async()=>{
  r=await request('/api/admin/enquiries/'+id,'DELETE',{});assert.equal(r.status,200);
  r=await request('/api/availability?from=2099-05-20&to=2099-05-20');assert.equal((await r.json()).unavailable.length,0);
  r=await request('/api/logout','POST',{});assert.equal(r.status,200);r=await request('/api/admin/enquiries');assert.equal(r.status,401);
+ // Changing the owner password invalidates old persisted sessions; removing it cannot expose data.
+ await login();const oldCookie=cookie;
+ await stop();await start({ADMIN_PASSWORD:randomBytes(32).toString('hex')});
+ r=await request('/api/admin/enquiries');assert.equal(r.status,401);
+ await stop();await start({ADMIN_PASSWORD:''});cookie=oldCookie;
+ r=await request('/api/admin/enquiries');assert.equal(r.status,401);
+
 });
 test('all pages and local assets are served securely; reviews are anonymous and unique',async()=>{
  for(let path of ['/','/about','/topics','/booking','/contact','/pricing-and-services','/faq','/testimonials','/personvern','/admin','/min-side']){

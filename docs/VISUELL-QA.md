@@ -28,3 +28,9 @@ Telefon-/nettbrettkontrollene brukte ekte separate visningsrammer i nettleseren,
 Skjermbilder: `screenshots/dashboard-testdata.jpg` og `screenshots/mobile-booking.jpg`.
 
 Ingen DNS-poster eller innhold hos Durable er endret. Produksjonshosting, e-postkonto og endelig personverntekst er fortsatt separate oppsettspunkter.
+
+## Avsluttende funksjonskontroll
+
+Etter servergjengivelsen ble alle 30 bredde-/sidekombinasjoner kontrollert på nytt uten horisontal overflyt. Et fiktivt skjema ble fylt ut og sendt fra Cloud Browser, mottakskvitteringen ble kontrollert mot databaseposten, og den eksakte testposten ble slettet. Testmiljøets skjemaer ble deretter stengt igjen. Det ble ikke sendt e-post eller opprettet en virkelig booking.
+
+HTTP-testene kontrollerer også at sidetekst og riktige sidetitler finnes uten JavaScript, at innhold ikke kan bryte ut av HTML/JSON, og at passordendring ugyldiggjør gamle innlogginger. Skjermbildet `screenshots/home-ready.jpg` viser den ferdige forsiden i testmiljøet.

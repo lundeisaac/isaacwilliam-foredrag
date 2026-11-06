@@ -22,7 +22,7 @@ I produksjon må `NODE_ENV=production` brukes, slik at innloggingskapselen kreve
 - Kontroller kontaktopplysninger, priser, kvalifikasjoner og biografitekst. Originalens påstander er bevart; de må vurderes av eieren.
 - Bekreft oversettelser og anonymisering av de 13 unike tilbakemeldingene. Oppbevar samtykkene privat, utenfor repositoryet.
 - Fullfør personverninformasjonen med virksomhet/behandlingsansvarlig, valgt driftsleverandør, behandlingsgrunnlag, konkret lagringstid, sletting og håndtering av rettighetsforespørsler.
-- Fullfør oppsett og test av `post@isaacwilliam.no`; se `EMAIL.md`. Nettsiden oppretter ikke en postkasse. Ingen automatiske e-postvarsler er integrert.
+- E-postarbeidet er satt på pause av eieren; se `EMAIL.md`. Ikke endre Google Workspace som del av nettstedets utrulling. Nettsiden oppretter ikke en postkasse. Ingen automatiske e-postvarsler er integrert.
 - Sett `BOOKING_ENABLED=true` og aktiver skjemaene i admin **i et testmiljø**. Send en testbooking og en kontaktmelding, kontroller mottak og personvern, endre status og pris, bekreft dato, sjekk at datoen blir opptatt, og slett testopplysningene.
 - Test opplasting av bilde, innholdslagring og innholdseksport. Test omstart med bevart database og bilder.
 - Test gjenoppretting fra sikkerhetskopi. Opprett en rutine for å lese nye forespørsler, siden e-postvarsler ikke er aktivert.
@@ -33,7 +33,7 @@ Sikkerhetskopier hele `DATA_DIR`: databasen, eventuelle `-wal`/`-shm`-filer og `
 
 Krypter sikkerhetskopier, begrens tilgang og oppbevar dem utenfor webrot og GitHub. Avtal en slettetid også for sikkerhetskopier. Gjenopprett til en stoppet app med samme datamappeoppsett og korrekte filtillatelser; start så og verifiser innhold og forespørsler. En innholdseksport fra admin er nyttig, men erstatter ikke database- og bildebackup.
 
-Administratorpassordet leveres som en hemmelig miljøvariabel. Ikke commit `.env`. Ved mistenkt kontotilgang: stopp appen, bytt hemmeligheten, slett rader i `sessions` i privat database, og start igjen. Eksisterende økter varer maksimalt åtte timer.
+Administratorpassordet leveres som en hemmelig miljøvariabel. Ikke commit `.env`. Ved mistenkt kontotilgang: stopp appen, bytt hemmeligheten, slett rader i `sessions` i privat database, og start igjen. Eksisterende økter varer maksimalt åtte timer. Endring av eierpassordet i miljøet og omstart ugyldiggjør tidligere økter automatisk.
 
 ## 4. Domenebytte krever eierens godkjenning
 

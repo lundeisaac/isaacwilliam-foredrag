@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {renderPublicPage,escape as escapeHTML} from '../public/assets/app.js';
 import {visualPage} from './visual-qa.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, scryptSync, timingSafeEqual, createHash, randomUUID } from 'node:crypto';
@@ -17,6 +18,7 @@ CREATE TABLE IF NOT EXISTS content_history(id INTEGER PRIMARY KEY, json TEXT NOT
 CREATE TABLE IF NOT EXISTS enquiries(id TEXT PRIMARY KEY, created TEXT NOT NULL, updated TEXT NOT NULL, status TEXT NOT NULL, payload TEXT NOT NULL, notes TEXT NOT NULL DEFAULT '', quote INTEGER, version INTEGER NOT NULL DEFAULT 1);
 CREATE UNIQUE INDEX IF NOT EXISTS unique_confirmed_day ON enquiries(json_extract(payload,'$.date')) WHERE status='Bekreftet';
 CREATE TABLE IF NOT EXISTS blocks(id TEXT PRIMARY KEY, start TEXT NOT NULL, end TEXT NOT NULL, label TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS auth_config(id INTEGER PRIMARY KEY CHECK(id=1),salt BLOB NOT NULL,hash BLOB NOT NULL);
 CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY, csrf TEXT NOT NULL, expires INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS throttle(key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset INTEGER NOT NULL);`);
 if(!db.prepare('SELECT id FROM content WHERE id=1').get())db.prepare('INSERT INTO content(id,json) VALUES(1,?)').run(readFileSync(join(root,'content/site.json'),'utf8'));
@@ -25,7 +27,12 @@ const visualQA=!prod&&process.env.VISUAL_QA==='true';
 const password=process.env.ADMIN_PASSWORD || '';
 if(password && password.length<16)throw new Error('ADMIN_PASSWORD må ha minst 16 tegn.');
 if(prod&&!password)throw new Error('ADMIN_PASSWORD må settes før produksjonsstart.');
-const salt=randomBytes(32), passwordHash=password?scryptSync(password,salt,64):null;
+const storedCredential=db.prepare('SELECT salt,hash FROM auth_config WHERE id=1').get();
+const salt=storedCredential?Buffer.from(storedCredential.salt):randomBytes(32);
+const passwordHash=password?scryptSync(password,salt,64):null;
+if(passwordHash&&(!storedCredential||!timingSafeEqual(passwordHash,Buffer.from(storedCredential.hash)))){
+ db.exec('BEGIN IMMEDIATE');try{db.prepare('DELETE FROM sessions').run();db.prepare('INSERT INTO auth_config(id,salt,hash) VALUES(1,?,?) ON CONFLICT(id) DO UPDATE SET salt=excluded.salt,hash=excluded.hash').run(salt,passwordHash);db.exec('COMMIT');}catch(error){db.exec('ROLLBACK');throw error;}
+}
 const statuses=['Ny','Under behandling','Tilbud sendt','Bekreftet','Gjennomført','Avslått','Avlyst','Arkivert'];
 const types={'html':'text/html; charset=utf-8','js':'text/javascript; charset=utf-8','css':'text/css; charset=utf-8','json':'application/json; charset=utf-8','png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','webp':'image/webp','woff2':'font/woff2','ttf':'font/ttf','ico':'image/x-icon'};
 const content=()=>{let row=db.prepare('SELECT json,revision FROM content WHERE id=1').get();return {...JSON.parse(row.json),revision:row.revision};};
@@ -38,7 +45,7 @@ function date(v){if(typeof v!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(v)||!Number
 function today(){return new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Oslo'}).format(new Date());}
 function rate(key,max,window){let now=Date.now();db.prepare('DELETE FROM throttle WHERE reset<?').run(now);let row=db.prepare('SELECT * FROM throttle WHERE key=?').get(key);if(row&&row.count>=max)fail(429,'For mange forsøk. Prøv igjen senere.');db.prepare('INSERT INTO throttle(key,count,reset) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1').run(key,now+window);}
 function originCheck(req){let expected=process.env.PUBLIC_ORIGIN || `http://${req.headers.host}`;if(req.headers.origin!==expected)fail(403,'Forespørselen må komme fra denne nettsiden.');if(!String(req.headers['content-type']||'').startsWith('application/json'))fail(415,'JSON kreves.');}
-function session(req,res){let token=(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith('iw_session='))?.slice(11);if(!token)return null;let hash=createHash('sha256').update(token).digest('hex');let row=db.prepare('SELECT * FROM sessions WHERE hash=? AND expires>?').get(hash,Date.now());return row?{...row,hash}:null;}
+function session(req,res){if(!passwordHash)return null;let token=(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith('iw_session='))?.slice(11);if(!token)return null;let hash=createHash('sha256').update(token).digest('hex');let row=db.prepare('SELECT * FROM sessions WHERE hash=? AND expires>?').get(hash,Date.now());return row?{...row,hash}:null;}
 function auth(req,res,mutate=false){let s=session(req,res);if(!s)fail(401,'Logg inn for å fortsette.');if(mutate && req.headers['x-csrf-token']!==s.csrf)fail(403,'Økten er utløpt. Logg inn på nytt.');return s;}
 function cookie(value,age=28800){return `iw_session=${value}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${age}${prod?'; Secure':''}`;}
 function transaction(fn){db.exec('BEGIN IMMEDIATE');try{const result=fn();db.exec('COMMIT');return result;}catch(e){db.exec('ROLLBACK');throw e;}}
@@ -150,8 +157,18 @@ const server=http.createServer(async(req,res)=>{
   else {res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});return res.end('<!doctype html><html lang="nb"><title>Fant ikke siden</title><h1>Fant ikke siden</h1><p><a href="/">Gå til forsiden</a></p></html>');}
   if(!existsSync(file)||!statSync(file).isFile())fail(404,'Fant ikke filen.');
   if(base&&!realpathSync(file).startsWith(realpathSync(base)+'/'))fail(404,'Fant ikke filen.');
+  if(file===join(root,'public/index.html')){
+   const site={...content(),bookingAvailable:active()},signedIn=Boolean(session(req,res)),rendered=renderPublicPage(site,path,signedIn);
+   let html=readFileSync(file,'utf8').replace(/<title>[\s\S]*?<\/title>/,()=>`<title>${escapeHTML(rendered.title)}</title>`).replace(/<meta name="description" content="[^"]*">/,()=>`<meta name="description" content="${escapeHTML(rendered.description)}">`);
+   html=html.replace('<header id="header"></header>',()=>`<header id="header">${rendered.header}</header>`).replace(/<main id="main">[\s\S]*?<\/main>/,()=>`<main id="main">${rendered.main}</main>`).replace('<footer id="footer"></footer>',()=>`<footer id="footer">${rendered.footer}</footer>`);
+   const bootstrap=JSON.stringify({site,signedIn}).replace(/</g,'\\u003c');
+   html=html.replace('</body>',()=>`<script id="site-data" type="application/json">${bootstrap}</script></body>`);
+   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});return res.end(req.method==='HEAD'?undefined:html);
+  }
   res.writeHead(200,{'Content-Type':types[extname(file).slice(1)]||'application/octet-stream','Cache-Control':file.endsWith('.html')||!prod?'no-store':'public, max-age=3600'});res.end(req.method==='HEAD'?undefined:readFileSync(file));
  }catch(e){reply(res,e.status||500,{error:e.status?e.message:'Det oppstod en serverfeil. Prøv igjen senere.'});}
 });
 const argument=name=>{const i=process.argv.indexOf(name);return i<0?undefined:process.argv[i+1];};
 server.listen(Number(argument('--port')||process.env.PORT||3000),argument('--host')||process.env.HOST||'0.0.0.0',()=>console.log('Isaac William website listening on port '+server.address().port));
+
+for(const signal of ['SIGTERM','SIGINT'])process.once(signal,()=>{server.close(()=>{db.close();process.exit(0);});});
