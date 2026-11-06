@@ -403,7 +403,7 @@
           ]
         },
         {
-          "kind": "cards",
+          "kind": "accordion",
           "eyebrow": "Populære foredrag om mobbing og sosialt press",
           "title": "Mobbing og sosialt press",
           "text": "Mobbing, utenforskap og sosialt press påvirker mennesker i alle aldre — både i skole, arbeidsliv og digitale miljøer. Foredragene tar opp hvordan mobbing oppstår, hvorfor mennesker faller utenfor, og hvordan relasjoner og miljø kan påvirke psykisk helse og selvbilde over tid.",
@@ -437,7 +437,7 @@
           ]
         },
         {
-          "kind": "cards",
+          "kind": "accordion",
           "eyebrow": "Populære foredrag om autisme og nevrodiversitet",
           "title": "Autisme og nevrodiversitet",
           "text": "Autisme og nevrodiversitet handler om langt mer enn diagnoser og stereotypier. Foredragene utforsker hvordan det faktisk kan oppleves å navigere skole, arbeid, relasjoner og hverdagsliv som nevrodivergent — med fokus på både utfordringer, misforståelser, identitet og tilhørighet.",
@@ -471,7 +471,7 @@
           ]
         },
         {
-          "kind": "cards",
+          "kind": "accordion",
           "eyebrow": "Populære foredrag om psykisk helse",
           "title": "Psykisk Helse",
           "text": "Psykisk helse påvirker hvordan mennesker tenker, føler og fungerer i hverdagen — ofte på måter som ikke alltid er synlige for andre. Foredragene tar opp ulike psykiske utfordringer, indre belastninger og hvordan press, relasjoner og livserfaringer kan påvirke mennesker i alle aldre.",
@@ -505,7 +505,7 @@
           ]
         },
         {
-          "kind": "cards",
+          "kind": "accordion",
           "eyebrow": "Populære foredrag om selvskading og forebygging av selvmord",
           "title": "Selvskading og forebygging av selvmord",
           "text": "Selvskading og selvmordstanker er temaer mange synes er vanskelige å snakke om, men som påvirker flere mennesker enn mange er klar over. Foredragene fokuserer på forståelse, varselsignaler, åpenhet og hvordan man kan møte psykisk smerte og kriser på en trygg og menneskelig måte.",
@@ -539,7 +539,7 @@
           ]
         },
         {
-          "kind": "cards",
+          "kind": "accordion",
           "eyebrow": "Populære foredrag om digital oppvekst",
           "title": "Digital Oppvekst",
           "text": "Å vokse opp på internett påvirker identitet, relasjoner og psykisk helse på måter tidligere generasjoner aldri opplevde. Foredragene utforsker både de positive og negative sidene ved sosiale medier, gaming, nettkultur og digitale relasjoner — og hvordan det former mennesker i dagens samfunn.",
