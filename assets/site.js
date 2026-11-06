@@ -1,7 +1,5 @@
-// Sett denne til ditt faktiske Formspree-endepunkt når booking skal aktiveres.
-// Eksempel: "https://formspree.io/f/xxxxxxxx"
-const BOOKING_ENDPOINT = "";
-
+/* Booking requires a configured Formspree endpoint and a completed privacy notice.
+   All submission data goes directly to the chosen form service, never to GitHub. */
 document.querySelectorAll("[data-menu-toggle]").forEach((button) => {
   const nav = document.getElementById(button.getAttribute("aria-controls"));
   if (!nav) return;
@@ -14,13 +12,26 @@ document.querySelectorAll("[data-menu-toggle]").forEach((button) => {
     button.setAttribute("aria-expanded", "false");
   }));
 });
-
 const form = document.getElementById("booking-form");
 if (form) {
   const submit = document.getElementById("booking-submit");
   const note = document.getElementById("booking-setup-note");
   const status = document.getElementById("booking-status");
-  const configured = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(BOOKING_ENDPOINT);
+  const endpoint = (form.dataset.bookingEndpoint || "").trim();
+  const configured = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(endpoint);
+  const dateInput = document.getElementById("date");
+  if (dateInput) {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    dateInput.min = `${y}-${m}-${d}`;
+  }
+  const subject = new URLSearchParams(window.location.search).get("foredrag");
+  if (subject) {
+    const select = document.getElementById("topic");
+    if (select && [...select.options].some((option) => option.value === subject)) select.value = subject;
+  }
   if (configured) {
     note.hidden = true;
     submit.disabled = false;
@@ -33,25 +44,23 @@ if (form) {
     submit.disabled = true;
     submit.textContent = "Sender …";
     try {
-      const response = await fetch(BOOKING_ENDPOINT, {
+      const response = await fetch(endpoint, {
         method: "POST",
         body: new FormData(form),
-        headers: { Accept: "application/json" },
+        headers: { Accept: "application/json" }
       });
-      if (!response.ok) throw new Error("Skjemaet kunne ikke sendes.");
+      if (!response.ok) throw new Error("Kunne ikke sende.");
       form.reset();
       status.textContent = "Takk! Forespørselen er mottatt. Dette er ikke en bekreftet booking.";
-      status.focus();
     } catch {
-      status.textContent = "Beklager, noe gikk galt. Prøv igjen senere eller ta kontakt via e-post.";
-      status.focus();
+      status.textContent = "Beklager, noe gikk galt. Prøv igjen senere, eller ta kontakt via e-post.";
     } finally {
       submit.disabled = false;
       submit.textContent = "Send bookingforespørsel";
+      status.focus();
     }
   });
 }
-
 document.querySelectorAll("[data-year]").forEach((node) => {
   node.textContent = new Date().getFullYear();
 });
