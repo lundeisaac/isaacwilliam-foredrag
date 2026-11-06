@@ -1,45 +1,58 @@
-# IsaacWilliam.no – foredrag
+# isaacwilliam.no – uavhengig norskspråklig foredragsnettsted
 
-Dette er et første utkast til en **norskspråklig** nettside for foredrag og bookingforespørsler. Det er ikke en ferdig publisert nettside.
+Dette er **ny kode** for et foredragsnettsted. Det ligger i GitHub, separat fra den opprinnelige Durable-nettsiden. Den originale Durable-nettsiden er **ikke kopiert eller overskrevet**. Originalens utseende og tekst må verifiseres før en trofast rekonstruksjon kan ferdigstilles.
 
-## Status
+## Gjennomført i GitHub
 
-- [x] Grunnstruktur og responsivt design
-- [x] Norske tekster og tydelig merking av innhold som mangler
-- [x] Bookingforespørsel med relevante felter
-- [ ] Faktiske foredragstitler, beskrivelser og målgrupper
-- [ ] Godkjent biografi og eventuelle bilder
-- [ ] Velge/aktivere skjemamottak
-- [ ] Fullføre personvernerklæring og teste databehandling
-- [ ] Teste, konfigurere hosting, SSL og domenet isaacwilliam.no
-- [ ] Fjerne `noindex` når nettsiden er lanseringsklar
+- [x] Responsiv nettside med forside, foredrag, om meg, booking og foreløpig personvern
+- [x] Norsk grensesnitt
+- [x] Redigerbart hovedinnhold i `_data/innhold.yml`
+- [x] Redigerbare foredrag i `_foredrag/*.md`
+- [x] Pages CMS-oppsett i `.pages.yml`
+- [x] Valgfrie bilder i innholdsredigereren
+- [x] Bookingforespørsel med dato, sted, målgruppe og arrangør
+- [ ] Kontroller og kopier design, bilder og tekst fra original Durable-side
+- [ ] Gjennomfør personlig gjennomgang av all tekst og foredrag
+- [ ] Fullfør personvern- og databehandlerinformasjon
+- [ ] Konfigurer skjematjeneste og test mottak
+- [ ] Aktiver GitHub Pages og test nettsiden på test-URL
+- [ ] Koble domene og test HTTPS, DNS og e-post
+- [ ] Fjern `noindex,nofollow` etter endelig godkjenning
 
-## Filoversikt
+## Redigering (uten å endre kode)
 
-- `index.html` – forside med seksjonene Hjem, Foredrag, Om og Kontakt
-- `booking.html` – bookingforespørsel
-- `personvern.html` – foreløpig personverntekst
-- `assets/style.css` – design og responsiv utforming
-- `assets/site.js` – mobilmeny, dato og skjemahåndtering
+1. Åpne [Pages CMS](https://app.pagescms.org/).
+2. Logg inn med GitHub-kontoen som eier `taylorcolonwrites/isaacwilliam-foredrag`.
+3. Gi Pages CMS-appen tilgang til dette repositoryet.
+4. Åpne **Nettsidens tekster og innstillinger** for forsiden, kontakt, bilder og bookingoverskrifter.
+5. Åpne **Foredrag** for å opprette, endre, sortere eller skjule foredrag.
+6. Lagre. Endringene lagres i GitHub. Etter at publisering er satt opp, bygges nettsiden på nytt.
 
-Ingen betalingsløsning er nødvendig.
+På nettsiden finnes også `rediger.html` som lenker til redigereren. Dette er kun en snarvei; besøkende får ikke tilgang til redigering uten GitHub-autorisasjon.
 
-## Booking (ikke aktivert ennå)
+## Hosting
 
-Skjemaet er synlig, men **sender ikke informasjon** før et skjemasystem er konfigurert. Det viser tydelig beskjed om dette.
+**Anbefalt løsning for denne Jekyll-versjonen: GitHub Pages.** Denne nettsiden bruker Jekyll/Liquid (`_config.yml`, `_data`, `_foredrag`). En ren kopiering av filene til en statisk server **uten Jekyll-bygging vil ikke fungere riktig**.
 
-Forslag: Opprett en konto og et skjema i [Formspree](https://formspree.io/). Der kan forespørsler ses i et eget dashboard. Når kontoen er opprettet, sett den fullstendige endepunkt-URL-en (f.eks. `https://formspree.io/f/XXXXXXXX`) i `BOOKING_ENDPOINT` øverst i `assets/site.js`.
+Slik aktiveres testversjonen i GitHub:
 
-Formspree håndterer bare forespørselen, ikke automatisk bekreftelse av dato eller avtale. Foredragsholder må godkjenne forespørselen.
+1. Gå til repository **Settings → Pages**.
+2. Sett **Build and deployment → Source: Deploy from a branch**.
+3. Velg branch **main**, mappe **/(root)**, deretter **Save**.
+4. Test nettstedet på URL-en GitHub viser under Pages. Vanlig prosjekt-URL vil være `https://taylorcolonwrites.github.io/isaacwilliam-foredrag/` etter at publiseringen fungerer.
 
-**Før aktivering:** Ferdigstill personvernerklæringen og bekreft leverandør, lagring og sletterutiner. Test en innsendelse og bekreft at den vises i dashboard. Opprett aldri dummy-bookinger med reelle persondata.
+Ikke endre DNS for `isaacwilliam.no` før den nye versjonen er godkjent. Når den er klar, sett custom domain i **Settings → Pages**, og konfigurer DNS ut fra GitHubs gjeldende instruksjoner. Ikke fjern eller overskriv MX-, SPF-, DKIM- eller DMARC-poster som brukes til e-post. Sikre HTTPS.
 
-## Publisering
+Cloudflare Pages kan brukes senere, men da må Jekyll bygges og resultatet fra `_site` publiseres – det er **ikke** tilstrekkelig å bruke `exit 0` og katalogen `.`.
 
-Dette er vanlige statiske HTML-/CSS-/JS-filer uten byggeprosess. Nettsiden kan hostes på Cloudflare Pages (med GitHub-integrasjon), annen statisk hosting eller en egen webserver. GitHub er **kildekodelageret**, ikke automatisk produksjonshosting. Domenet er ikke konfigurert av dette repoet.
+## Booking og personvern
 
-Cloudflare Pages: Koble dette repoet til et nytt Pages-prosjekt, velg `main`, byggkommando `exit 0`, publiseringskatalog `.`. Koble først `isaacwilliam.no` til prosjektet når nettstedet er godkjent og testet. Kontroller eksisterende DNS før endringer, slik at e-postposter ikke påvirkes.
+Forespørslene er **ikke aktivert**. Skjemaet lagrer eller sender ingen data før et Formspree-endepunkt er satt i `_data/innhold.yml` (felt `booking_endepunkt`). Fylles feltet inn, sender skjemaet data fra besøkerens nettleser direkte til Formspree, ikke til GitHub.
 
-## Innhold
+Ved behov kan du opprette [Formspree](https://formspree.io/) og bruke deres eget dashboard for forespørslene. Det gir **ikke** automatisk bekreftelse av kalender eller avtale.
 
-Tekst, foredragstitler, foto og bakgrunnsinformasjon er foreløpige. Vi har ikke fylt inn uverifiserte erfaringer, kundesitater, priser, kursinnhold eller andre påstander. Visuell profil kan endres ved å justere variablene i `assets/style.css`.
+Før aktivering må personvernerklæringen fullføres med behandlingsansvarlig, behandlingsgrunnlag, leverandør/databehandler, lagring, sletting og rettigheter. Test deretter med testopplysninger du selv kontrollerer. Ikke lagre persondata i det offentlige repositoryet.
+
+## Innhold og videre design
+
+Innholdet er foreløpig og inneholder ingen påstander om foredrag, kvalifikasjoner eller kundeuttalelser som vi ikke har fått fra eieren. Styling finnes i `assets/style.css`. Når originalen i Durable er tilgjengelig for gjennomgang, kan design, tekster og brukstillatte bilder overføres til en mer trofast rekonstruksjon.
