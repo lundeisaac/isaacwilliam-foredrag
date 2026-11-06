@@ -74,9 +74,14 @@ function validateContent(c){
  return c;
 }
 function enquiry(b){
- let out={type:b.type==='contact'?'contact':'booking',name:text(b.name,150,true),email:text(b.email,254,true),phone:text(b.phone||'',60),organisation:text(b.organisation,200,true),organisationType:text(b.organisationType,100,true),topic:text(b.topic||'',200),format:text(b.format||'',100),audience:text(b.audience||'',200),location:text(b.location||'',300),message:text(b.message,6000,true),date:'',time:text(b.time||'',10),participants:text(b.participants||'',10)};
+ let out={type:b.type==='contact'?'contact':'booking',name:text(b.name,150,true),email:text(b.email,254,true),phone:text(b.phone||'',60),organisation:text(b.organisation||'',200,b.type!=='contact'),organisationType:text(b.organisationType||'',100,b.type!=='contact'),topic:text(b.topic||'',200),format:text(b.format||'',100),audience:text(b.audience||'',200),location:text(b.location||'',300),message:text(b.message,6000,true),date:'',time:text(b.time||'',10),participants:text(b.participants||'',10)};
  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(out.email))fail(400,'Kontroller e-postadressen.');
  if(out.type==='booking'){
+  out.returningClient=b.returningClient===true;
+  out.invoiceEmail=text(b.invoiceEmail||'',254);out.organisationNumber=text(b.organisationNumber||'',20).replace(/ /g,'');out.invoiceReference=text(b.invoiceReference||'',200);
+  if(out.invoiceEmail&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(out.invoiceEmail))fail(400,'Kontroller faktura-e-postadressen.');
+  if(out.organisationNumber&&!/^\d{9}$/.test(out.organisationNumber))fail(400,'Organisasjonsnummer må ha ni sifre.');
+
   out.date=date(b.date||'');if(out.date<today())fail(400,'Velg en fremtidig dato.');
   if(!out.topic||!out.format||!out.audience||!out.location)fail(400,'Fyll ut tema, format, målgruppe og sted.');
   if(out.time&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(out.time))fail(400,'Ugyldig klokkeslett.');

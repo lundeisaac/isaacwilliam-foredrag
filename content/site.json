@@ -15,8 +15,8 @@
         {
           "kind": "hero",
           "eyebrow": "",
-          "title": "Foredragsholder innen psykisk helse og menneskelige relasjoner",
-          "text": "Isaac William tilbyr foredrag om sentrale temaer innen psykisk helse og samfunnsutfordringer – inkludert autisme, selvmord og selvskading, spiseforstyrrelser, mobbing, digital oppvekst og kjønnsidentitet. Med utgangspunkt i egne erfaringer og inngående kjennskap til mennesker i krevende livssituasjoner, formidler han innsikt som er både faglig forankret og genuint menneskelig.\n\nForedragene belyser hvordan disse temaene preger enkeltmennesker og fellesskap – i skole, arbeidsliv og samfunnet for øvrig – og tilpasses alltid den aktuelle målgruppen. Isaac William holder foredrag for skoler, arbeidsplasser, bibliotek, kommuner og organisasjoner som ønsker å ta disse samtalene på alvor.",
+          "title": "Foredrag som åpner for viktige samtaler",
+          "text": "Om mobbing, autisme, psykisk helse og digital oppvekst – med personlige erfaringer og rom for spørsmål. For skoler, arbeidsplasser og organisasjoner.",
           "images": [
             {
               "src": "/assets/images/original-01.webp",
@@ -39,7 +39,7 @@
           "kind": "intro",
           "eyebrow": "Hvem Isaac William er",
           "title": "Stemmen bak samtaler som betyr noe",
-          "text": "Isaac William kombinerer personlig erfaring med faglig tyngde for å skape rom der vanskelige samtaler ikke bare er mulige – de er nødvendige.\n\nMed bakgrunn fra skole, oppvekst og arbeidsliv formidler han innsikt om temaer mange vegrer seg for å ta opp. Hans mål er å normalisere de viktige samtalene og gjøre det enklere for unge – og de rundt dem – å søke hjelp, sette ord på det vanskelige og føle seg sett.\n\nIsaac William samarbeider med skoler, bibliotek, kommuner og organisasjoner over hele Norge.",
+          "text": "Isaac William kombinerer personlig erfaring med refleksjon for å skape rom der vanskelige samtaler ikke bare er mulige – de er nødvendige.\n\nMed bakgrunn fra skole, oppvekst og arbeidsliv formidler han innsikt om temaer mange vegrer seg for å ta opp. Hans mål er å normalisere de viktige samtalene og gjøre det enklere for unge – og de rundt dem – å søke hjelp, sette ord på det vanskelige og føle seg sett.\n\nIsaac William samarbeider med skoler, bibliotek, kommuner og organisasjoner over hele Norge.",
           "images": [],
           "links": [],
           "items": []
@@ -298,10 +298,10 @@
           ]
         },
         {
-          "kind": "stats",
+          "kind": "cards",
           "eyebrow": "Foredrag med effekt",
-          "title": "Å bygge forståelse gjennom målrettede samtaler",
-          "text": "Gjennom foredrag og samtaler belyser Isaac William sentrale temaer innen psykisk helse, mobbing, digital oppvekst, autisme og forebygging av selvskading og selvmord. Hans arbeid retter seg mot skoler, bibliotek, kommuner og organisasjoner som søker økt kompetanse og en mer konstruktiv tilnærming til krevende og samfunnsviktige temaer.",
+          "title": "Dette kan dere forvente",
+          "text": "Vi avklarer målgruppe, rammer og forventninger før arrangementet.",
           "images": [],
           "links": [
             {
@@ -315,24 +315,16 @@
           ],
           "items": [
             {
-              "title": "Ulike arenaer",
-              "text": "10+",
-              "caption": "Skoler, biblioteker, kommuner og organisasjoner velger Isaac når de trenger noen som virkelig forstår temaet – og som kan formidle det på en måte som faktisk treffer."
+              "title": "Tilpasset målgruppen",
+              "text": "Tema og språk avtales ut fra hvem som skal delta."
             },
             {
-              "title": "Deltakere nådd",
-              "text": "2,000+",
-              "caption": "Deltakere har fått innsikt gjennom foredrag og samtaler om psykisk helse, digital oppvekst, identitet og sosialt press."
+              "title": "Rom for spørsmål",
+              "text": "Vi avtaler hvor mye tid dere ønsker til spørsmål og samtale."
             },
             {
-              "title": "Arrangementer gjennomført",
-              "text": "30+",
-              "caption": "Foredrag for skoler, konferanser, foreldremøter, fagdager og seminarer – med fokus på de samtalene som virkelig gjør en forskjell."
-            },
-            {
-              "title": "Tilbakemeldingsrate",
-              "text": "100%",
-              "caption": "Flere arrangører har samlet inn tilbakemeldinger som viser høy grad av engasjement og deltakelse i samtalene."
+              "title": "Tydelig avtale",
+              "text": "Dato, format, honorar og eventuelle reisekostnader avklares skriftlig."
             }
           ]
         },
@@ -778,23 +770,23 @@
           "items": [
             {
               "title": "Foredrag: 45-60 min",
-              "text": "Fra NOK 2 500\n\nEt skreddersydd foredrag om ett definert tema – mobbing, digital oppvekst, autisme, identitet eller selvskading. Tilpasset din målgruppe og ditt arrangement. Bygget for refleksjon og gjenkjennelse, ikke bare informasjon. Avsluttes med åpen dialog."
+              "text": "Fra 2 000 kr\n\nEt skreddersydd foredrag om ett definert tema – mobbing, digital oppvekst, autisme, identitet eller selvskading. Tilpasset din målgruppe og ditt arrangement. Bygget for refleksjon og gjenkjennelse, ikke bare informasjon. Avsluttes med åpen dialog."
             },
             {
               "title": "Workshop: 1,5 - 3 timer",
-              "text": "Fra NOK 4 500\n\nEt interaktivt opplegg på 2–3 timer, inkludert pause. Opplegget legger vekt på refleksjon, åpen samtale og aktiv deltakelse – ikke bare forelesning. Innholdet kan tilpasses målgruppe, tematikk og arrangementets formål, enten det er en skoledag, en fagdag for ansatte eller et større arrangement."
+              "text": "Fra 3 500 kr\n\nEt interaktivt opplegg på 1,5–3 timer, inkludert pause. Opplegget legger vekt på refleksjon, åpen samtale og aktiv deltakelse – ikke bare forelesning. Innholdet kan tilpasses målgruppe, tematikk og arrangementets formål, enten det er en skoledag, en fagdag for ansatte eller et større arrangement."
             },
             {
               "title": "Seminar: 2-4 timer",
-              "text": "Fra NOK 6 000\n\nEt lengre faglig foredrag med fordypning innen ett eller flere temaer – tilpasset din gruppe og kontekst. Inkluderer rom for refleksjon, spørsmål og samtale underveis, slik at innholdet ikke bare formidles, men faktisk lander. Passer godt for ansatte, fagpersoner, organisasjoner og mindre fagarrangementer der dybde og dialog er viktig."
+              "text": "Fra 5 000 kr\n\nEt lengre faglig foredrag med fordypning innen ett eller flere temaer – tilpasset din gruppe og kontekst. Inkluderer rom for refleksjon, spørsmål og samtale underveis, slik at innholdet ikke bare formidles, men faktisk lander. Passer godt for ansatte, fagpersoner, organisasjoner og mindre fagarrangementer der dybde og dialog er viktig."
             },
             {
               "title": "Fagdag: 5-8 timer",
-              "text": "Fra NOK 9 000\n\nEt større faglig opplegg med flere foredrag, sesjoner eller workshops gjennom dagen. Passer for skoler, kommuner, organisasjoner og konferanser som ønsker å gå i dybden på ett eller flere temaer – med rom for refleksjon, dialog og tilpasning til ulike målgrupper. Innholdet settes sammen etter behov, og kan kombinere foredrag for ansatte, elever og foresatte i løpet av samme dag."
+              "text": "Fra 7 500 kr\n\nEt større faglig opplegg med flere foredrag, sesjoner eller workshops gjennom dagen. Passer for skoler, kommuner, organisasjoner og konferanser som ønsker å gå i dybden på ett eller flere temaer – med rom for refleksjon, dialog og tilpasning til ulike målgrupper. Innholdet settes sammen etter behov, og kan kombinere foredrag for ansatte, elever og foresatte i løpet av samme dag."
             },
             {
               "title": "Panelsamtale: 45-90 min",
-              "text": "Fra NOK 1 000\n\nDeltakelse i panelsamtaler, debatter eller samtaleformat der Isaac bidrar med personlig erfaring, faglig refleksjon og åpne diskusjoner rundt relevante samfunns- og mennesketemaer. Egnet for konferanser, fagdager og arrangementer som ønsker en stemme med både dybde og nærhet til temaet."
+              "text": "Fra 1 000 kr\n\nDeltakelse i panelsamtaler, debatter eller samtaleformat der Isaac bidrar med personlig erfaring, faglig refleksjon og åpne diskusjoner rundt relevante samfunns- og mennesketemaer. Egnet for konferanser, fagdager og arrangementer som ønsker en stemme med både dybde og nærhet til temaet."
             },
             {
               "title": "Tilpasset opplegg",
@@ -806,7 +798,7 @@
           "kind": "intro",
           "eyebrow": "Viktig Informasjon",
           "title": "Alle priser er veiledende",
-          "text": "Prisene på siden er estimater og kan variere ut fra reise, varighet, målgruppe, tilpasning og arrangementstype. Endelig pris avtales alltid etter dialog om arrangementets behov.",
+          "text": "Prisene er veiledende fra-priser. Endelig totalpris, eventuell avgift og avtalte reise- og overnattingskostnader fremgår av det skriftlige tilbudet. Ingen booking er bekreftet før vi har avtalt oppdraget.\n\nBetaling skjer med faktura, ikke på nettsiden. Fakturareferanse og betalingsfrist avklares i avtalen. Har dere et begrenset budsjett, kan dere beskrive rammene i forespørselen.",
           "images": [],
           "links": [],
           "items": []
@@ -887,6 +879,10 @@
             {
               "title": "Hva skjer etter at vi har booket?",
               "text": "Etter at bookingen er bekreftet, avtales praktiske detaljer som tidspunkt, ankomst, tekniske behov og eventuelle siste justeringer av innhold. Isaac William møter forberedt og leverer et foredrag som er tilpasset deres målgruppe og arrangement."
+            },
+            {
+              "title": "Hvordan betaler vi? Trenger vi en konto?",
+              "text": "Dere får faktura etter avtale. Nettsiden tar ikke imot betaling. Dere trenger ingen brukerkonto for å sende en forespørsel, heller ikke ved gjentatte oppdrag. Fakturaopplysninger kan legges ved frivillig eller avklares når vi avtaler oppdraget."
             }
           ]
         },

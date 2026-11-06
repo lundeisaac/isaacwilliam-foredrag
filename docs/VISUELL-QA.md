@@ -34,3 +34,14 @@ Ingen DNS-poster eller innhold hos Durable er endret. Produksjonshosting, e-post
 Etter servergjengivelsen ble alle 30 bredde-/sidekombinasjoner kontrollert på nytt uten horisontal overflyt. Et fiktivt skjema ble fylt ut og sendt fra Cloud Browser, mottakskvitteringen ble kontrollert mot databaseposten, og den eksakte testposten ble slettet. Testmiljøets skjemaer ble deretter stengt igjen. Det ble ikke sendt e-post eller opprettet en virkelig booking.
 
 HTTP-testene kontrollerer også at sidetekst og riktige sidetitler finnes uten JavaScript, at innhold ikke kan bryte ut av HTML/JSON, og at passordendring ugyldiggjør gamle innlogginger. Skjermbildet `screenshots/home-ready.jpg` viser den ferdige forsiden i testmiljøet.
+
+## Gjennomgang før eierens vurdering – 6. november 2026
+
+- Booking har frivillig markering for tidligere kunder og sammenfoldede fakturaopplysninger. Ingen kundekonto eller betaling på nettsiden.
+- Faktura-e-post, ni-sifret organisasjonsnummer og referanse valideres på serveren og vises bare i kontrollpanelet. Tester kontrollerer lagring og at offentlig innhold ikke røper opplysningene.
+- Generelle kontaktmeldinger krever ikke organisasjon. Påkrevde og valgfrie felt forklares, ugyldige påkrevde felt markeres for hjelpemidler.
+- Skriftstørrelser er relative, navigasjonslenker og kontroller har større treffområder, og kontrastmoduser har egne stiler. Dette er ikke en full WCAG-sertifisering.
+- Cloud Browser: fakturafelt utvidet på desktop og i 320 CSS-pikslers iframe. Ingen horisontal overløp (305 px innholdsbredde etter scrollbar). Skjemaene forblir stengt før driftsoppsettet er klart.
+- Hjemmesiden er kortere. Udokumenterte resultatstatistikker på Om-siden er erstattet med konkrete forventninger til oppdraget.
+- Veiledende priser er justert til 2 000 / 3 500 / 5 000 / 7 500 kr; panelsamtale fortsatt 1 000 kr. Dette er eierens redigerbare prisforslag, ikke en bransjesats. Reise, eventuell avgift, totalpris og betalingsvilkår avtales skriftlig.
+- Ingen endringer i DNS, opprinnelig Durable-side eller Google Workspace.
