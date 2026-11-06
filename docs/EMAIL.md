@@ -4,7 +4,7 @@ Kontrollert 6. november 2026. Ingen DNS-poster er endret.
 
 Offentlig DNS viser NorgesDNS-navnetjenere, MX `10 mail.isaacwilliam.no.` og en eksisterende SPF-post. Dette bekrefter at domenet har et oppsett for e-postruting, men bekrefter ikke at postkassen `post@isaacwilliam.no` finnes eller fungerer.
 
-Leverandørens kundeportal er `https://norgesdomene.no/portal`. Pålogging til denne portalen er påbegynt med eierens valgte Google-konto. Ingen ny postkasse eller betalt tjeneste er opprettet i denne endringen. Leverandørtilgang og eventuell enhetsbekreftelse må fullføres før postkassestatus kan kontrolleres.
+Leverandørens kundeportal er `https://norgesdomene.no/portal`. Pålogging til denne portalen er fullført med eierens valgte Google-konto. Denne kontoen viser ingen domener eller aktive tjenester. Norids RDAP-register bekrefter Norgesdomene AS som registrar, men kundeportalen gir ikke tilgang til selve domeneavtalen. Det ble heller ikke funnet relevante registreringsmeldinger i den tilkoblede e-postkontoen. En henvendelse om å finne riktig kundetilgang er klargjort i portalen og avventer eierens godkjenning før sending. Ingen ny postkasse eller betalt tjeneste er opprettet.
 
 Når portalen er tilgjengelig:
 
