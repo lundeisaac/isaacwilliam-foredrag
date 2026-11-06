@@ -13,9 +13,12 @@ async function login(){let r=await request('/api/login','POST',{password},false)
 before(start);after(async()=>{await stop();rmSync(dir,{recursive:true,force:true});});
 test('complete private booking and content workflow',async()=>{
  let r=await request('/api/admin/enquiries','GET',undefined,false);assert.equal(r.status,401);
+ r=await request('/api/owner-access','GET',undefined,false);assert.deepEqual(await r.json(),{signedIn:false});
+ for(const path of ['/api/admin/export','/api/session'])assert.equal((await request(path,'GET',undefined,false)).status,401);
  r=await request('/api/login','POST',{password:'incorrect'},false);assert.equal(r.status,401);
  r=await request('/api/enquiries','POST',{},false);assert.equal(r.status,503);
  await login();
+ r=await request('/api/owner-access');assert.deepEqual(await r.json(),{signedIn:true});
  content=await(await request('/api/content')).json();assert.equal(Object.keys(content.pages).length,8);assert.equal(content.bookingAvailable,false);
  let invalid=structuredClone(content);invalid.pages.home.sections[0].links[0].href='javascript:alert(1)';
  r=await request('/api/admin/content','PUT',{revision:content.revision,content:invalid});assert.equal(r.status,400);
@@ -51,10 +54,10 @@ test('complete private booking and content workflow',async()=>{
  r=await request('/api/logout','POST',{});assert.equal(r.status,200);r=await request('/api/admin/enquiries');assert.equal(r.status,401);
 });
 test('all pages and local assets are served securely; reviews are anonymous and unique',async()=>{
- for(let path of ['/','/about','/topics','/booking','/contact','/pricing-and-services','/faq','/testimonials','/personvern','/admin']){
+ for(let path of ['/','/about','/topics','/booking','/contact','/pricing-and-services','/faq','/testimonials','/personvern','/admin','/min-side']){
   let r=await request(path,'GET',undefined,false);assert.equal(r.status,200,path);assert.match(r.headers.get('content-type'),/text\/html/);assert.equal(r.headers.get('x-robots-tag'),'noindex, nofollow');assert.match(r.headers.get('content-security-policy'),/frame-ancestors 'none'/);
  }
- for(let path of ['/content/site.json','/runtime/site.sqlite','/.env','/server/index.mjs','/missing-page'])assert.equal((await request(path)).status,404,path);
+ for(let path of ['/content/site.json','/runtime/site.sqlite','/.env','/server/index.mjs','/missing-page','/__qa/dashboard','/__qa/mobile'])assert.equal((await request(path)).status,404,path);
  const c=JSON.parse(readFileSync('content/site.json'));
  const texts=[];for(let s of c.pages.testimonials.sections)for(let i of s.items){texts.push(i.text);assert.equal(i.title,'Anonym tilbakemelding');assert.equal(i.caption,'');}
  assert.equal(texts.length,13);assert.equal(new Set(texts).size,texts.length);

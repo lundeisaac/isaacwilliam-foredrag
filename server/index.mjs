@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {visualPage} from './visual-qa.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, scryptSync, timingSafeEqual, createHash, randomUUID } from 'node:crypto';
 import { readFileSync, existsSync, mkdirSync, writeFileSync, statSync, realpathSync } from 'node:fs';
@@ -20,6 +21,7 @@ CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY, csrf TEXT NOT NULL, e
 CREATE TABLE IF NOT EXISTS throttle(key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset INTEGER NOT NULL);`);
 if(!db.prepare('SELECT id FROM content WHERE id=1').get())db.prepare('INSERT INTO content(id,json) VALUES(1,?)').run(readFileSync(join(root,'content/site.json'),'utf8'));
 const prod=process.env.NODE_ENV==='production';
+const visualQA=!prod&&process.env.VISUAL_QA==='true';
 const password=process.env.ADMIN_PASSWORD || '';
 if(password && password.length<16)throw new Error('ADMIN_PASSWORD må ha minst 16 tegn.');
 if(prod&&!password)throw new Error('ADMIN_PASSWORD må settes før produksjonsstart.');
@@ -77,16 +79,18 @@ function enquiry(b){
  if(b.consent!==true)fail(400,'Bekreft at du har lest personverninformasjonen.');return out;
 }
 const server=http.createServer(async(req,res)=>{
- res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options','DENY');
- res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
+ res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options',visualQA?'SAMEORIGIN':'DENY');
+ res.setHeader('Content-Security-Policy',`default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https:; font-src 'self'; connect-src 'self'; frame-ancestors ${visualQA?"'self'":"'none'"}; base-uri 'none'; form-action 'self'`);
  res.setHeader('Permissions-Policy','camera=(), microphone=(), geolocation=()');
  if(process.env.ALLOW_INDEXING!=='true')res.setHeader('X-Robots-Tag','noindex, nofollow');
  try{
   let u=new URL(req.url,'http://localhost'),path=u.pathname;
+  if(visualQA&&req.method==='GET'&&path.startsWith('/__qa/')){const page=visualPage(u);if(page){res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});return res.end(page);}}
   if(path.startsWith('/api/')){
    res.setHeader('Cache-Control','no-store');
    if(!['GET','HEAD'].includes(req.method))originCheck(req);
    let ip=req.socket.remoteAddress||'unknown'; // Never trust a visitor-supplied X-Forwarded-For.
+   if(req.method==='GET'&&path==='/api/owner-access')return reply(res,200,{signedIn:Boolean(session(req,res))});
    if(req.method==='GET'&&path==='/api/content'){let c=content();return reply(res,200,{...c,bookingAvailable:active()});}
    if(req.method==='GET'&&path==='/api/availability'){
     let start=date(u.searchParams.get('from')||today()),end=date(u.searchParams.get('to')||start);if(end<start||Date.parse(end)-Date.parse(start)>370*86400000)fail(400,'Velg et tidsrom på inntil ett år.');
@@ -135,18 +139,19 @@ const server=http.createServer(async(req,res)=>{
    fail(404,'Fant ikke endepunktet.');
   }
   if(!['GET','HEAD'].includes(req.method))fail(405,'Metoden støttes ikke.');
-  if(path==='/robots.txt'){res.writeHead(200,{'Content-Type':'text/plain'});return res.end(process.env.ALLOW_INDEXING==='true'?'User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\n':'User-agent: *\nDisallow: /\n');}
+  if(path==='/robots.txt'){res.writeHead(200,{'Content-Type':'text/plain'});return res.end(process.env.ALLOW_INDEXING==='true'?'User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /min-side\nDisallow: /api/\n':'User-agent: *\nDisallow: /\n');}
   if(path==='/pricing'){res.writeHead(302,{Location:'/pricing-and-services'});return res.end();}
   if(['/booking.html','/personvern.html','/rediger.html'].includes(path)){res.writeHead(302,{Location:{'/booking.html':'/booking','/personvern.html':'/personvern','/rediger.html':'/admin'}[path]});return res.end();}
   let file,base;
   if(path.startsWith('/uploads/')){base=join(dataDir,'uploads');if(!/^\/uploads\/[a-f0-9-]+\.(png|jpg|webp)$/.test(path))fail(404,'Fant ikke bildet.');file=join(base,path.slice(9));}
   else if(path.startsWith('/assets/')){base=join(root,'public');file=resolve(base,'.'+decodeURIComponent(path));if(!file.startsWith(base+'/'))fail(404,'Fant ikke filen.');}
-  else if(path==='/admin'||path==='/admin/')file=join(root,'public/admin.html');
+  else if(['/admin','/admin/','/min-side','/min-side/'].includes(path)){res.setHeader('X-Robots-Tag','noindex, nofollow');file=join(root,'public/admin.html');}
   else if(['/','/about','/topics','/booking','/contact','/pricing-and-services','/faq','/testimonials','/personvern'].includes(path.replace(/\/$/,'' )||'/'))file=join(root,'public/index.html');
   else {res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});return res.end('<!doctype html><html lang="nb"><title>Fant ikke siden</title><h1>Fant ikke siden</h1><p><a href="/">Gå til forsiden</a></p></html>');}
   if(!existsSync(file)||!statSync(file).isFile())fail(404,'Fant ikke filen.');
   if(base&&!realpathSync(file).startsWith(realpathSync(base)+'/'))fail(404,'Fant ikke filen.');
-  res.writeHead(200,{'Content-Type':types[extname(file).slice(1)]||'application/octet-stream','Cache-Control':file.endsWith('.html')?'no-store':'public, max-age=3600'});res.end(req.method==='HEAD'?undefined:readFileSync(file));
+  res.writeHead(200,{'Content-Type':types[extname(file).slice(1)]||'application/octet-stream','Cache-Control':file.endsWith('.html')||!prod?'no-store':'public, max-age=3600'});res.end(req.method==='HEAD'?undefined:readFileSync(file));
  }catch(e){reply(res,e.status||500,{error:e.status?e.message:'Det oppstod en serverfeil. Prøv igjen senere.'});}
 });
-server.listen(process.env.PORT?Number(process.env.PORT):3000,process.env.HOST||'0.0.0.0',()=>console.log('Isaac William website listening on port '+server.address().port));
+const argument=name=>{const i=process.argv.indexOf(name);return i<0?undefined:process.argv[i+1];};
+server.listen(Number(argument('--port')||process.env.PORT||3000),argument('--host')||process.env.HOST||'0.0.0.0',()=>console.log('Isaac William website listening on port '+server.address().port));

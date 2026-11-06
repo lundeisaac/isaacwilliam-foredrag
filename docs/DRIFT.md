@@ -22,7 +22,7 @@ I produksjon må `NODE_ENV=production` brukes, slik at innloggingskapselen kreve
 - Kontroller kontaktopplysninger, priser, kvalifikasjoner og biografitekst. Originalens påstander er bevart; de må vurderes av eieren.
 - Bekreft oversettelser og anonymisering av de 13 unike tilbakemeldingene. Oppbevar samtykkene privat, utenfor repositoryet.
 - Fullfør personverninformasjonen med virksomhet/behandlingsansvarlig, valgt driftsleverandør, behandlingsgrunnlag, konkret lagringstid, sletting og håndtering av rettighetsforespørsler.
-- Opprett og test `post@isaacwilliam.no` separat. Nettsiden oppretter ikke en postkasse. Ingen automatiske e-postvarsler er integrert.
+- Fullfør oppsett og test av `post@isaacwilliam.no`; se `EMAIL.md`. Nettsiden oppretter ikke en postkasse. Ingen automatiske e-postvarsler er integrert.
 - Sett `BOOKING_ENABLED=true` og aktiver skjemaene i admin **i et testmiljø**. Send en testbooking og en kontaktmelding, kontroller mottak og personvern, endre status og pris, bekreft dato, sjekk at datoen blir opptatt, og slett testopplysningene.
 - Test opplasting av bilde, innholdslagring og innholdseksport. Test omstart med bevart database og bilder.
 - Test gjenoppretting fra sikkerhetskopi. Opprett en rutine for å lese nye forespørsler, siden e-postvarsler ikke er aktivert.

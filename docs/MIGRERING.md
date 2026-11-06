@@ -16,12 +16,12 @@ Det er ny, selvstendig kode. Det er ikke en kopi av Durable sin genererte applik
 - Gamle prislenker til `/pricing` går til `/pricing-and-services` i stedet. Den gamle personvernlenken pekte til forsiden; den er erstattet med en egen, foreløpig personvernside. Generisk «Terms of Service» som også pekte til forsiden, er ikke videreført som en falsk vilkårsside.
 - Engelsk «Presentation range» er blitt «Varighet». Åpenbare skrivefeil i en liten prisoverskrift er rettet.
 - Eieren bekreftet i samtalen at tilbakemeldingene er reelle og delt med samtykke til anonymisering. Engelske tekster er oversatt til norsk. Navn, stilling, arbeidssted og geografiske signaturer er fjernet. Gjentatte tilbakemeldinger er slått sammen til 13 unike tekster; ingen duplikater er omskrevet til nye påståtte kundeerfaringer. Fire av disse vises også på forsiden.
-- Originalens svar til «Hvordan fungerer booking- og tilgjengelighetsprosessen?» lot seg ikke hente ferdig før nettleseren sluttet å svare. Dette ene svaret er en kort ny beskrivelse av den implementerte prosessen, merket i `content/site.json` med `migrationNote`.
+- Det siste originale FAQ-svaret ble hentet ved ny nettleserkontroll og erstatter den midlertidige teksten. Alle originale FAQ-svar er nå overført.
 - Innsendingsfeltene er utvidet med organisasjon, format, målgruppe, klokkeslett, sted og antall deltakere. Nye forespørsler blir aldri automatisk en bindende, bekreftet booking.
 - Originalens medisinske/faglige påstander og biografitekst er overført som eierens nettstedstekst, ikke uavhengig faktasjekket. Ingen rådgivningsinnhold er lagt til.
 
 ## Gjenstående kontroll
 
-Cloud Browser sluttet å svare etter kildeinspeksjonen. Desktop-/mobilkontroll og visuell sammenligning av erstatningen er derfor ikke fullført. Den lokale bildekontaktflaten ble gjennomgått for å verifisere de kopierte fotografiene og illustrasjonene. HTTP-tester og syntakskontroll er gjennomført, men de erstatter ikke visuell godkjenning.
+Cloud Browser-kontrollen er gjenopptatt og gjennomført på desktop og ved 320, 390 og 768 CSS-pikslers bredde. Fontvekter, overflyt, kortoppsett og sammenkobling av trekkspilltekst er rettet. Se `VISUELL-QA.md` for kontrollens omfang og begrensninger. Eierens endelige visuelle godkjenning gjenstår.
 
 Ingen DNS-endringer, ny offentlig produksjonsadresse eller sletting av originalen inngår i denne endringen. Bruk en separat testutrulling og følg `DRIFT.md` før domenebytte.
