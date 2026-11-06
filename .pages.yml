@@ -1,6 +1,6 @@
 media:
   input: assets/images
-  output: assets/images
+  output: /assets/images
 
 content:
   - name: nettsidetekster
@@ -17,6 +17,8 @@ content:
       - { name: forside_knapp, label: "Forside: booking-knapp", type: string }
       - { name: forside_sekundaerknapp, label: "Forside: foredrag-knapp", type: string }
       - { name: dekor_tittel, label: "Forside: tekst i dekorfeltet", type: text }
+      - { name: hero_bilde, label: "Forside: stort bilde (valgfritt)", type: image }
+      - { name: profilbilde, label: "Om meg: profilbilde (valgfritt)", type: image }
       - { name: foredrag_overtekst, label: "Foredrag: liten overskrift", type: string }
       - { name: foredrag_tittel, label: "Foredrag: overskrift", type: string }
       - { name: foredrag_intro, label: "Foredrag: introduksjon", type: text }
