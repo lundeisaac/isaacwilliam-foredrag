@@ -1,0 +1,7 @@
+.git
+.env
+runtime
+node_modules
+test
+docs
+tools
