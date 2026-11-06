@@ -21,3 +21,14 @@ test('accordion imports retain the correct distinct answers and clean titles',()
  const autism=site.pages.topics.sections[0].items.find(i=>i.title==='Autisme og nevrodiversitet');
  assert.match(autism.text,/sensoriske utfordringer/i);
 });
+
+test('topics introduce five themes and keep all thirty optional examples behind five closed disclosures',async()=>{
+ const {renderPublicPage}=await import('../public/assets/app.js');
+ const site=JSON.parse(readFileSync('content/site.json'));
+ const html=renderPublicPage(site,'/topics').main;
+ assert.equal((html.match(/class="topic-examples"/g)||[]).length,5);
+ assert.equal((html.match(/<article>/g)||[]).length,30);
+ assert.doesNotMatch(html,/<details[^>]*\sopen/);
+ for(let n=1;n<=5;n++){assert.ok(html.includes(`id="tema-${n}"`));assert.ok(html.includes(`/booking?tema=${n}`));}
+ for(const section of site.pages.topics.sections.slice(1,6))assert.ok(section.text.length<250);
+});

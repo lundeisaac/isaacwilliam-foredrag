@@ -45,3 +45,13 @@ HTTP-testene kontrollerer også at sidetekst og riktige sidetitler finnes uten J
 - Hjemmesiden er kortere. Udokumenterte resultatstatistikker på Om-siden er erstattet med konkrete forventninger til oppdraget.
 - Veiledende priser er justert til 2 000 / 3 500 / 5 000 / 7 500 kr; panelsamtale fortsatt 1 000 kr. Dette er eierens redigerbare prisforslag, ikke en bransjesats. Reise, eventuell avgift, totalpris og betalingsvilkår avtales skriftlig.
 - Ingen endringer i DNS, opprinnelig Durable-side eller Google Workspace.
+
+## Redaksjonell og visuell gjennomgang – 6. november, kveld
+
+Alle åtte sider er gjennomgått for kortere tekster, tydeligere formål og enklere vei til forespørsel. Hjem og Om bruker et originalt foto av foredragsholderen. Gjentakelser og lange salgsavsnitt er fjernet. Personlig bakgrunn er fortsatt tilgjengelig i en lukket seksjon. Priser og fakturering er uendret.
+
+Temasiden har fem korte hovedintroduksjoner, målgruppe og en lukket «Se eksempler på undertemaer»-seksjon per tema. Alle 30 undertemaer er beholdt, med kortere titler og forklaringer. Eksemplene beskrives som mulige vinkler, ikke et fast program. Tema følger med til bookingskjemaet.
+
+Cloud Browser: alle åtte sider kontrollert ved 320 og 768 CSS-piksler, uten horisontal overløp og med én hovedoverskrift. Desktopkontroll fant ingen ødelagte bilder eller overløp. Utvidelse med klikk og lukking med Enter er testet; åpen mobilseksjon er også kontrollert. Lenke fra autisme-temaet fylte inn riktig tema i bookingskjemaet. De fire tidligere testsuitene og en ny kontroll for de fem lukkede temagruppene passerer.
+
+Dette er fortsatt en gjennomgangskopi med stengte skjemaer. Ingen DNS-, e-post- eller Durable-endringer.

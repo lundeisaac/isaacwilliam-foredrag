@@ -14,103 +14,80 @@
       "sections": [
         {
           "kind": "hero",
-          "eyebrow": "",
-          "title": "Foredrag som åpner for viktige samtaler",
-          "text": "Om mobbing, autisme, psykisk helse og digital oppvekst – med personlige erfaringer og rom for spørsmål. For skoler, arbeidsplasser og organisasjoner.",
-          "images": [
-            {
-              "src": "/assets/images/original-01.webp",
-              "alt": "Abstrakte lysstrømmer i blå og varme gylne farger."
-            }
-          ],
+          "title": "Vanskelige temaer. Samtaler som betyr noe.",
+          "text": "Foredrag om mobbing, autisme, psykisk helse og digital oppvekst. Personlige erfaringer, formidlet med åpenhet og tilpasset menneskene i rommet.",
+          "items": [],
           "links": [
             {
-              "label": "Bestill foredrag idag",
-              "href": "/booking"
+              "label": "Finn et foredrag",
+              "href": "/topics"
             },
             {
-              "label": "Les om de ulike temaene",
-              "href": "/topics"
+              "label": "Send en forespørsel",
+              "href": "/booking"
             }
           ],
-          "items": []
-        },
-        {
-          "kind": "intro",
-          "eyebrow": "Hvem Isaac William er",
-          "title": "Stemmen bak samtaler som betyr noe",
-          "text": "Isaac William kombinerer personlig erfaring med refleksjon for å skape rom der vanskelige samtaler ikke bare er mulige – de er nødvendige.\n\nMed bakgrunn fra skole, oppvekst og arbeidsliv formidler han innsikt om temaer mange vegrer seg for å ta opp. Hans mål er å normalisere de viktige samtalene og gjøre det enklere for unge – og de rundt dem – å søke hjelp, sette ord på det vanskelige og føle seg sett.\n\nIsaac William samarbeider med skoler, bibliotek, kommuner og organisasjoner over hele Norge.",
-          "images": [],
-          "links": [],
-          "items": []
-        },
-        {
-          "kind": "accordion",
-          "eyebrow": "Hva Isaac William snakker om",
-          "title": "Temaer med reell betydning",
-          "text": "Isaac William tilbyr foredrag om temaer som står sentralt i folk sine liv og utvikling: mobbing, psykisk helse, digital oppvekst, autisme og selvskading. Hvert foredrag tilpasses målgruppen – enten det er skoler, kommuner eller organisasjoner – og tar utgangspunkt i hvordan disse utfordringene faktisk preger hverdagen til dem det gjelder, ofte uten at de får den oppmerksomheten de fortjener.",
           "images": [
             {
-              "src": "/assets/images/original-02.webp",
-              "alt": "Illustrasjon av en elev som blir holdt utenfor av andre elever."
-            },
-            {
-              "src": "/assets/images/original-03.webp",
-              "alt": "En person med hette ved to dataskjermer i et mørkt rom."
-            },
-            {
-              "src": "/assets/images/original-04.webp",
-              "alt": "Papirfigurer som holder hender; den midterste har fargerike puslespillbrikker."
-            },
-            {
-              "src": "/assets/images/original-05.webp",
-              "alt": "Illustrasjon av en bekymret hjerne og ulike følelser."
-            },
-            {
-              "src": "/assets/images/original-06.webp",
-              "alt": "En hånd strekker seg opp fra bølger under en overskyet himmel."
+              "src": "/assets/images/original-08.webp",
+              "alt": "Isaac William Lunde holder et foredrag med mikrofon foran publikum."
             }
           ],
-          "links": [],
+          "eyebrow": "Isaac William Lunde · Foredragsholder"
+        },
+        {
+          "kind": "cards",
+          "title": "Hva ønsker dere å sette ord på?",
+          "text": "Utforsk de fem hovedtemaene. På temasiden finner dere forslag til vinkler og undertemaer.",
           "items": [
             {
               "title": "Mobbing og sosialt press",
-              "text": "Mobbing bare skjer ikke – det er krefter i sving lenge før noen blir holdt utenfor. I dette foredraget ser vi nærmere på hvordan det starter, hvorfor så mange ender opp med å tilpasse seg miljøer som egentlig ikke er bra for noen, og hva som faktisk skal til for å snu den utviklingen.\n\nVi tar en ærlig titt på det som skjer i klasserom, på arbeidsplasser og andre steder der ekskludering og gruppepress setter seg – og du får med deg konkrete, faglig forankrede verktøy for å gjøre noe med det."
+              "text": "Hvordan oppstår utenforskap – og hvordan oppleves det fra innsiden? Om tilhørighet, makt og relasjoner i skolen, på jobb og på nett."
             },
             {
-              "title": "Å vokse opp i en digital verden",
-              "text": "Å vokse opp med internett som en konstant del av hverdagen påvirker identitet, relasjoner og selvbilde på måter vi ikke alltid ser. Foredraget belyser både mulighetene og risikofaktorene – fra sosialt press og sosiale medier til fenomener som catfishing, grooming og farlige relasjoner i digitale rom.\n\nMålet er ikke å skape frykt, men å gi unge og voksne et mer bevisst og nyansert forhold til det digitale landskapet de lever i."
+              "title": "Autisme og nevrodiversitet",
+              "text": "Et personlig perspektiv på å møte en hverdag som ikke alltid er tilpasset måten man tenker og sanser på. Om forståelse, tilrettelegging og tilhørighet."
             },
             {
-              "title": "Autisme",
-              "text": "Hvordan er det egentlig å leve med autisme – ikke slik det beskrives i lærebøker, men slik det oppleves i hverdagen? Hvordan kan skoler, arbeidsplasser og tjenestetilbud tilrettelegge på en måte som faktisk fungerer, slik at personer med autisme kan delta og bidra på egne premisser? Og hvilke utbredte myter om autisme er det på tide å stille spørsmål ved – og erstatte med mer nyansert kunnskap?"
-            },
-            {
-              "title": "Psykisk helse og velvære",
-              "text": "Psykisk helse manifesterer seg sjelden på én entydig måte. Depresjon, angst, stress og emosjonell overbelastning utvikler seg ofte gradvis – formet av omgivelser, relasjoner og de kravene hverdagen stiller. Hva skjer egentlig når mennesker begynner å miste fotfestet, og hvordan kan vi gjenkjenne tegnene før situasjonen blir kritisk?"
+              "title": "Psykisk helse",
+              "text": "Det er ikke alltid synlig når noen strever. Om fasader, press og psykiske belastninger – og om å gi plass til samtaler som ellers lett blir utsatt."
             },
             {
               "title": "Selvskading og forebygging av selvmord",
-              "text": "Dette foredraget lærer deg å se smerten bak fasaden – og å møte den med mot og empati.\n\nSelvskading er ofte usynlig. Det skjer i det stille, bak lukkede dører og under lange ermer. Mange som sliter vet ikke selv hvordan de skal sette ord på det – og de rundt dem vet ikke hvordan de skal spørre. Den avstanden kan koste dyrt.\n\nHer får du innsikt i hva som faktisk skjer inni et menneske som har det vondt. Ikke klinisk og distansert, men på en måte som gjør at du kjenner det igjen – i et barn, i en kollega, i en elev, i en venn, kanskje i deg selv.\n\nOg du går ikke tomhendt hjem. Du får konkrete verktøy til å starte de vanskelige samtalene – enten du er elev, lærer, forelder, leder, eller en som bærer på noe tungt selv. For det å tørre å spørre kan være det første steget mot at noen faktisk får hjelp."
+              "text": "Om å møte psykisk smerte med åpenhet og omtanke. Personlige erfaringer gir utgangspunkt for refleksjon rundt støtte, samtaler og voksnes rolle."
+            },
+            {
+              "title": "Digital oppvekst",
+              "text": "På nett finnes både fellesskap og utfordringer. Om gaming, sosiale medier og digitale relasjoner – sett fra en som selv har vokst opp med dem."
             }
-          ]
+          ],
+          "links": [
+            {
+              "label": "Se temaer og eksempler",
+              "href": "/topics"
+            }
+          ],
+          "images": [],
+          "eyebrow": ""
+        },
+        {
+          "kind": "intro",
+          "title": "Et perspektiv fra innsiden",
+          "text": "Jeg er Isaac William. Som autist og med egne erfaringer med mobbing, utenforskap og psykiske utfordringer, snakker jeg om hvordan det kan oppleves – også når det ikke synes utenpå.\n\nJeg møter skoler, foresatte, arbeidsplasser og organisasjoner med et mål om å gjøre det lettere å snakke sammen.",
+          "items": [],
+          "links": [
+            {
+              "label": "Bli bedre kjent med meg",
+              "href": "/about"
+            }
+          ],
+          "images": [],
+          "eyebrow": ""
         },
         {
           "kind": "quotes",
-          "eyebrow": "Hva andre sier",
-          "title": "Foredrag som åpner for de vanskelige samtalene — ifølge deltakerne selv",
-          "text": "Tilbakemeldingene er publisert med samtykke. Bare rolle og generell type virksomhet eller arrangement oppgis; navn, konkrete arbeidssteder og geografiske opplysninger er utelatt.",
-          "images": [],
-          "links": [
-            {
-              "label": "Les flere tilbakemeldinger",
-              "href": "/testimonials"
-            },
-            {
-              "label": "Gi din tilbakemelding",
-              "href": "https://forms.gle/XvrnBrsqCQYxeRNU6"
-            }
-          ],
+          "title": "Slik beskriver deltakerne opplevelsen",
+          "text": "Publisert med samtykke. Navn og identifiserbare arbeidssteder er utelatt.",
           "items": [
             {
               "title": "FAU-leder",
@@ -121,46 +98,47 @@
               "title": "Rektor",
               "text": "Vi inviterte Isaac William til å holde foredrag om mobbing og psykisk helse. Måten han engasjerte ungdommene på var akkurat det vi trengte – rolig, direkte og troverdig.",
               "caption": "Videregående skole"
-            },
-            {
-              "title": "Rådgiver",
-              "text": "Seminaret om selvskading og forebygging ga oss konkrete verktøy og språk vi kan bruke i arbeid med ungdom. Profesjonelt, relevant og veldig gjennomtenkt.",
-              "caption": "Ungdomsskole"
-            },
-            {
-              "title": "Ansatt",
-              "text": "Det åpne foredraget om autisme skapte gode refleksjoner hos publikum. Isaac William håndterte sensitive temaer med trygghet samtidig som han holdt engasjementet oppe.",
-              "caption": "Bibliotek"
             }
-          ]
-        },
-        {
-          "kind": "intro",
-          "eyebrow": "",
-          "title": "Bestill foredrag for din skole, arbeidsplass eller organisasjon",
-          "text": "Bestill foredrag innen temaer som mobbing, psykisk helse, digital oppvekst, autisme og forebygging av selvskading og selvmord. Hvert foredrag tilpasses målgruppen og leveres med faglig tyngde og personlig engasjement. Tilbudet retter seg mot skoler, arbeidsplasser, bibliotek, kommuner og organisasjoner som ønsker å styrke forståelsen, åpne for viktige samtaler og bygge økt bevissthet rundt sentrale samfunnsutfordringer.",
-          "images": [],
+          ],
           "links": [
             {
-              "label": "Bestill foredrag",
+              "label": "Les flere tilbakemeldinger",
+              "href": "/testimonials"
+            }
+          ],
+          "images": [],
+          "eyebrow": ""
+        },
+        {
+          "kind": "cards",
+          "title": "Fra første spørsmål til avtalt foredrag",
+          "text": "En forespørsel er uforpliktende. Ingen konto er nødvendig, og betaling skjer med faktura.",
+          "items": [
+            {
+              "title": "Fortell om arrangementet",
+              "text": "Send ønsket dato, målgruppe og et tema dere er nysgjerrige på."
+            },
+            {
+              "title": "Vi finner riktig vinkel",
+              "text": "Vi avklarer innhold, format, praktiske behov og totalpris."
+            },
+            {
+              "title": "Dere får en skriftlig avtale",
+              "text": "Oppdraget bekreftes når vi har blitt enige om rammene."
+            }
+          ],
+          "links": [
+            {
+              "label": "Send en forespørsel",
               "href": "/booking"
             },
             {
-              "label": "Sjekk tilgjengelighet",
-              "href": "/contact"
+              "label": "Se priser fra 2 000 kr",
+              "href": "/pricing-and-services"
             }
           ],
-          "items": []
-        },
-        {
-          "kind": "form",
-          "eyebrow": "Ta kontakt",
-          "title": "Ønsker du å booke Isaac William Lunde til ditt neste arrangement?",
-          "text": "Send en forespørsel med informasjon om organisasjonen, målgruppen og tematikken dere ønsker å belyse.\n\nAlle henvendelser behandles fortløpende, og hvert foredrag tilpasses den enkelte oppdragsgivers behov og kontekst.",
           "images": [],
-          "links": [],
-          "items": [],
-          "formType": "contact"
+          "eyebrow": ""
         }
       ]
     },
@@ -169,182 +147,85 @@
       "sections": [
         {
           "kind": "hero",
-          "eyebrow": "",
-          "title": "De viktigste samtalene krever mot og kompetanse. Jeg er her for å løfte dem frem i ditt miljø.",
-          "text": "Isaac William holder foredrag om ting som virkelig betyr noe – mobbing, digital oppvekst, autisme, psykisk helse og forebygging av selvskading og selvmord. Han møter skoler, organisasjoner og lokalsamfunn over hele Norge med kunnskap, varme og en ærlig stemme – og gjør det lettere å snakke om temaene vi ofte synes er vanskelige.",
-          "images": [
-            {
-              "src": "/assets/images/original-07.webp",
-              "alt": "Abstrakte lysrefleksjoner i varme og kjølige farger."
-            }
-          ],
+          "title": "Hei, jeg er Isaac William.",
+          "text": "Jeg holder foredrag om livet bak fasaden – med egne erfaringer som utgangspunkt og plass til andres perspektiver.",
+          "items": [],
           "links": [
             {
-              "label": "Bestill foredrag",
-              "href": "/booking"
-            },
-            {
-              "label": "Utforsk temaer",
+              "label": "Se hva jeg snakker om",
               "href": "/topics"
             }
           ],
-          "items": []
-        },
-        {
-          "kind": "intro",
-          "eyebrow": "Om Isaac William",
-          "title": "Foredragsholder med personlig erfaring innen mobbing, selvskading og psykisk helse – og et autistisk perspektiv som gir innsikten dybde og troverdighet.",
-          "text": "Isaac William Lunde skaper rolige og meningsbærende samtaler om temaer som mobbing, digital oppvekst, autisme, psykisk helse og forebygging av selvskading og selvmord. Det som skiller ham er ikke bare faglig innsikt, men personlig erfaring fra innsiden av utfordringene han snakker om.\n\nIsaac William er selv autist og vokste opp på bygda der utenforskap og sosial ekskludering preget skolehverdagen. Han opplevde mobbing som offer i 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet. Gjennom oppveksten bar han på en indre kamp med mørke tanker, og han har selv overlevd selvmordsforsøk. Han lever i dag med kroniske selvmordstanker, har en selvskadingshistorikk og er diagnostisert med depresjon, angst, tvangslidelse og spiseforstyrrelse. Han er sertifisert i førstehjelp ved selvmordsfare etter å ha jobbet på hjelpetelefon for unge.\n\nDisse erfaringene bærer han ikke som en byrde, men som et grunnlag for ekte og troverdig formidling. Isaac William snakker åpent og direkte for å gi stemme til de som ikke blir sett, og for å utruste voksne og fagpersoner med bedre forståelse av hva barn og unge faktisk opplever.\n\nMed en oppvekst fra tidlig 2000-tall, da internett fortsatt var i sin spede begynnelse, har Isaac William fulgt sosiale mediers fremvekst fra innsiden. Den erfaringen gir ham et unikt og nyansert perspektiv på internettets muligheter og fallgruver, særlig for unge som vokser opp i et digitalt landskap uten klare grenser.",
-          "images": [],
-          "links": [],
-          "items": []
-        },
-        {
-          "kind": "accordion",
-          "eyebrow": "Foredragserfaring",
-          "title": "Jeg har holdt foredrag landet rundt – og elsker å møte nye mennesker",
-          "text": "Isaac William har over 7 års erfaring med formidling og foredragsrelatert arbeid for skoler, bibliotek, kommuner og ungdomsorganisasjoner om temaer som mobbing, digital oppvekst, autisme og psykisk helse.\n\nMed en tilnærming forankret i personlig erfaring og faglig refleksjon leverer han foredrag som skaper rom for ærlige og meningsfulle samtaler rundt krevende temaer. Trygghet, troverdighet og relevans er bærende prinsipper i alt han formidler.",
           "images": [
             {
               "src": "/assets/images/original-08.webp",
-              "alt": "Isaac William holder en mikrofon foran en murvegg."
-            },
-            {
-              "src": "/assets/images/original-09.webp",
-              "alt": "Isaac William holder foredrag fra en talerstol."
-            },
-            {
-              "src": "/assets/images/original-10.webp",
-              "alt": "En stol foran bokhyller i et bibliotek."
-            },
-            {
-              "src": "/assets/images/original-11.webp",
-              "alt": "Isaac William snakker i mikrofon på en scene."
-            },
-            {
-              "src": "/assets/images/original-12.webp",
-              "alt": "Isaac William deltar i en samtale på en scene."
-            },
-            {
-              "src": "/assets/images/original-13.webp",
-              "alt": "Et tomt undervisningsrom med pulter og projektorlerret."
+              "alt": "Isaac William Lunde holder et foredrag med mikrofon foran publikum."
             }
           ],
-          "links": [],
-          "items": [
-            {
-              "title": "Skoleforedrag og workshops",
-              "text": "Foredrag om mobbing, psykisk helse og digital oppvekst – enkelt formidlet og tilpasset både elever og ansatte på skolen."
-            },
-            {
-              "title": "Ungdomskonferanser og seminarer",
-              "text": "Innlegg og panelsamtaler med fokus på ungdoms psykiske helse, identitet og samfunnsutvikling, tilpasset større faglige arrangementer."
-            },
-            {
-              "title": "Biblioteksarrangementer og åpne foredrag",
-              "text": "Tilgjengelige og lærerike foredrag for et bredt publikum om autisme, digital oppvekst og forebygging av selvskading og selvmord."
-            },
-            {
-              "title": "Kommunale og organisatoriske faginnlegg",
-              "text": "Skreddersydde foredrag for ansatte i kommuner, organisasjoner og ideelle virksomheter som arbeider med mennesker, velferd og forebyggende innsats."
-            },
-            {
-              "title": "Panelsamtaler og faglige bidrag",
-              "text": "Deltakelse i panelsamtaler og faglige diskusjoner om psykisk helse, digital trygghet og sosiale utfordringer."
-            },
-            {
-              "title": "Klasserom og mindre grupper",
-              "text": "Engasjerende og interaktive foredrag for ungdom – med meningsfulle samtaler om mobbing, spiseforstyrrelser og press fra sosiale medier som skaper varig refleksjon og reell endring."
-            }
-          ]
-        },
-        {
-          "kind": "cards",
-          "eyebrow": "Hvordan  Isaac William jobber",
-          "title": "En trygg og ærlig tilnærming til vanskelige temaer",
-          "text": "Isaac William legger vekt på åpne samtaler, praktiske perspektiver og et språk som er lett å forstå. Foredragene tilpasses målgruppen og skaper rom for refleksjon, spørsmål og dialog — enten det er i klasserom, fagmiljøer eller offentlige arrangementer.",
-          "images": [],
-          "links": [
-            {
-              "label": "Les om de ulike temaene",
-              "href": "/topics"
-            },
-            {
-              "label": "Ta kontakt med Isaac William",
-              "href": "/contact"
-            }
-          ],
-          "items": [
-            {
-              "title": "Tilpasset målgruppen",
-              "text": "Hvert foredrag tilpasses publikum, alder, miljø og behov – fordi det som treffer en ungdomsskole ikke nødvendigvis treffer en frivillig organisasjon. Det betyr at innhold, språk og innfallsvinkel justeres ut fra hvem som sitter i salen, hva de bærer på, og hva dere ønsker at de skal ta med seg hjem. Noen ganger handler det om å møte unge mennesker der de faktisk er, ikke der vi ønsker de skulle være. Andre ganger handler det om å gi voksne, fagfolk eller organisasjoner et nytt perspektiv på utfordringer de allerede kjenner godt. Uansett kontekst er tilnærmingen den samme: ærlig, direkte og tilpasset rommet det skjer i. Målet er alltid en opplevelse som føles trygg, relevant og ekte for dem som er til stede."
-            },
-            {
-              "title": "Egen erfaring og faglig forståelse",
-              "text": "Temaene formidles gjennom personlig innsikt, levd erfaring og et gjennomgående fokus på praktisk forståelse og forebygging. Det innebærer ikke generell teori, men innhold som er solid forankret i virkeligheten – utviklet for dem som arbeider tett med mennesker, eller som selv befinner seg i krevende mellommenneskelige kontekster. Hvert foredrag er strukturert rundt konkrete situasjoner, gjenkjennelige utfordringer og reelle perspektiver – ikke konstruerte scenarier, men faktiske forhold som mange kjenner igjen fra sin egen hverdag. Målet er ikke utelukkende å informere, men å skape varig forståelse – den typen innsikt som endrer hvordan du tolker en situasjon, eller hvordan du møter et annet menneske når det virkelig gjelder. Enten du er lærer, forelder, fagperson eller støtteperson, vil du forlate foredraget med konkret kunnskap og perspektiver som er umiddelbart anvendbare i praksis."
-            },
-            {
-              "title": "Åpen dialog og refleksjon",
-              "text": "Det legges til rette for spørsmål, samtaler og refleksjon rundt temaer som ofte oppleves vanskelige å snakke om. Enten det handler om mobbing, selvmord, psykisk helse eller digitalt utenforskap – ingen spørsmål er for store eller for små. Deltakerne får muligheten til å dele egne erfaringer og få konkrete svar, verktøy og strategier som kan hjelpe dem videre i hverdagen.\n\nMange av disse temaene bæres i stillhet – av mennesker som ikke vet hvem de skal snakke med, og av støttepersoner som ikke vet hvordan de skal åpne samtalen. Foredragene skaper rom for nettopp det: en felles forståelse, og et trygt utgangspunkt for å ta de samtalene videre – hjemme, i klasserommet eller på arbeidsplassen.\n\nMålet er ikke bare å skape bevissthet, men å gi deltakere et reelt grunnlag for å handle – ikke bare nikke gjenkjennende, men faktisk gjøre noe med det de har hørt."
-            },
-            {
-              "title": "Fokus på trygghet og respekt",
-              "text": "Foredragene holdes på en rolig og respektfull måte, med bevissthet om at temaene som tas opp kan være sårbare og gjenkjennelige for mange i salen. I et rom der noen kanskje bærer på egne erfaringer med det som blir snakket om, er måten noe formidles på like viktig som innholdet selv. Det betyr blant annet at språket holdes tilgjengelig og ikke-stigmatiserende, at det aldri oppfordres til å dele noe personlig offentlig, og at det alltid gis anerkjennelse for at folk er forskjellige – og at det samme tema kan treffe ulikt fra person til person. Det legges derfor vekt på å skape en trygg ramme der man kan ta inn vanskelige temaer uten å føle seg eksponert eller utrygg – og der det er rom for å kjenne på det som vekkes, uten press om å reagere på en bestemt måte."
-            },
-            {
-              "title": "Relevante perspektiver for dagens samfunn",
-              "text": "Temaene er forankret i utfordringer som mange møter til daglig – i klasserommet, på arbeidsplassen og i digitale miljøer. Hvert foredrag tar utgangspunkt i virkeligheten slik den faktisk ser ut for de som er i rommet, ikke i generelle teorier eller løsrevne eksempler. Det betyr at innholdet føles gjenkjennelig og relevant – ikke som noe hentet fra en lærebok. Det er også mulig å be om at foredraget tilpasses med scenarioer og situasjoner som er direkte relevante for akkurat ditt publikum. Enten det er en ungdomsskole, en frivillig organisasjon eller en kommunal virksomhet, kan innholdet speile de konkrete utfordringene dere jobber med – slik at det treffer der det betyr mest."
-            }
-          ]
-        },
-        {
-          "kind": "cards",
-          "eyebrow": "Foredrag med effekt",
-          "title": "Dette kan dere forvente",
-          "text": "Vi avklarer målgruppe, rammer og forventninger før arrangementet.",
-          "images": [],
-          "links": [
-            {
-              "label": "Ta kontakt for en samtale",
-              "href": "/contact"
-            },
-            {
-              "label": "Sjekk tilgjengelighet",
-              "href": "/booking"
-            }
-          ],
-          "items": [
-            {
-              "title": "Tilpasset målgruppen",
-              "text": "Tema og språk avtales ut fra hvem som skal delta."
-            },
-            {
-              "title": "Rom for spørsmål",
-              "text": "Vi avtaler hvor mye tid dere ønsker til spørsmål og samtale."
-            },
-            {
-              "title": "Tydelig avtale",
-              "text": "Dato, format, honorar og eventuelle reisekostnader avklares skriftlig."
-            }
-          ]
+          "eyebrow": "Om foredragsholderen"
         },
         {
           "kind": "intro",
-          "eyebrow": "",
-          "title": "Ønsker du et foredrag tilpasset din målgruppe?",
-          "text": "Isaac William holder foredrag for skoler, bibliotek, arbeidsplasser, organisasjoner og offentlige aktører som ønsker åpne og ærlige samtaler om psykisk helse, mobbing, digital oppvekst og andre samfunnsaktuelle temaer.",
+          "title": "Erfaringer som gir rom for samtale",
+          "text": "Jeg er autist og har selv kjent på mobbing, utenforskap og psykiske utfordringer. I foredragene setter jeg ord på opplevelser som kan være vanskelige å forklare – og lette å overse.\n\nJeg ønsker å bidra til forståelse mellom unge og voksne, mellom kolleger og mellom mennesker med ulike erfaringer. Innhold og språk avtales ut fra hvem som skal lytte.",
+          "items": [],
+          "links": [],
           "images": [],
-          "links": [
+          "eyebrow": ""
+        },
+        {
+          "kind": "cards",
+          "title": "Slik ønsker jeg å møte publikum",
+          "text": "",
+          "items": [
             {
-              "label": "Ta kontakt",
-              "href": "/contact"
+              "title": "Personlig og konkret",
+              "text": "Erfaringer og eksempler gjør det lettere å komme inn i samtalen."
             },
             {
-              "label": "Bestill foredrag",
+              "title": "Tilpasset deres rammer",
+              "text": "Vi avklarer alder, målgruppe og ønsket fokus før jeg kommer."
+            },
+            {
+              "title": "Plass til spørsmål",
+              "text": "Vi avtaler hvor mye tid dere ønsker til dialog og refleksjon."
+            }
+          ],
+          "links": [],
+          "images": [],
+          "eyebrow": ""
+        },
+        {
+          "kind": "accordion",
+          "title": "Mer om bakgrunnen min",
+          "text": "For deg som ønsker å lese mer før du tar kontakt.",
+          "items": [
+            {
+              "title": "Min personlige bakgrunn",
+              "text": "Isaac William Lunde skaper rolige og meningsbærende samtaler om temaer som mobbing, digital oppvekst, autisme, psykisk helse og forebygging av selvskading og selvmord. Det som skiller ham er ikke bare faglig innsikt, men personlig erfaring fra innsiden av utfordringene han snakker om.\n\nIsaac William er selv autist og vokste opp på bygda der utenforskap og sosial ekskludering preget skolehverdagen. Han opplevde mobbing som offer i 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet. Gjennom oppveksten bar han på en indre kamp med mørke tanker, og han har selv overlevd selvmordsforsøk. Han lever i dag med kroniske selvmordstanker, har en selvskadingshistorikk og er diagnostisert med depresjon, angst, tvangslidelse og spiseforstyrrelse. Han er sertifisert i førstehjelp ved selvmordsfare etter å ha jobbet på hjelpetelefon for unge.\n\nDisse erfaringene bærer han ikke som en byrde, men som et grunnlag for ekte og troverdig formidling. Isaac William snakker åpent og direkte for å gi stemme til de som ikke blir sett, og for å utruste voksne og fagpersoner med bedre forståelse av hva barn og unge faktisk opplever.\n\nMed en oppvekst fra tidlig 2000-tall, da internett fortsatt var i sin spede begynnelse, har Isaac William fulgt sosiale mediers fremvekst fra innsiden. Den erfaringen gir ham et unikt og nyansert perspektiv på internettets muligheter og fallgruver, særlig for unge som vokser opp i et digitalt landskap uten klare grenser."
+            },
+            {
+              "title": "Hvilke arrangementer passer foredragene for?",
+              "text": "Skoleforedrag, foreldremøter, ungdomsarrangementer, biblioteker, arbeidsplasser, kommuner og organisasjoner. Vi avklarer sammen om tema og format passer deres publikum."
+            }
+          ],
+          "links": [],
+          "images": [],
+          "eyebrow": ""
+        },
+        {
+          "kind": "intro",
+          "title": "Skal vi finne en vinkel som passer dere?",
+          "text": "Du trenger ikke ha et ferdig program. Start med hvem dere er, hvem som skal delta og hva dere ønsker å snakke om.",
+          "items": [],
+          "links": [
+            {
+              "label": "Ta kontakt om et foredrag",
               "href": "/booking"
             }
           ],
-          "items": []
+          "images": [],
+          "eyebrow": ""
         }
       ]
     },
@@ -354,8 +235,8 @@
         {
           "kind": "accordion",
           "eyebrow": "Fem hovedtemaer",
-          "title": "Tilgjengelige foredragstemaer",
-          "text": "Hvert foredrag tar utgangspunkt i både egen erfaring og kunnskap om utfordringer knyttet til psykisk helse, mobbing, autisme, digital oppvekst og forebygging av selvskading og selvmord. Temaene kan utforskes hver for seg eller kombineres til et foredrag tilpasset målgruppen og behovene til arrangementet.",
+          "title": "Hva vil dere snakke om?",
+          "text": "Fem hovedtemaer, med rom for ulike vinkler. Velg et tema nedenfor og se eksempler på undertemaer. Vi avtaler innhold, språk og omfang ut fra publikum.",
           "images": [
             {
               "src": "/assets/images/original-14.webp",
@@ -404,191 +285,216 @@
         },
         {
           "kind": "accordion",
-          "eyebrow": "Populære foredrag om mobbing og sosialt press",
+          "eyebrow": "For elever, foresatte, ansatte og ledere.",
           "title": "Mobbing og sosialt press",
-          "text": "Mobbing, utenforskap og sosialt press påvirker mennesker i alle aldre — både i skole, arbeidsliv og digitale miljøer. Foredragene tar opp hvordan mobbing oppstår, hvorfor mennesker faller utenfor, og hvordan relasjoner og miljø kan påvirke psykisk helse og selvbilde over tid.",
+          "text": "Hvordan oppstår utenforskap – og hvordan oppleves det fra innsiden? Om tilhørighet, makt og relasjoner i skolen, på jobb og på nett.",
           "images": [],
-          "links": [],
+          "links": [
+            {
+              "label": "Spør om dette temaet",
+              "href": "/booking?tema=1"
+            }
+          ],
           "items": [
             {
-              "title": "Mobbing i skolen: hva som egentlig foregår",
-              "text": "Mobbing starter sjelden med åpenbare handlinger – det begynner ofte i det stille, med blikk, utestengelse og subtile kommentarer som er vanskelige å gripe tak i. I dette foredraget ser vi nærmere på hvordan mobbing oppstår, hvordan det gradvis utvikler seg og forsterkes over tid, og hvorfor det så ofte foregår rett under nesen på voksne uten at de oppdager det. Vi utforsker også den krevende situasjonen mange voksne befinner seg i: de ser at noe er galt, men vet ikke hvordan de skal gripe inn på en måte som faktisk hjelper. Foredraget gir innsikt i dynamikkene som driver mobbing, hvilke signaler man bør se etter, og hva som skal til for at voksne – enten det er lærere, foreldre eller andre omsorgspersoner – kan bli tryggere og mer handlekraftige i møte med det."
+              "title": "Mobbing i skolen",
+              "text": "Hvordan mobbing kan vise seg gjennom blikk, kommentarer og utestenging. Et utgangspunkt for samtaler om det voksne ikke alltid får øye på."
             },
             {
-              "title": "Mobbing på arbeidsplassen: Et alvorlig og underrapportert problem",
-              "text": "Mobbing stopper ikke ved skoleporten. I arbeidslivet tar den nye former — subtile, men like skadelige.\n\nIkke alle legger mobbeopplevelser bak seg. Noen bærer dem inn i kollegafellesskap og lederroller, og reproduserer mønstre de kanskje ikke engang er klar over selv.\n\nForedraget setter søkelys på usynlige maktstrukturer, systematisk ekskludering og hva som faktisk skal til for å bryte mønstrene — på individnivå og i organisasjoner. Ikke for å peke finger, men for å skape rom for ærlighet og reell endring."
+              "title": "Mobbing på arbeidsplassen",
+              "text": "Om ekskludering og makt i arbeidsmiljøet, og hvordan tidligere mobbeerfaringer kan følge mennesker inn i arbeidslivet."
             },
             {
-              "title": "Sosialt press blant unge – når følelsen av å ikke strekke til blir normalen",
-              "text": "Om utseende, status, penger, grupper og den konstante sammenligningen som preger hverdagen til unge i dag. I en verden der sosiale medier forsterker press og synlighet, blir spørsmål om hvem man er – og hvem man burde være – stadig mer komplekse. Dette foredraget utforsker hvordan ytre faktorer former indre selvbilde, hvorfor noen faller utenfor og andre havner øverst i hierarkiet, og hva det gjør med den enkeltes identitet og psykiske helse over tid. Foredraget belyser mekanismene bak sosiale strukturer i ungdomsmiljøer, og gir voksne og fagfolk bedre innsikt i hva unge faktisk opplever – og hva de trenger."
+              "title": "Sosialt press og sammenligning",
+              "text": "Om sammenligning, status, utseende og forventninger. Hvordan det kan oppleves å hele tiden måtte bevise at man passer inn."
             },
             {
-              "title": "Hierarki i vennegrupper - hvem bestemmer egentlig hvem som får være med?",
-              "text": "Hvordan uformelle maktstrukturer former ungdomsmiljøer – og hvordan disse mønstrene ofte følger unge mennesker inn i voksenlivet. Hvem som bestemmer, hvem som tilpasser seg, og hva som skjer med de som havner nederst i hierarkiet – ikke bare sosialt, men også følelsesmessig og over tid. Hvordan dynamikken i en gruppe kan være vanskelig å se utenfra, nettopp fordi den sjelden er åpen eller direkte. Hvordan noen unge strekker seg langt – også på bekostning av egne grenser, verdier og velvære – for å unngå å bli ekskludert fra gruppa. Og hvordan du som voksen kan nærme deg og snakke med en ung person du mistenker befinner seg i en slik dynamikk, uten at de lukker seg eller mister tilliten til deg."
+              "title": "Makt og hierarki i vennegrupper",
+              "text": "Hvem får bestemme i vennegruppen? Om uskrevne regler, lojalitet og frykten for å havne utenfor."
             },
             {
-              "title": "Å være den som blir valgt bort uten bevis",
-              "text": "Om utestenging, subtile signaler og sosial isolasjon. Hvordan ungdom finner nye måter å ekskludere andre uten at det ser ut som ekskludering – gjennom taushet, blikk, gruppesamtaler og digitale rom der noen alltid mangler. Hvem som ikke blir lagt til i gruppechatten. Hvem som alltid er sist å få vite noe. Hvem som sitter i samme rom som alle andre, men likevel er helt alene. Hvem som slutter å invitere fordi de vet svaret kommer til å være nei – eller fordi de aldri får spørsmålet i det hele tatt. Og hvordan disse mønstrene sjelden er tilfeldige. De er sosiale, de er lærte, og de gjentar seg. Ofte starter de tidligere enn man tror, lenge før noen voksen rekker å legge merke til det – eller før den det gjelder selv har ord for hva som skjer. Fordi det som gjør denne formen for utestenging så vanskelig å gripe fatt i, er nettopp at den ikke synes. Den etterlater ingen spor. Den ser ikke ut som mobbing. Men den kjennes like fullt."
+              "title": "Utestenging som ikke synes",
+              "text": "Utestenging er ikke alltid lett å dokumentere. Om å bli valgt bort, og hvorfor små handlinger kan få stor betydning."
             },
             {
-              "title": "Digital Mobbing",
-              "text": "Hvordan mobbing har flyttet seg fra klasserommet til mobil, chat og sosiale medier – og hvorfor det gjør noe annet med offeret. Om konstant tilgjengelighet, gruppechatter som ekskluderer, skjulte kommentarer, deling av bilder uten samtykke og det å aldri kunne koble helt av. Når det ikke finnes et fristed lenger, følger mobbingen offeret hjem, inn på rommet og helt inn i natten. Dette foredraget gir et ærlig innblikk i hvordan digitalt press og nettmobbing kan prege hverdagen døgnet rundt – og hvorfor det ofte er langt vanskeligere for foreldre, lærere og andre rundt å oppdage enn tradisjonell mobbing. Vi ser også på hva som faktisk hjelper, og hva vi kan gjøre annerledes."
+              "title": "Digital mobbing",
+              "text": "Når mobbing følger med hjem på mobilen. Om gruppechatter, deling og følelsen av aldri å få en pause."
             }
           ]
         },
         {
           "kind": "accordion",
-          "eyebrow": "Populære foredrag om autisme og nevrodiversitet",
+          "eyebrow": "For skoler, foresatte og arbeidsplasser.",
           "title": "Autisme og nevrodiversitet",
-          "text": "Autisme og nevrodiversitet handler om langt mer enn diagnoser og stereotypier. Foredragene utforsker hvordan det faktisk kan oppleves å navigere skole, arbeid, relasjoner og hverdagsliv som nevrodivergent — med fokus på både utfordringer, misforståelser, identitet og tilhørighet.",
+          "text": "Et personlig perspektiv på å møte en hverdag som ikke alltid er tilpasset måten man tenker og sanser på. Om forståelse, tilrettelegging og tilhørighet.",
           "images": [],
-          "links": [],
+          "links": [
+            {
+              "label": "Spør om dette temaet",
+              "href": "/booking?tema=2"
+            }
+          ],
           "items": [
             {
               "title": "Nevrodiversitet i skolen",
-              "text": "Hvordan nevrodiverse elever opplever skolemiljøet, og hva som faktisk påvirker deres læring, sosiale samspill og trivsel i hverdagen. Mange av disse elevene navigerer en skoledag som ikke alltid er tilpasset måten de tenker, kommuniserer eller bearbeider inntrykk på – noe som kan føre til misforståelser, utenforskap og unødvendige utfordringer som lett kunne vært unngått med riktig kunnskap.\n\nForedraget gir konkret innsikt i hvordan atferd, kommunikasjon og behov kan se annerledes ut, og hva som ligger bak reaksjoner som ofte mistolkes. Vi ser på hvordan sensoriske inntrykk, sosiale forventninger og strukturen i skolehverdagen påvirker disse elevene – og hva skoler konkret kan gjøre for å møte dem på en mer inkluderende og forståelsesfull måte."
+              "text": "Om læring, samspill og sanseinntrykk i skolehverdagen. Hvordan elever kan oppleve de samme rammene svært forskjellig."
             },
             {
               "title": "Nevrodiversitet i arbeidslivet",
-              "text": "Hvordan nevrodiversitet påvirker arbeidshverdagen, kommunikasjon og mestring i ulike yrker. Foredraget utforsker konkrete utfordringer mange møter i arbeidslivet – fra sensoriske inntrykk og sosiale forventninger til struktur og tidsstyring – og ser like mye på styrkene som følger med ulike måter å tenke og fungere på.\n\nDet handler om ansatte som leverer sterkt på noen områder, men strever med ting mange tar for gitt – og om hvordan arbeidsplassen kan møte dem på en måte som faktisk fungerer. Målet er å gi ledere, HR og kollegaer et mer nyansert bilde av nevrodiversitet, og praktiske perspektiver på hvordan bevissthet og tilrettelegging kan gjøre en reell forskjell – ikke bare for den enkelte, men for hele arbeidsmiljøet."
+              "text": "Om kommunikasjon, forventninger og tilrettelegging på jobb, sett fra et nevrodivergent perspektiv."
             },
             {
               "title": "Utmattelse og burnout",
-              "text": "Et foredrag om hvordan langvarig stress, overstimulering og høye krav kan føre til utmattelse og burnout – og hvorfor dette rammer mange med autisme særlig hardt.\n\nForedraget ser nærmere på hva autistisk utmattelse faktisk er, hvordan det skiller seg fra vanlig tretthet, og hvilke faktorer som bidrar til at det bygger seg opp over tid. Vi ser på hvordan konstant tilpasning til omgivelsene, det å skjule eller dempe autistiske trekk, og mangel på tilstrekkelig hvile kan tappe energi over lang tid – ofte uten at verken personen selv eller omgivelsene legger merke til det før det har gått for langt. Det tar også opp hva som kan gjøres for å forebygge utbrenthet og skape bedre balanse i hverdagen – både for den det gjelder og for dem rundt."
+              "text": "Om belastningen ved å tilpasse seg over tid, og erfaringer med å gå tom når krav og kapasitet ikke passer sammen."
             },
             {
-              "title": "Spekteret av autisme",
-              "text": "Begrepene «høyt- og lavtfungerende» gir ikke et riktig bilde av autisme. De overforenkler en kompleks virkelighet og får reelle konsekvenser – noen får for lite støtte fordi de «klarer seg bra», andre undervurderes fordi de strever synlig. Det som ser ut som mestring utenfra, kan skjule et enormt indre press. Det som ser ut som begrensning, kan romme ressurser som ikke blir sett.\n\nIsaac William utforsker hvordan autisme varierer fra person til person og fra situasjon til situasjon – og hvorfor det samme mennesket kan fungere helt forskjellig avhengig av omgivelser, krav og trygghet. Han argumenterer for en ekte spekterforståelse som ikke handler om å plassere noen på en skala, men om å se hvert individ som det det er. Det gir bedre møter – i skolen, hjemmet og hjelpeapparatet."
+              "title": "Ulike behov på autismespekteret",
+              "text": "Hvorfor enkle merkelapper ikke rommer et helt menneske. Om ulike behov og variasjonene som kan finnes hos samme person."
             },
             {
-              "title": "Stress, press og nevrodiversitet",
-              "text": "Mange nevrodiverse personer opplever hverdagen som en konstant balansegang mellom egne behov og omgivelsenes forventninger. Det som for andre kan virke som enkle, uproblematiske situasjoner – et uventet bytte i rutine, støy i et klasserom, eller krav om rask sosial tilpasning – kan for nevrodiverse kreve betydelig mer kognitiv og emosjonell kapasitet. Dette foredraget ser nærmere på hvordan ytre krav, sosialt press og uforutsigbare situasjoner påvirker nevrodiverse ulikt, og hvorfor stressreaksjoner ofte bygger seg opp over tid uten at omgivelsene legger merke til det. Vi ser også på fenomenet «maskering» – det å skjule sine vansker for å passe inn – og hvilken langsiktig belastning dette kan ha. Målet er å gi økt forståelse for disse mekanismene, og konkrete perspektiver på hvordan skoler, arbeidsplasser og nærmiljø kan tilrettelegge for en mer bærekraftig hverdag – ikke bare for de det gjelder, men for fellesskapet som helhet."
+              "title": "Stress, krav og egne behov",
+              "text": "Om å balansere egne behov med omgivelsenes forventninger, og presset om å fungere på andres premisser."
             },
             {
               "title": "Maskering, stimming og overstimulering",
-              "text": "Et foredrag om maskering – det å skjule egne behov, følelser og reaksjonsmønstre for å tilpasse seg omgivelsenes forventninger – og hvordan dette over tid kan tappe energi, skape indre uro og påvirke den mentale helsen på måter som ikke alltid er synlige utenfra. Vi ser også nærmere på stimming som selvregulerende atferd: hva det er, hvilken funksjon det fyller i nervesystemet, og hvorfor det ikke bør undertrykkes – verken hjemme eller i skolen. I tillegg belyses hvordan overstimulering arter seg i kropp og sinn, hva som kan utløse det, og hva omgivelsene konkret kan gjøre for å skape tryggere og mer forutsigbare rammer. Foredraget gir et mer nyansert og ærlig bilde av hverdagen til mange nevrodiverse personer – og av det som ofte foregår bak en fasade de har lært å opprettholde lenge før noen la merke til det."
+              "text": "Hva det kan koste å skjule egne reaksjoner. Om maskering, selvregulering og å håndtere mange sanseinntrykk."
             }
           ]
         },
         {
           "kind": "accordion",
-          "eyebrow": "Populære foredrag om psykisk helse",
-          "title": "Psykisk Helse",
-          "text": "Psykisk helse påvirker hvordan mennesker tenker, føler og fungerer i hverdagen — ofte på måter som ikke alltid er synlige for andre. Foredragene tar opp ulike psykiske utfordringer, indre belastninger og hvordan press, relasjoner og livserfaringer kan påvirke mennesker i alle aldre.",
+          "eyebrow": "For ungdom, foresatte og ansatte.",
+          "title": "Psykisk helse",
+          "text": "Det er ikke alltid synlig når noen strever. Om fasader, press og psykiske belastninger – og om å gi plass til samtaler som ellers lett blir utsatt.",
           "images": [],
-          "links": [],
+          "links": [
+            {
+              "label": "Spør om dette temaet",
+              "href": "/booking?tema=3"
+            }
+          ],
           "items": [
             {
-              "title": "Å mestre fasaden mens alt rakner innenfra",
-              "text": "Mange mennesker bærer på en psykisk belastning som sjelden synes utenfra. De møter opp, smiler, presterer – og ingen aner at noe er galt. Ofte er det nettopp den som virker sterkest, mest samlet og minst bekymringsfull, som sliter mest innvendig.\n\nDet kan handle om skam, om ikke å ville være til bry, eller rett og slett om at ingen har spurt på en måte som gjør det trygt å svare ærlig. Noen har lært seg å skjule det så godt at de knapt kjenner igjen smerten sin selv lenger. Andre vet godt hva de bærer på, men har ingen anelse om hvem de kan si det til – eller om det i det hele tatt er lov."
+              "title": "Når fasaden skjuler at man strever",
+              "text": "Om å møte opp, smile og prestere samtidig som livet er vanskelig. Hvorfor fasaden kan gjøre det krevende å bli sett."
             },
             {
               "title": "Spiseforstyrrelser og kroppspress",
-              "text": "Hvordan spiseforstyrrelser ikke bare er en ungdomsfase eller et voksenproblem, men noe som i noen tilfeller begynner allerede på barneskolen – lenge før de fleste voksne begynner å se etter tegn. Hvordan kroppspress har forandret seg dramatisk etter den digitale epoken, og hvordan konstant eksponering for filtrerte idealer, trenddietter og kommentarfelt på sosiale medier former unges forhold til mat og kropp fra tidlig alder – ofte uten at verken barna selv eller de rundt dem er klar over det. Forholdet vi har til mat starter hjemme – i hvordan voksne rundt oss snakker om kropp, kalorier og hva som er \"lov\" å spise, i kommentarene ved middagsbordet og i måten vi omtaler oss selv i speilet. De holdningene barna observerer og absorberer i oppveksten legger ofte grunnlaget for mønstre som kan følge dem inn i ungdomstiden og voksenlivet – mønstre som sjelden oppstår over natten, men som bygger seg opp stille og gradvis."
+              "text": "Om forholdet til kropp, mat og kontroll, og hvordan kroppspress kan prege ulike aldre og livssituasjoner."
             },
             {
-              "title": "Angst - når kroppen aldri klarer å slappe av",
-              "text": "Uro, overtenking og unngåelse. Angst er en av de vanligste utfordringene mennesker opplever i dag – men den er fortsatt lite forstått, både av dem som lever med den og av menneskene rundt dem. Hvordan påvirker angst hverdagen – på skolen, på jobb, i familien, i sosiale situasjoner og inne i eget hode? Vi ser på hva som faktisk skjer i kroppen under et angst- eller panikkanfall, hvorfor hjernen tolker situasjoner som farlige selv når de ikke er det, og hvordan unngåelse på kort sikt kan gi midlertidig lettelse – men gjøre angsten sterkere og snevrere over tid. Vi ser også på skillet mellom hverdagslig bekymring og angst som begynner å begrense livet, hvordan det kan arte seg ulikt fra person til person, og hva man konkret kan gjøre selv, eller som støtteperson, når følelsene tar overhånd og det føles vanskelig å vite hvor man skal begynne."
+              "title": "Å leve med angst",
+              "text": "Om uro, overtenking og unngåelse fra et erfaringsperspektiv. Hvordan angst kan påvirke situasjoner andre tar for gitt."
             },
             {
-              "title": "Depresjon - mer enn bare å være litt lei seg",
-              "text": "Depresjon er ikke bare det å ha hatt en dårlig dag eller en tung periode – det er en tilstand som kan prege hverdagen fullstendig, over lang tid. Likevel er det mange som synes det er vanskelig å vite hvordan de skal reagere eller hjelpe når noen de kjenner sliter. Det er ikke alltid lett å se forskjellen på om noen er deprimert eller bare litt lei seg, og den usikkerheten kan gjøre det vanskelig å strekke ut en hånd i tide.\n\nI dette foredraget går vi dypere inn i hva depresjon faktisk er, hva som kan utløse eller forsterke det, og hvilke faktorer som ofte spiller inn – som stress, sosial isolasjon, selvbilde og livssituasjon. Vi ser også på hvordan depresjon påvirker hverdagen til den som sliter, og hvilken effekt det kan ha på de nærmeste rundt dem. Målet er å gi en bedre forståelse av tilstanden, og mer konkrete verktøy for hvordan man kan møte og støtte noen som har det vanskelig."
+              "title": "Depresjon i hverdagen",
+              "text": "Om hvordan depresjon kan prege energi, relasjoner og hverdagsliv, også når belastningen ikke er synlig utenfra."
             },
             {
-              "title": "Tvangslidelser – OCD er ikke en trend",
-              "text": "OCD er blitt mistolket gjennom tidene og er i dag mest kjent som et løst begrep for det å like orden, struktur og system. Men lidelsen er langt mer kompleks enn det. OCD handler ikke om å ha en ryddig skuff eller et organisert kjøleskap – det handler om påtrengende tanker, tvangshandlinger og en indre uro som kan være vanskelig å kontrollere. I et samfunn der TikTok er fylt med trender om organisering og estetiske rom, blir skillet mellom en livsstilspreferanse og en reell psykisk lidelse stadig mer utydelig. Det gjør det viktigere enn noensinne å forstå hva OCD faktisk innebærer – og hvorfor det å kalle seg selv \"litt OCD\" kan bidra til å undergrave de som virkelig lever med diagnosen hver dag."
+              "title": "Tvangstanker og OCD",
+              "text": "Om tvangstanker og tvangshandlinger, og hvorfor det å like orden ikke beskriver hvordan det er å leve med OCD."
             },
             {
-              "title": "Stress og overbelastning - når hodet ikke får pause",
-              "text": "Alle mennesker, i alle aldre og livsfaser, har på ett eller annet tidspunkt kjent på stress. Det kan være fra en skoleprøve, prestasjon i en idrett eller hobby, frister til en viktig arbeidsinnlevering, eller bare generell stress i hverdagen. Stress er en naturlig del av livet – og i moderate mengder kan det faktisk være nyttig. Det gir oss energi til å handle og motivasjon til å fullføre det vi har foran oss.\n\nMen mange tenker ikke over stress og overbelastning som en del av psykisk helse. Det blir sjelden snakket om som et varseltegn – som en brikke i startfasen, lenge før det går galt og utvikler seg til noe verre. Når stress får stå ubehandlet over tid, kan det vokse seg inn i noe langt tyngre: utbrenthet, angst, eller en følelse av å ikke strekke til. Det er derfor det er viktig å ta det på alvor tidlig – ikke bare når det allerede har gått for langt."
+              "title": "Stress og overbelastning",
+              "text": "Om forventninger, prestasjon og en hverdag uten nok pauser. Et utgangspunkt for refleksjon rundt egne og andres grenser."
             }
           ]
         },
         {
           "kind": "accordion",
-          "eyebrow": "Populære foredrag om selvskading og forebygging av selvmord",
+          "eyebrow": "For foresatte og voksne som møter ungdom. Innhold og aldersgruppe avklares på forhånd.",
           "title": "Selvskading og forebygging av selvmord",
-          "text": "Selvskading og selvmordstanker er temaer mange synes er vanskelige å snakke om, men som påvirker flere mennesker enn mange er klar over. Foredragene fokuserer på forståelse, varselsignaler, åpenhet og hvordan man kan møte psykisk smerte og kriser på en trygg og menneskelig måte.",
+          "text": "Om å møte psykisk smerte med åpenhet og omtanke. Personlige erfaringer gir utgangspunkt for refleksjon rundt støtte, samtaler og voksnes rolle.",
           "images": [],
-          "links": [],
+          "links": [
+            {
+              "label": "Spør om dette temaet",
+              "href": "/booking?tema=4"
+            }
+          ],
           "items": [
             {
-              "title": "Selvskading",
-              "text": "Når de fleste hører ordet selvskading, ser de for seg en jente som kutter seg selv. Det er det vanligste bildet – men det stemmer ikke alltid. Selvskading finnes i mange former, og det varierer både mellom kjønn og på tvers av aldersgrupper. Gutter selvskader like mye som jenter, men ofte på andre måter – og er sjeldnere synlige i statistikken fordi det ikke ser ut som det vi forventer. En tenåring kan selvskade på en helt annen måte enn en voksen, og en voksen kan ofte gjøre større fysisk skade enn en ungdom som nettopp har begynt å slite. Det er ikke nødvendigvis et tegn på at det er verre – men det viser at selvskading utvikler seg over tid, og at behovene bak den gjør det samme. Det er også en utbredt misforståelse at selvskading kun skjer i ungdomsårene. Barn på barneskolen kan også selvskade – og gjør det. Mange voksne rundt dem vet ikke hva de skal se etter, nettopp fordi de ikke kjenner igjen det de ser som selvskading. Når vi ikke har et bredt nok bilde av hva selvskading faktisk kan se ut som, blir det vanskeligere å oppdage det tidlig – og vanskeligere å hjelpe."
+              "title": "Å forstå selvskading",
+              "text": "Om psykisk smerte og erfaringer som ofte møtes med misforståelser. Vekten ligger på forståelse og samtale, uten beskrivelser av metoder."
             },
             {
-              "title": "Hvordan være en trygg voksen",
-              "text": "Å oppdage at et barn eller en ungdom selvskader, kan kjennes overveldende – særlig når man ikke vet hva man skal si eller gjøre. Det er naturlig å kjenne på frykt, hjelpeløshet eller til og med skyld. Men det er viktig å huske at selvskading sjelden er et rop om oppmerksomhet. Det er ofte en måte å håndtere følelser som har blitt for store å bære alene – en mestringsstrategi som gir midlertidig lettelse fra indre smerte.\n\nDerfor betyr reaksjonen fra voksne rundt mer enn man kanskje tror. En rolig, ikke-dømmende tilnærming kan i seg selv være det første steget mot at ungdommen åpner seg og søker hjelp. Du trenger ikke ha alle svarene, og du trenger ikke løse alt på én gang. Det viktigste er at ungdommen møtes med varme og forståelse – og at de vet at det finnes en trygg voksen å gå til."
+              "title": "Å være en trygg voksen",
+              "text": "Om å være til stede når en ungdom forteller at de har det vanskelig. Refleksjon rundt å lytte, ta på alvor og bidra til videre støtte."
             },
             {
-              "title": "Selvmord",
-              "text": "Selvskading og selvmordstanker er ofte tabubelagte temaer som kan være vanskelige å nærme seg. Mange vet ikke hvordan de skal gå frem, eller hvordan de skal bringe det opp i en samtale. Kanskje har du selv mistanker om at et barn, en venn, et familiemedlem eller en kollega sliter – men du er redd for å si noe feil, eller for at personen skal bli fornærmet hvis du spør direkte. Kanskje er du usikker på om det er din plass å spørre i det hele tatt.\n\nDenne usikkerheten er helt forståelig, men den kan også føre til at viktige samtaler aldri finner sted – og at den som sliter, sitter igjen med følelsen av at ingen la merke til det. Det er lett å tenke at man bør vente til man er helt sikker, eller at noen andre er bedre rustet til å ta det opp. Men i mange tilfeller er det nettopp den nærmeste personen – ikke en fagperson – som er den første til å legge merke til at noe er galt."
+              "title": "Å snakke om selvmord",
+              "text": "Et erfaringsbasert foredrag om håpløshet, åpenhet og hva det kan bety å bli møtt. Innholdet avtales med arrangøren."
             },
             {
-              "title": "Når barn forteller at de ikke vil leve lenger",
-              "text": "Hva gjør man når et barn plutselig sier at de ikke ønsker å leve lenger? Eller når man merker at noe er galt, men ikke vet hvordan man skal nærme seg det? Det er spørsmål mange voksne bærer på, uten å vite hvor de skal begynne.\n\nI dette foredraget får du økt kunnskap om suicidale tanker hos barn og unge, hvordan selvmord oppleves og forstås ulikt gjennom ulike aldersstadier, og hvilke tegn man bør være oppmerksom på. Vi ser også på hvorfor mange unge ikke sier ifra direkte, og hva som faktisk skal til for at de føler seg trygge nok til å åpne seg.\n\nDu får konkrete verktøy og strategier for hvordan du som voksen kan skape trygghet, åpne vanskelige samtaler og handle forebyggende før situasjonen eskalerer."
+              "title": "Når barn sier de ikke vil leve",
+              "text": "Om voksnes usikkerhet når et barn uttrykker at livet er vanskelig. Samtalen handler om ansvar, nærvær og å søke hjelp videre."
             },
             {
-              "title": "Sorg og ettervirkninger av selvmord",
-              "text": "Kanskje du eller noen du kjenner har mistet noen til selvmord. Kanskje bærer noen rundt deg på denne sorgen uten at du vet om det. Sorg etter selvmord er ofte annerledes enn annen sorg – den kan komme med skyld, skam, ubesvarte spørsmål og en stillhet som er vanskelig å bryte. Mange som opplever dette føler seg alene i det, ikke fordi støtten mangler, men fordi ordene sjelden strekker til og fordi temaet i seg selv ofte skaper avstand.\n\nI dette foredraget ser vi nærmere på hvordan selvmord påvirker dem som mister noen, hvorfor denne typen sorg kan sitte annerledes og ta lengre tid å bearbeide, og hvordan den også kan spre seg til omgivelsene – til venner, familie og kollegaer som kanskje ikke engang er klar over hva de bærer på."
+              "title": "Sorg etter selvmord",
+              "text": "Om sorg, spørsmål og ulike reaksjoner etter å ha mistet noen. Et rom for refleksjon, uten forventning om én riktig måte å sørge på."
             },
             {
-              "title": "Forebygging av selvskading og selvmord",
-              "text": "I en ideell verden er det ingen som selvskader, ingen som sliter med selvmordstanker, og ingen som tar selvmord. Men dessverre er ikke verden slik. Mange mennesker bærer på smerte som er usynlig for omgivelsene – smerte som sjelden vises utenpå, og som ofte holdes skjult av skam, frykt eller en følelse av å være til byrde for andre. Altfor ofte mangler de rundt dem verktøyene til å oppdage det i tide, ikke fordi de ikke bryr seg, men fordi ingen har lært dem hva de skal se etter eller hvordan de skal reagere.\n\nDerfor er kunnskap om forebygging avgjørende – ikke bare for fagfolk, men for alle som har mennesker i livet sitt: familie, foreldre, lærere, kollegaer og venner. Tidlige tegn kan være subtile. Et endret atferdsmønster, tilbaketrekning, kommentarer som virker uskyldige men ikke er det. Å vite hva man skal se etter, og ikke minst hvordan man åpner en samtale uten å gjøre situasjonen verre, kan utgjøre en reell og livreddende forskjell."
+              "title": "Åpenhet og forebygging",
+              "text": "Om hvordan åpenhet og tilhørighet kan inngå i forebyggende arbeid. Foredraget er et erfaringsbidrag og erstatter ikke helsefaglig opplæring."
             }
           ]
         },
         {
           "kind": "accordion",
-          "eyebrow": "Populære foredrag om digital oppvekst",
-          "title": "Digital Oppvekst",
-          "text": "Å vokse opp på internett påvirker identitet, relasjoner og psykisk helse på måter tidligere generasjoner aldri opplevde. Foredragene utforsker både de positive og negative sidene ved sosiale medier, gaming, nettkultur og digitale relasjoner — og hvordan det former mennesker i dagens samfunn.",
+          "eyebrow": "For ungdom, foresatte, skoler og ungdomsarbeidere.",
+          "title": "Digital oppvekst",
+          "text": "På nett finnes både fellesskap og utfordringer. Om gaming, sosiale medier og digitale relasjoner – sett fra en som selv har vokst opp med dem.",
           "images": [],
-          "links": [],
+          "links": [
+            {
+              "label": "Spør om dette temaet",
+              "href": "/booking?tema=5"
+            }
+          ],
           "items": [
             {
               "title": "Gaming som sosial arena",
-              "text": "Gaming er sosialt på en måte mange undervurderer. For noen er det fellesskapet, mestringa, og tilhørigheten som gjør hverdagen litt lettere – særlig for dem som sliter med å finne sin plass andre steder. Det å ha et sted der du er god på noe, der du blir sett og inkludert, betyr mer enn vi ofte gir det kreditt for. For unge som opplever utenforskap på skolen eller i nærmiljøet, kan det digitale fellesskapet være det eneste stedet de faktisk føler seg hjemme.\n\nFor andre kan det samme fristed sakte erstatte alt annet – skole, venner, søvn, og til slutt seg selv. Ikke fordi gaming er farlig i seg selv, men fordi det fyller et tomrom som burde vært fylt av noe annet. Når tilbaketrekkingen skjer gradvis, er det lett å overse – både for den unge selv og for dem rundt.\n\nGaming er verken bare bra eller bare dårlig. Det handler om hva det fyller, og hva det fortrenger. "
+              "text": "Gaming kan være et sted for vennskap, mestring og tilhørighet. Om hvorfor dette fellesskapet betyr mye, og hva voksne lett kan overse."
             },
             {
-              "title": "Den digitale tvangen – og konsekvensene av konstant tilkobling",
-              "text": "Barn og unge kan i dag nå hverandre digitalt døgnet rundt – enten det er via Snapchat, Instagram, TikTok, Discord, WhatsApp eller andre plattformer. Det har utviklet seg til åbli en av de første tingene som unge idag utvikler en avhengighet for.Der man tidligere måtte vente til neste dag for å snakke med venner igjen, er det nå mulig å være i kontakt langt inn i natten. Dette endrer ikke bare søvnmønstre, men også den psykologiske dynamikken rundt tilhørighet og sosial deltakelse.\n\nMange unge utvikler en vedvarende frykt for å gå glipp av noe – kjent som FOMO (Fear of Missing Out) – der presset om å alltid være tilgjengelig og oppdatert kan bli en kilde til stress og utrygghet. Det handler ikke alltid om hva som faktisk skjer, men om følelsen av å stå utenfor hvis man ikke henger med."
+              "title": "Konstant tilkobling",
+              "text": "Om forventningen om å svare, følge med og være tilgjengelig hele tiden. Hvordan digital kontakt kan oppleves både godt og krevende."
             },
             {
-              "title": "Digitale relasjoner: å skille mellom grooming og ekte vennskap",
-              "text": "Etter internett kom til verden har foreldre advart barna sine mot å snakke med fremmede på nett. Likevel skjer det hele tiden – og ikke alltid med negative konsekvenser. Mange vennskap starter nettopp slik, gjennom en felles interesse i et spill, en kommentar på sosiale medier eller en tilfeldig samtale i en nettgruppe. Noen av disse vennskapene er ekte og varer i årevis.\n\nMen nettet gir også mulighet for folk med dårlige hensikter å skjule hvem de virkelig er. Det er her grooming og catfishing kommer inn. Grooming handler om at en voksen bevisst bygger opp tillit hos et barn over tid, ofte med mål om seksuell utnyttelse. Catfishing handler om å late som man er noen man ikke er – for å manipulere, lure eller skade den andre. Begge deler kan skje gradvis og umerkelig, noe som gjør det vanskelig å oppdage det før det har gått for langt."
+              "title": "Vennskap, grenser og grooming",
+              "text": "Om vennskap på tvers av alder og avstand, grenser og utrygge relasjoner. Et nyansert utgangspunkt for samtaler mellom ungdom og voksne."
             },
             {
-              "title": "Digitalt trygghet – hva foreldre må forstå",
-              "text": "Det finnes utallige nettsider og apper tilgjengelig med et enkelt søk eller tastetrykk. Noen er åpent skadelige, andre er i utgangspunktet uskyldige, men kan fort bli utrygge i feil sammenheng. Plattformer som Omegle og apper som Kik er kjent for å tiltrekke seg voksne med dårlige hensikter, men selv tilsynelatende ufarlige ting som Roblox eller populære spill kan eksponere barn og unge for fremmede eller press fra jevnaldrende.\n\nDerfor er digital trygghet i hjemmet viktigere enn noen gang. Men trygghet handler ikke bare om regler og restriksjoner. Forskning viser at foreldre som er for kontrollerende eller strenge, ofte oppnår det motsatte av hva de ønsker. Barn lærer å skjule det de gjør, og terskelen for å be om hjelp blir høyere. Så hva er alternativet? Hvordan kan man som forelder eller voksen skape et rom der den unge faktisk føler seg trygg nok til å komme til deg, uten at du samtidig krenker tilliten eller privatlivet deres?"
+              "title": "Digital trygghet for voksne",
+              "text": "Hva trenger voksne å forstå om unges netthverdag? Om tillit, nysgjerrighet og å kunne snakke sammen når noe blir vanskelig."
             },
             {
-              "title": "Sosiale medier og psykisk press hos unge",
-              "text": "Sosiale medier er en av de ledende faktorene for psykisk press blant unge. Plattformer som Instagram og TikTok skaper konstant eksponering for idealiserte bilder, kuraterte liv og sosiale sammenligninger – ofte uten at unge selv er klar over hvilken innvirkning det har. Over tid kan dette påvirke selvbilde, identitet og psykisk helse på måter som ikke alltid er synlige for foreldre, lærere eller andre rundt dem. Det handler ikke bare om hva unge ser, men om hva de begynner å tro om seg selv i møte med det.\n\nTikTok er også kjent for å ha skapere som lager innhold om nesten alt – fra livsstil og relasjoner til psykisk helse og identitet. Det unge ikke alltid vet, er at en del av dette innholdet er laget med ett mål for øye: flest mulig visninger. For å nå det målet velger noen skapere å overdrive, forenkle eller direkte lyve. Algoritmen belønner det som engasjerer, ikke det som er sant. Det betyr at unge kan bli eksponert for misvisende råd, falske fortellinger og urealistiske fremstillinger av virkeligheten – pakket inn på en måte som føles troverdig og relaterbar."
+              "title": "Sosiale medier og selvbilde",
+              "text": "Om sammenligning, idealer og bekreftelse på sosiale medier, og hvordan dette kan påvirke selvbildet."
             },
             {
-              "title": "Datingapper og kjærlighet på nett",
-              "text": "Kan man finne kjærligheten på nett, og hva gjør man hvis man mistenker at et barn eller en ungdom har en kjæreste de har møtt digitalt? Digitale relasjoner kan være ekte og betydningsfulle, men de kommer også med risiko som unge ikke alltid er rustet til å håndtere alene. Noen ganger vet de ikke hvem personen egentlig er bak skjermen. Andre ganger vet de det godt, men er redde for å fortelle det til en voksen i frykt for at relasjonen skal bli tatt fra dem eller at de ikke vil bli tatt på alvor.\n\nHvordan kan man som forelder eller voksen nærme seg samtalen på en måte som sikrer at de vet hvem personen egentlig er og at relasjonen er trygg, uten å virke kontrollerende eller invadere privatlivet deres? Det handler om å skape et rom der unge faktisk tør å dele, stille spørsmål og komme til deg når noe kjennes feil, før situasjonen eventuelt har eskalert."
+              "title": "Kjærlighet og relasjoner på nett",
+              "text": "Om kjærlighet, identitet og tillit i digitale relasjoner. Muligheter og utfordringer ved å bli kjent med noen på nett."
             }
           ]
         },
         {
           "kind": "intro",
-          "eyebrow": "",
-          "title": "Sett sammen et foredrag som passer deres behov",
-          "text": "Foredragene kan holdes enkeltvis eller kombineres ut fra målgruppe, tema og arrangement. Isaac William tilpasser innholdet for skoler, kommuner, organisasjoner, arbeidsplasser og andre som ønsker åpne og relevante samtaler om psykisk helse og samfunnsutfordringer.",
-          "images": [],
+          "title": "Usikker på hvilket tema som passer?",
+          "text": "Fortell hvem dere ønsker å nå og hva dere vil sette i gang en samtale om. Vi kan kombinere temaer og finne en vinkel sammen.",
+          "items": [],
           "links": [
             {
-              "label": "Sjekk tilgjengelighet",
+              "label": "Send en forespørsel",
               "href": "/booking"
             },
             {
-              "label": "Ta kontakt for en prat",
-              "href": "/contact"
+              "label": "Se priser og formater",
+              "href": "/pricing-and-services"
             }
           ],
-          "items": []
+          "images": [],
+          "eyebrow": ""
         }
       ]
     },
@@ -598,8 +504,8 @@
         {
           "kind": "hero",
           "eyebrow": "",
-          "title": "Bestill Isaac William Lunde som foredragsholder",
-          "text": "Profesjonelle foredrag om mobbing, digital oppvekst, autisme, psykisk helse og forebygging av selvskading og selvmord. Tilpasses skoler, kommuner, organisasjoner og arbeidsplasser.",
+          "title": "La oss finne riktig foredrag",
+          "text": "Send en uforpliktende forespørsel. Vi avklarer dato, innhold og pris sammen før noe bekreftes.",
           "images": [
             {
               "src": "/assets/images/original-19.webp",
@@ -608,8 +514,8 @@
           ],
           "links": [
             {
-              "label": "Send bookingforespørsel",
-              "href": "/booking#booking-form-section"
+              "label": "Gå til skjemaet",
+              "href": "#booking-form-section"
             },
             {
               "label": "Se priser",
@@ -621,78 +527,34 @@
         {
           "kind": "form",
           "eyebrow": "Book et foredrag",
-          "title": "Send en bookingforespørsel",
-          "text": "Fortell litt om organisasjonen din, målgruppen og hvilke temaer dere ønsker at Isaac William skal snakke om. Du får svar tilbake med tilgjengelighet, prisestimat og neste steg.",
+          "title": "Fortell om arrangementet",
+          "text": "Hvem er dere, hvem skal delta og hva ønsker dere å sette på dagsordenen? Velg gjerne «Kombinasjon av temaer» hvis dere er usikre.\n\nDu får et personlig svar. Betaling skjer med faktura etter avtale.",
           "images": [],
           "links": [],
           "items": [],
           "formType": "booking"
         },
         {
-          "kind": "stats",
-          "eyebrow": "Sjekk for tilgjengelighet",
-          "title": "Sjekk Isaac William sin tilgjengelighet for ditt arrangement",
-          "text": "Isaac William har en fleksibel kalender og holder foredrag for skoler, kommuner, organisasjoner og arbeidsplasser over hele Norge. Alle forespørsler vurderes individuelt, og svar sendes med tilgjengelighet, pris og forslag til tilpasning.",
-          "images": [],
-          "links": [
-            {
-              "label": "Se priser og formater",
-              "href": "/pricing-and-services"
-            },
-            {
-              "label": "Ta kontakt om ditt arrangement",
-              "href": "mailto:post@isaacwilliam.no"
-            }
-          ],
+          "kind": "cards",
+          "title": "Hva skjer etterpå?",
+          "text": "",
           "items": [
             {
-              "title": "Hovedtemaer",
-              "text": "5",
-              "caption": "Foredrag innen mobbing, psykisk helse, autisme, digital oppvekst og forebygging av selvskading og selvmord."
+              "title": "Dato og målgruppe",
+              "text": "Jeg sjekker kalenderen og avklarer hvem foredraget er for."
             },
             {
-              "title": "Tilpassbare foredrag",
-              "text": "100%",
-              "caption": "Alle foredrag tilpasses målgruppe, arrangementstype og ønsket fokusområde."
+              "title": "Innhold og pristilbud",
+              "text": "Dere får forslag til rammer og en totalpris før dere bestemmer dere."
             },
             {
-              "title": "Normal responstid",
-              "text": "48t",
-              "caption": "Bookingforespørsler besvares innen kort tid med informasjon om tilgjengelighet og neste steg."
-            },
-            {
-              "title": "Varighet",
-              "text": "1-8t",
-              "caption": "Alt fra enkeltstående foredrag til workshops, seminarer og større faglige arrangementer."
-            }
-          ]
-        },
-        {
-          "kind": "intro",
-          "eyebrow": "",
-          "title": "Vit hva det koster før du bestiller",
-          "text": "Se veiledende priser for foredrag, workshops, seminarer og heldagsopplegg. Prisene varierer ut fra varighet, reise, tilpasning og arrangementstype, slik at dere enklere kan finne et opplegg som passer behov og budsjett.",
-          "images": [],
-          "links": [
-            {
-              "label": "Se priser",
-              "href": "/pricing-and-services"
-            },
-            {
-              "label": "Spør om tilpasset pris",
-              "href": "mailto:post@isaacwilliam.no"
+              "title": "Skriftlig bekreftelse",
+              "text": "Tid, sted, innhold, praktiske behov og fakturering avtales skriftlig."
             }
           ],
-          "items": []
-        },
-        {
-          "kind": "intro",
-          "eyebrow": "Utover enkeltstående temaer",
-          "title": "Trenger dere et foredrag som kombinerer flere temaer?",
-          "text": "Foredragene kan kombineres og tilpasses ut fra målgruppe, arrangement og ønsket fokus. Velg mellom ulike temaer og foredragsvinkler for å sette sammen et opplegg som passer deres behov. Ta kontakt med Isaac William for å diskutere arrangementet og mulige løsninger.",
-          "images": [],
           "links": [],
-          "items": []
+          "images": [],
+          "eyebrow": ""
         }
       ]
     },
@@ -702,22 +564,27 @@
         {
           "kind": "hero",
           "eyebrow": "",
-          "title": "La oss diskutere det som betyr noe for deres organisasjon",
-          "text": "Isaac William tilbyr foredrag for skoler, organisasjoner og arrangementer som ønsker åpne og ærlige samtaler om psykisk helse, mobbing, digital oppvekst, autisme og forebygging av selvskading — med fokus på relevans, erfaring og menneskelighet.",
+          "title": "Et spørsmål før du bestemmer deg?",
+          "text": "Ta kontakt om temaer, samarbeid eller praktiske spørsmål. Gjelder det et konkret arrangement, kan du bruke bookingskjemaet.",
           "images": [
             {
               "src": "/assets/images/original-20.webp",
               "alt": "Gjennomsiktige glassplater i lilla og oransje nyanser."
             }
           ],
-          "links": [],
+          "links": [
+            {
+              "label": "Spør om et arrangement",
+              "href": "/booking"
+            }
+          ],
           "items": []
         },
         {
           "kind": "form",
           "eyebrow": "Kom i kontakt",
-          "title": "Fortell oss om ditt arrangement eller spørsmål",
-          "text": "Del litt om organisasjonen din og hva du ønsker hjelp med. Isaac William svarer så raskt som mulig for å avklare muligheter, samarbeid og neste steg.",
+          "title": "Send en melding",
+          "text": "Skriv kort hva du lurer på. Du kan også kontakte meg direkte på e-post eller telefon.",
           "images": [],
           "links": [],
           "items": [],
@@ -731,8 +598,8 @@
         {
           "kind": "hero",
           "eyebrow": "",
-          "title": "Foredragsformater og veiledende priser",
-          "text": "Utforsk ulike foredragsformater, workshops og faglige opplegg tilpasset deres målgruppe og arrangement. Alle bookinger tilpasses individuelt ut fra behov, varighet og ønsket fokus.",
+          "title": "Finn et format som passer",
+          "text": "Fra ett foredrag til en hel dag. Prisene nedenfor er veiledende; dere får et skriftlig tilbud før dere bestemmer dere.",
           "images": [
             {
               "src": "/assets/images/original-21.webp",
@@ -741,63 +608,50 @@
           ],
           "links": [
             {
-              "label": "Send bookingforespørsel",
+              "label": "Be om et pristilbud",
               "href": "/booking"
-            },
-            {
-              "label": "Ta kontakt for en prat",
-              "href": "/contact"
             }
           ],
           "items": []
         },
         {
-          "kind": "intro",
-          "eyebrow": "Hvordan prisene fungerer",
-          "title": "Hva som inngår i de ulike foredragsformatene",
-          "text": "Alle foredrag og arrangementer tilpasses individuelt ut fra målgruppe, varighet og behov. Under finner dere en oversikt over hva de ulike formatene vanligvis inkluderer, samt veiledende prisnivåer og varighet for hver løsning.",
-          "images": [],
-          "links": [],
-          "items": []
-        },
-        {
           "kind": "cards",
           "eyebrow": "Foredragsformater",
-          "title": "Velg det som passer for dere",
-          "text": "Isaac William tilbyr fleksible foredragsformater tilpasset målgruppe, arrangementstype, tidsramme og ønsket nivå av interaksjon. Fra korte foredrag til workshops, seminarer og heldagsopplegg.",
+          "title": "Formater og fra-priser",
+          "text": "Velg en ramme å ta utgangspunkt i. Innholdet tilpasses publikum.",
           "images": [],
           "links": [],
           "items": [
             {
-              "title": "Foredrag: 45-60 min",
-              "text": "Fra 2 000 kr\n\nEt skreddersydd foredrag om ett definert tema – mobbing, digital oppvekst, autisme, identitet eller selvskading. Tilpasset din målgruppe og ditt arrangement. Bygget for refleksjon og gjenkjennelse, ikke bare informasjon. Avsluttes med åpen dialog."
+              "title": "Foredrag · 45–60 min",
+              "text": "Fra 2 000 kr\n\nEtt tema med personlige erfaringer og refleksjon. Tid til spørsmål avtales innenfor rammen."
             },
             {
-              "title": "Workshop: 1,5 - 3 timer",
-              "text": "Fra 3 500 kr\n\nEt interaktivt opplegg på 1,5–3 timer, inkludert pause. Opplegget legger vekt på refleksjon, åpen samtale og aktiv deltakelse – ikke bare forelesning. Innholdet kan tilpasses målgruppe, tematikk og arrangementets formål, enten det er en skoledag, en fagdag for ansatte eller et større arrangement."
+              "title": "Workshop · 1,5–3 timer",
+              "text": "Fra 3 500 kr\n\nEt mer deltakende opplegg med samtale og refleksjon. Innhold, gruppestørrelse og pauser avtales."
             },
             {
-              "title": "Seminar: 2-4 timer",
-              "text": "Fra 5 000 kr\n\nEt lengre faglig foredrag med fordypning innen ett eller flere temaer – tilpasset din gruppe og kontekst. Inkluderer rom for refleksjon, spørsmål og samtale underveis, slik at innholdet ikke bare formidles, men faktisk lander. Passer godt for ansatte, fagpersoner, organisasjoner og mindre fagarrangementer der dybde og dialog er viktig."
+              "title": "Seminar · 2–4 timer",
+              "text": "Fra 5 000 kr\n\nFordypning i ett eller flere temaer, med tid til spørsmål og diskusjon underveis."
             },
             {
-              "title": "Fagdag: 5-8 timer",
-              "text": "Fra 7 500 kr\n\nEt større faglig opplegg med flere foredrag, sesjoner eller workshops gjennom dagen. Passer for skoler, kommuner, organisasjoner og konferanser som ønsker å gå i dybden på ett eller flere temaer – med rom for refleksjon, dialog og tilpasning til ulike målgrupper. Innholdet settes sammen etter behov, og kan kombinere foredrag for ansatte, elever og foresatte i løpet av samme dag."
+              "title": "Fagdag · 5–8 timer",
+              "text": "Fra 7 500 kr\n\nFlere økter gjennom dagen. Vi setter sammen temaer, målgrupper og pauser etter behov."
             },
             {
-              "title": "Panelsamtale: 45-90 min",
-              "text": "Fra 1 000 kr\n\nDeltakelse i panelsamtaler, debatter eller samtaleformat der Isaac bidrar med personlig erfaring, faglig refleksjon og åpne diskusjoner rundt relevante samfunns- og mennesketemaer. Egnet for konferanser, fagdager og arrangementer som ønsker en stemme med både dybde og nærhet til temaet."
+              "title": "Panelsamtale · 45–90 min",
+              "text": "Fra 1 000 kr\n\nEt personlig erfaringsperspektiv i en samtale eller debatt. Rolle og forberedelser avtales."
             },
             {
               "title": "Tilpasset opplegg",
-              "text": "Pris etter avtale\n\nHvert oppdrag er forskjellig, og prisen settes derfor ut fra hva arrangementet faktisk krever. Det kan dreie seg om et enkelt foredrag tilpasset en spesifikk målgruppe, en kombinasjon av temaer over flere økter, bidrag til konferanser eller temauker, eller andre formater som passer inn i deres program. Ta kontakt for en uforpliktende samtale om hva som kan fungere for dere."
+              "text": "Pris etter avtale\n\nFlere målgrupper, kombinerte temaer eller en annen tidsramme? Beskriv behovet, så ser vi på mulighetene."
             }
           ]
         },
         {
           "kind": "intro",
           "eyebrow": "Viktig Informasjon",
-          "title": "Alle priser er veiledende",
+          "title": "Tydelig pris før dere bekrefter",
           "text": "Prisene er veiledende fra-priser. Endelig totalpris, eventuell avgift og avtalte reise- og overnattingskostnader fremgår av det skriftlige tilbudet. Ingen booking er bekreftet før vi har avtalt oppdraget.\n\nBetaling skjer med faktura, ikke på nettsiden. Fakturareferanse og betalingsfrist avklares i avtalen. Har dere et begrenset budsjett, kan dere beskrive rammene i forespørselen.",
           "images": [],
           "links": [],
@@ -806,17 +660,13 @@
         {
           "kind": "intro",
           "eyebrow": "",
-          "title": "La oss finne riktig format for deres arrangement",
-          "text": "Ta kontakt for en uforpliktende prat om behov, målgruppe og ønsket ramme for arrangementet. Sammen finner vi et foredrag eller opplegg som passer best for dere.",
+          "title": "Har dere et bestemt budsjett?",
+          "text": "Fortell om rammene deres. Vi kan se på om et kortere eller annerledes opplegg passer.",
           "images": [],
           "links": [
             {
-              "label": "Send bookingforespørsel",
+              "label": "Spør om et tilbud",
               "href": "/booking"
-            },
-            {
-              "label": "Send e-post",
-              "href": "mailto:post@isaacwilliam.no"
             }
           ],
           "items": []
@@ -829,8 +679,8 @@
         {
           "kind": "intro",
           "eyebrow": "Booking gjort enkelt",
-          "title": "Book Isaac William til deres arrangement",
-          "text": "Det skal være enkelt å booke et foredrag eller arrangement. Her finner dere svar på vanlige spørsmål om booking, priser, tilpasning og gjennomføring. Ta gjerne kontakt dersom dere trenger mer informasjon.",
+          "title": "Praktisk før dere booker",
+          "text": "Svar på vanlige spørsmål om innhold, gjennomføring og avtale.",
           "images": [],
           "links": [],
           "items": []
@@ -838,8 +688,8 @@
         {
           "kind": "accordion",
           "eyebrow": "Vanlige spørsmål",
-          "title": "Praktisk Informasjon",
-          "text": "Her finner du svar på vanlige spørsmål om tilpasning av foredrag, planlegging, reise og priser. Har du flere spørsmål, er du alltid velkommen til å ta kontakt.",
+          "title": "Ofte stilte spørsmål",
+          "text": "Velg et spørsmål for å lese svaret.",
           "images": [],
           "links": [
             {
@@ -850,56 +700,52 @@
           "items": [
             {
               "title": "Kan Isaac William tilpasse foredraget til vår målgruppe?",
-              "text": "Ja. Alle foredrag tilpasses målgruppe, alder og behov i forkant av arrangementet. Innholdet skreddersys ut fra deres fokusområder, enten det gjelder mobbing, digital oppvekst, autisme, psykisk helse eller forebygging av selvskading og selvmord – eller en kombinasjon av disse. Målet er alltid å sikre at innholdet er relevant, trygt og engasjerende for publikum."
+              "text": "Ja. Vi avtaler alder, målgruppe, tematikk og ønsket språk i forkant. Flere temaer kan kombineres."
             },
             {
               "title": "Hvor lange er foredragene?",
-              "text": "Standard foredrag varer 45–60 minutter, det inkluderer også tid avsatt til spørsmål. Lengden kan tilpasses etter behov, og både kortere sesjoner og lengre workshops eller faglige opplegg er mulig avhengig av arrangementets struktur og mål."
+              "text": "Et vanlig foredrag varer 45–60 minutter. Workshops, seminarer og fagdager gir mer rom for samtale. Spørsmålsrunden inngår i den avtalte tidsrammen."
             },
             {
               "title": "Reiser Isaac William til andre steder enn Østfold-regionen for foredrag?",
-              "text": "Ja. Isaac William reiser til skoler, kommuner, organisasjoner og konferanser over hele Norge, vanligvis med kollektivtransport. Ved lengre avstander kan fly og eventuell overnatting være aktuelt. Reise og praktiske kostnader avtales alltid i forkant av booking."
+              "text": "Ja, oppdrag over hele Norge kan avtales. Reise og eventuell overnatting inngår i det skriftlige pristilbudet."
             },
             {
               "title": "Hvordan fungerer booking- og tilgjengelighetsprosessen?",
-              "text": "Ta kontakt med Isaac William med ønsket dato, sted og type arrangement. Deretter bekreftes tilgjengelighet, og dere går gjennom behov og detaljer sammen. Når alt er avklart, blir bookingen bekreftet. Målet er en enkel og tydelig prosess fra første henvendelse til gjennomføring av arrangementet."
+              "text": "Send ønsket dato, sted og målgruppe. Jeg sjekker tilgjengeligheten og avklarer innhold og pris med dere. Forespørselen er uforpliktende."
             },
             {
               "title": "Hvor mye koster det å booke Isaac William?",
-              "text": "Prisen varierer avhengig av type arrangement, varighet, reiseavstand og målgruppe. Skoler, kommuner og ideelle organisasjoner kan ha andre priser enn kommersielle arrangementer. Ta kontakt for å diskutere budsjett og få et tydelig og uforpliktende pristilbud."
+              "text": "Et foredrag starter fra 2 000 kr. Se prissiden for øvrige formater. Endelig totalpris, eventuell avgift og avtalte reisekostnader fremgår av tilbudet."
             },
             {
               "title": "Kan Isaac William holde foredrag på konferanser og bedriftsarrangementer?",
-              "text": "Ja. Isaac William holder foredrag for skoler, bibliotek, kommuner og organisasjoner, men er også åpen for konferanser og bedriftsarrangementer. Tilgjengelighet og format kan variere avhengig av type arrangement, så ta kontakt for å avklare om opplegget passer for deres behov."
+              "text": "Ja. Vi avklarer om tema, format og erfaringsperspektiv passer deres publikum."
             },
             {
               "title": "Hvor lang tid i forveien bør vi booke Isaac William?",
-              "text": "Det anbefales å ta kontakt så tidlig som mulig for å sikre ønsket dato, spesielt ved større arrangementer eller dersom det er behov for reise og overnatting. Samtidig forsøker Isaac William å være fleksibel og ta imot forespørsler på kort varsel når det er mulig, særlig ved lokale arrangementer."
+              "text": "Ta gjerne kontakt tidlig, særlig hvis oppdraget krever reise. Det er også mulig å spørre på kort varsel."
             },
             {
               "title": "Hva skjer etter at vi har booket?",
-              "text": "Etter at bookingen er bekreftet, avtales praktiske detaljer som tidspunkt, ankomst, tekniske behov og eventuelle siste justeringer av innhold. Isaac William møter forberedt og leverer et foredrag som er tilpasset deres målgruppe og arrangement."
+              "text": "Vi avklarer tidspunkt, ankomst, tekniske behov og siste tilpasninger. Oppdrag og fakturering bekreftes skriftlig."
             },
             {
               "title": "Hvordan betaler vi? Trenger vi en konto?",
-              "text": "Dere får faktura etter avtale. Nettsiden tar ikke imot betaling. Dere trenger ingen brukerkonto for å sende en forespørsel, heller ikke ved gjentatte oppdrag. Fakturaopplysninger kan legges ved frivillig eller avklares når vi avtaler oppdraget."
+              "text": "Dere får faktura etter avtale. Ingen betaling på nettsiden og ingen kundekonto. Fakturaopplysninger kan legges ved i forespørselen eller avklares senere."
             }
           ]
         },
         {
           "kind": "intro",
           "eyebrow": "",
-          "title": "Klar til å booke Isaac William Lunde?",
-          "text": "Ta kontakt dersom du har spørsmål om arrangementet, datoer eller behov for et skreddersydd opplegg. Du får rask tilbakemelding, og vi hjelper deg videre med neste steg i prosessen.",
+          "title": "Fikk du ikke svar på spørsmålet ditt?",
+          "text": "Send en melding, så avklarer vi det sammen.",
           "images": [],
           "links": [
             {
               "label": "Ta kontakt",
               "href": "/contact"
-            },
-            {
-              "label": "Start booking",
-              "href": "/booking"
             }
           ],
           "items": []
@@ -911,20 +757,17 @@
       "sections": [
         {
           "kind": "intro",
-          "eyebrow": "Hva folk sier",
-          "title": "Ekte tilbakemeldinger fra publikum",
-          "text": "Her kan du lese anonyme erfaringer fra deltakere på foredrag, workshops og arrangementer. Tilbakemeldingene er delt med samtykke.",
-          "images": [],
+          "title": "Tilbakemeldinger fra publikum",
+          "text": "Erfaringer fra foredrag og arrangementer. Publisert med samtykke; bare rolle og generell type virksomhet oppgis.",
+          "items": [],
           "links": [],
-          "items": []
+          "images": [],
+          "eyebrow": ""
         },
         {
           "kind": "quotes",
-          "eyebrow": "Tilbakemelding fra kunder",
-          "title": "Nyeste tilbakemeldinger",
-          "text": "Tilbakemeldingene er publisert med samtykke. Bare rolle og generell type virksomhet eller arrangement oppgis; navn, konkrete arbeidssteder og geografiske opplysninger er utelatt.",
-          "images": [],
-          "links": [],
+          "title": "Deltakernes egne ord",
+          "text": "",
           "items": [
             {
               "title": "FAU-leder",
@@ -955,32 +798,12 @@
               "title": "Deltaker",
               "text": "Foredraget om mobbing og utenforskap i arbeidsplassen traff bredt i publikum. Temaene ble presentert på en ærlig og menneskelig måte som gjorde inntrykk.",
               "caption": "Åpent arrangement"
-            }
-          ]
-        },
-        {
-          "kind": "quotes",
-          "eyebrow": "Flere tilbakemeldinger",
-          "title": "Erfaringer fra foredrag",
-          "text": "Tilbakemeldingene er publisert med samtykke. Bare rolle og generell type virksomhet eller arrangement oppgis; navn, konkrete arbeidssteder og geografiske opplysninger er utelatt.",
-          "images": [],
-          "links": [],
-          "items": [
+            },
             {
               "title": "Lærer",
               "text": "Foredraget om mobbing og digital kultur var akkurat det elevene våre trengte. Isaac fikk god kontakt med dem og satte i gang viktige samtaler om psykisk helse og støtte mellom jevnaldrende.",
               "caption": "Skole"
-            }
-          ]
-        },
-        {
-          "kind": "quotes",
-          "eyebrow": "Flere tilbakemeldinger",
-          "title": "Flere tilbakemeldinger",
-          "text": "Tilbakemeldingene er publisert med samtykke. Bare rolle og generell type virksomhet eller arrangement oppgis; navn, konkrete arbeidssteder og geografiske opplysninger er utelatt.",
-          "images": [],
-          "links": [],
-          "items": [
+            },
             {
               "title": "Rektor",
               "text": "Foredraget om digital oppvekst åpnet øynene våre for utfordringene elever møter på nett. Han formidlet med en tydelighet og respekt som gjorde at både ansatte og elever følte seg hørt.",
@@ -1011,25 +834,24 @@
               "text": "Isaac snakker med unge mennesker og involverer dem i samtalen. Under workshoppen om identitet og sosialt press var samtlige elever engasjerte.",
               "caption": "Ungdomsskole"
             }
-          ]
+          ],
+          "links": [],
+          "images": [],
+          "eyebrow": ""
         },
         {
           "kind": "intro",
-          "eyebrow": "",
-          "title": "Din tilbakemelding hjelper Isaac William å nå flere organisasjoner",
-          "text": "Del gjerne din erfaring fra foredraget. Tilbakemeldinger publiseres bare med samtykke, og du kan be om å være anonym.",
-          "images": [],
+          "title": "Vil dere invitere meg til deres arrangement?",
+          "text": "Fortell om publikum og hva dere ønsker å sette på dagsordenen.",
+          "items": [],
           "links": [
             {
-              "label": "Legg igjen en tilbakemelding",
-              "href": "https://forms.gle/XvrnBrsqCQYxeRNU6"
-            },
-            {
-              "label": "Ta kontakt",
-              "href": "/contact"
+              "label": "Send en forespørsel",
+              "href": "/booking"
             }
           ],
-          "items": []
+          "images": [],
+          "eyebrow": ""
         }
       ]
     }
