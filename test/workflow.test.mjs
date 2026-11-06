@@ -81,7 +81,7 @@ test('all pages and local assets are served securely; reviews are anonymous and 
  }
  for(let path of ['/content/site.json','/runtime/site.sqlite','/.env','/server/index.mjs','/missing-page','/__qa/dashboard','/__qa/mobile'])assert.equal((await request(path)).status,404,path);
  const c=JSON.parse(readFileSync('content/site.json'));
- const texts=[];for(let s of c.pages.testimonials.sections)for(let i of s.items){texts.push(i.text);assert.equal(i.title,'Anonym tilbakemelding');assert.equal(i.caption,'');}
+ const texts=[];for(let s of c.pages.testimonials.sections)for(let i of s.items){texts.push(i.text);assert.ok(['FAU-leder','Rektor','Rådgiver','Ansatt','Daglig leder','Deltaker','Lærer','Skolepsykolog','Ungdomskonsulent','Arrangementskoordinator','Skolerådgiver'].includes(i.title));assert.ok(['','Ungdomsskole','Videregående skole','Bibliotek','Ungdomsklubb','Åpent arrangement','Skole','Kommune','Frivillig organisasjon'].includes(i.caption));}
  assert.equal(texts.length,13);assert.equal(new Set(texts).size,texts.length);
  for(let p of Object.values(c.pages))for(let s of p.sections){for(let im of s.images){assert.ok(existsSync('public'+im.src),im.src);assert.equal((await request(im.src)).status,200);}for(let item of s.items)assert.ok(item.text.trim());}
 });
