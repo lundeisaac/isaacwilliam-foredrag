@@ -55,3 +55,7 @@ Temasiden har fem korte hovedintroduksjoner, målgruppe og en lukket «Se eksemp
 Cloud Browser: alle åtte sider kontrollert ved 320 og 768 CSS-piksler, uten horisontal overløp og med én hovedoverskrift. Desktopkontroll fant ingen ødelagte bilder eller overløp. Utvidelse med klikk og lukking med Enter er testet; åpen mobilseksjon er også kontrollert. Lenke fra autisme-temaet fylte inn riktig tema i bookingskjemaet. De fire tidligere testsuitene og en ny kontroll for de fem lukkede temagruppene passerer.
 
 Dette er fortsatt en gjennomgangskopi med stengte skjemaer. Ingen DNS-, e-post- eller Durable-endringer.
+
+## Mer personlig presentasjon – 7. november
+
+Hjem og Om viser flere originale bilder fra foredrag og scenesamtale. Bildetekstene beskriver bare det som vises; det er ikke lagt til påstander om kunder, presseomtale eller arrangementstitler. Introduksjon og bookingtekst er mer direkte og personlig. De genuine anmeldelsene og deres anonymiserte rolleetiketter er uendret. Abstrakte bannere er fjernet på booking, kontakt og priser. Browserkontroll bekreftet to korrekt viste galleribilder og ingen horisontal overløp på desktop; skjermbilde er lagret. Kodesjekk og fem tester passerer.

@@ -15,7 +15,7 @@
         {
           "kind": "hero",
           "title": "Vanskelige temaer. Samtaler som betyr noe.",
-          "text": "Foredrag om mobbing, autisme, psykisk helse og digital oppvekst. Personlige erfaringer, formidlet med åpenhet og tilpasset menneskene i rommet.",
+          "text": "Jeg holder foredrag om mobbing, autisme, psykisk helse og digital oppvekst. Med egne erfaringer som utgangspunkt ønsker jeg å gjøre det lettere å snakke om det som er vanskelig.",
           "items": [],
           "links": [
             {
@@ -72,8 +72,8 @@
         },
         {
           "kind": "intro",
-          "title": "Et perspektiv fra innsiden",
-          "text": "Jeg er Isaac William. Som autist og med egne erfaringer med mobbing, utenforskap og psykiske utfordringer, snakker jeg om hvordan det kan oppleves – også når det ikke synes utenpå.\n\nJeg møter skoler, foresatte, arbeidsplasser og organisasjoner med et mål om å gjøre det lettere å snakke sammen.",
+          "title": "Et menneske dere kan bli kjent med",
+          "text": "Jeg heter Isaac William Lunde. Jeg er autist og har egne erfaringer med mobbing, utenforskap og psykiske utfordringer. Det er disse erfaringene jeg setter ord på i foredragene mine.\n\nFør et oppdrag snakker vi om hvem som skal delta og hva dere ønsker å få ut av det. Dere trenger ikke vite nøyaktig hvilket foredrag dere vil ha før dere tar kontakt.",
           "items": [],
           "links": [
             {
@@ -81,13 +81,18 @@
               "href": "/about"
             }
           ],
-          "images": [],
+          "images": [
+            {
+              "src": "/assets/images/original-12.webp",
+              "alt": "Isaac William i en scenesamtale med mikrofon."
+            }
+          ],
           "eyebrow": ""
         },
         {
           "kind": "quotes",
-          "title": "Slik beskriver deltakerne opplevelsen",
-          "text": "Publisert med samtykke. Navn og identifiserbare arbeidssteder er utelatt.",
+          "title": "Tilbakemeldinger fra foredrag",
+          "text": "Fra arrangører og deltakere. Navn og konkrete arbeidssteder er utelatt av hensyn til anonymitet.",
           "items": [
             {
               "title": "FAU-leder",
@@ -158,8 +163,8 @@
           ],
           "images": [
             {
-              "src": "/assets/images/original-08.webp",
-              "alt": "Isaac William Lunde holder et foredrag med mikrofon foran publikum."
+              "src": "/assets/images/original-12.webp",
+              "alt": "Isaac William i en scenesamtale med mikrofon."
             }
           ],
           "eyebrow": "Om foredragsholderen"
@@ -172,6 +177,29 @@
           "links": [],
           "images": [],
           "eyebrow": ""
+        },
+        {
+          "kind": "intro",
+          "eyebrow": "Fra foredrag og samtaler",
+          "title": "Både ved talerstolen og i samtalen",
+          "text": "Jeg tilbyr foredrag, workshops og bidrag i panelsamtaler. Formatet avtaler vi ut fra programmet deres og hvor mye plass dere ønsker til spørsmål og dialog.",
+          "items": [],
+          "links": [
+            {
+              "label": "Se formater og priser",
+              "href": "/pricing-and-services"
+            }
+          ],
+          "images": [
+            {
+              "src": "/assets/images/original-09.webp",
+              "alt": "Isaac William holder et innlegg ved en talerstol."
+            },
+            {
+              "src": "/assets/images/original-08.webp",
+              "alt": "Isaac William snakker med mikrofon foran publikum."
+            }
+          ]
         },
         {
           "kind": "cards",
@@ -506,12 +534,7 @@
           "eyebrow": "",
           "title": "La oss finne riktig foredrag",
           "text": "Send en uforpliktende forespørsel. Vi avklarer dato, innhold og pris sammen før noe bekreftes.",
-          "images": [
-            {
-              "src": "/assets/images/original-19.webp",
-              "alt": "Abstrakt digitalt landskap med blå og lilla lysstrømmer."
-            }
-          ],
+          "images": [],
           "links": [
             {
               "label": "Gå til skjemaet",
@@ -528,7 +551,7 @@
           "kind": "form",
           "eyebrow": "Book et foredrag",
           "title": "Fortell om arrangementet",
-          "text": "Hvem er dere, hvem skal delta og hva ønsker dere å sette på dagsordenen? Velg gjerne «Kombinasjon av temaer» hvis dere er usikre.\n\nDu får et personlig svar. Betaling skjer med faktura etter avtale.",
+          "text": "Fortell kort om arrangementet, hvem som skal delta og hva dere ønsker å snakke om. Jeg svarer personlig, så finner vi ut om jeg er riktig foredragsholder for dere.\n\nForespørselen er uforpliktende. Pris og fakturering avtales før dere bekrefter.",
           "images": [],
           "links": [],
           "items": [],
@@ -566,12 +589,7 @@
           "eyebrow": "",
           "title": "Et spørsmål før du bestemmer deg?",
           "text": "Ta kontakt om temaer, samarbeid eller praktiske spørsmål. Gjelder det et konkret arrangement, kan du bruke bookingskjemaet.",
-          "images": [
-            {
-              "src": "/assets/images/original-20.webp",
-              "alt": "Gjennomsiktige glassplater i lilla og oransje nyanser."
-            }
-          ],
+          "images": [],
           "links": [
             {
               "label": "Spør om et arrangement",
@@ -600,12 +618,7 @@
           "eyebrow": "",
           "title": "Finn et format som passer",
           "text": "Fra ett foredrag til en hel dag. Prisene nedenfor er veiledende; dere får et skriftlig tilbud før dere bestemmer dere.",
-          "images": [
-            {
-              "src": "/assets/images/original-21.webp",
-              "alt": "En skyhimmel i skumringen med gyllent lys langs horisonten."
-            }
-          ],
+          "images": [],
           "links": [
             {
               "label": "Be om et pristilbud",
