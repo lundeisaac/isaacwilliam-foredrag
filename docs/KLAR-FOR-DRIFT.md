@@ -9,6 +9,7 @@ Status vurdert 7. november 2026.
 - Google SMTP-utboks med kø, nye forsøk og Reply-To er implementert. E-post er avslått til autorisasjon og faktisk levering er kontrollert. Betaling skjer med ekstern faktura.
 - Ren kildekodekopi uten miljøfiler, kundedata eller installerte avhengigheter: `npm ci --ignore-scripts`, kodesjekk, 12 tester og sju produksjonskontroller passerer.
 - Produksjonskontrollen prøver manglende eierpassord, private API-grenser, Secure-økt, CSRF, sider/bilder, innholdsredigering, opplasting, eksport, kontofri booking, opptatt dato, omstart og gjenoppretting fra stoppet sikkerhetskopi.
+- GitHub Actions har bygget produksjonsimaget og startet en disponibel Docker-container med vellykket helsesjekk og beskyttede eierdata (kjøring 42323468095).
 - Ekte nettleserinnsending mot den rene staging-serveren ga kvittering som samsvarte med databasen. Bare fiktive `.invalid`-opplysninger ble brukt. Ingen e-post ble sendt, og testhenvendelsen ble fjernet.
 
 ## Det som gjenstår på den faktiske serveren

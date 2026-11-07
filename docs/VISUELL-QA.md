@@ -99,3 +99,5 @@ Cloud Browser bekreftet den nye E-post-fanen, at klientmeldingsskjemaet er borte
 En separat kildekodekopi ble opprettet uten miljøfiler, runtime og node_modules. Ny npm ci, kodesjekk, 12 tester og sju produksjonskontroller passerte. Produksjonskopien ble deretter kjørt gjennom Cloud Browser med fiktiv kontakt staging-browser@example.invalid og avslått e-post. Browserkvitteringen med referanse af1f0da1 samsvarte med én lagret forespørsel; e-postutboksen var tom. Testforespørselen ble slettet. Skjermbildet clean-staging-receipt.jpg viser kvitteringen. Serveren er stoppet, og den vanlige statiske gjennomgangskopien er gjenopprettet som intern forhåndsvisning.
 
 Se STAGING-RESULTAT.md for testavgrensninger og SERVER-HANDOVER.md for vertens videre oppgaver. Docker-bygg og containerstart er lagt som obligatoriske steg i GitHub Actions; Docker finnes ikke lokalt i arbeidsmiljøet.
+
+GitHub Actions-kjøring 42323468095 passerte også Docker-bygg og Smoke-test production image for commit 916ab419c8e5fa133213c8bf9beee2638f758222. Dermed er containeroppsettet testet i tillegg til den rene Node-stagingkopien.
