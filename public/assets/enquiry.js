@@ -1,4 +1,4 @@
-import {escape as e} from './app.js?v=20261107a';
+import {escape as e} from './app.js?v=20261107b';
 const $=s=>document.querySelector(s),token=location.hash.slice(1);const demoNode=document.querySelector('#enquiry-demo-data'),demoState=demoNode?JSON.parse(demoNode.textContent):null;let busy=false,lastLoadOK=false;
 const say=t=>{$('#portal-status').textContent=t;};
 async function api(method='GET',data){if(demoState){if(method==='POST'){demoState.messages.push({id:'demo-'+Date.now(),author:'arrangor',text:data.message,created:new Date().toISOString()});return {ok:true};}return structuredClone(demoState);}const response=await fetch('/api/enquiry-page',{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},...(data?{body:JSON.stringify(data)}:{})});const result=await response.json();if(!response.ok)throw new Error(result.error||'Kunne ikke åpne forespørselen.');return result;}

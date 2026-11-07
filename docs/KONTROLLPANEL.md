@@ -1,31 +1,26 @@
-# Drift fra kontrollpanelet
+# Eierkontrollpanel og klienter
 
-Eierens adresse på serverversjonen er `/min-side`. Bokmerk den. Bare innlogget eier kan hente private opplysninger og endre nettstedet. Offentlige menyer viser ikke administrasjonslenken.
+**Eieren:** `/min-side`, med eierpassord. Bare en autentisert eierøkt kan lese henvendelser, redigere innhold og se e-poststatus. Lenken er skjult i offentlige menyer, men sikkerheten håndheves av serveren – ikke av at adressen er skjult. Bokmerk siden.
 
-## Arbeidsflyt uten e-post
+**Klienten:** sender en uforpliktende forespørsel på den offentlige nettsiden og fortsetter på e-post. Ingen konto, klientdashboard eller privat lenke kreves. Klienter ser aldri eierens dashboard eller andre henvendelser.
 
-1. Arrangøren sender en uforpliktende forespørsel uten å opprette konto.
-2. Kvitteringen viser en unik, privat lenke til `/foresporsel`. Arrangøren må lagre lenken. Alle med lenken kan lese og skrive i denne ene samtalen.
-3. Åpne **Forespørsler** i kontrollpanelet. Les behov, dato og meldinger, og skriv svar under **Dialog på forespørselssiden**.
-4. Arrangøren sjekker sin lagrede side og kan svare der. Begge parter oppdaterer siden for å se nye meldinger. Ingen e-post eller SMS sendes automatisk.
-5. Marker klientmeldinger som lest. Oppdater status, interne notater og honorar etter behov. En bekreftet booking reserverer datoen i kalenderen.
+## Din arbeidsflyt
 
-Interne notater og honorarfelt deles ikke på arrangørsiden. Skriv tilbud, avtaler og vilkår i en melding når de skal deles. En statusendring sender ingen melding. Faktura opprettes og håndteres utenfor nettstedet; ingen betaling trekkes på nettsiden.
+1. Åpne **Forespørsler** eller les varselet i Google Workspace når sending er aktivert.
+2. Velg **Svar arrangøren på e-post**, eller svar på varselet i postkassen. Reply-To peker til klienten.
+3. Avklar innhold, dato, totalpris og vilkår på e-post. Noter avtalen og oppdater status/honorar i kontrollpanelet. En bekreftet booking reserverer datoen.
+4. Bruk **Kalender** for sperrede perioder, **Rediger innhold** for tekst/priser/bilder og **E-post** for sendingstilgang og feilede varsler.
 
-## Innhold og kalender
+Innkommende e-postsvar leses i Google Workspace og importeres ikke automatisk hit. Interne notater og honorarfelt er private. Faktura håndteres utenfor nettsiden.
 
-**Rediger innhold** endrer sidetekster, temaer, priser, anmeldelser, lenker og bilder. **Kalender** viser bekreftede oppdrag og lar deg sperre perioder. **Innstillinger** har kontaktinformasjon, personvern, åpning av skjemaer og innholdseksport. Endring av e-postfeltet oppretter ikke et postmottak.
-
-## Tilgang og lagring
-
-Klientlenken består av et kryptografisk tilfeldig token på 256 bit. Bare SHA-256-hashen lagres i databasen. Tokenet er i URL-fragmentet, ikke i spørringen eller serverens URL-logger; siden har ingen tredjepartsressurser og bruker `no-referrer`. API-kall bruker Bearer-header. Lenken gjelder i 180 dager. Dette er en tilgangsperiode, ikke en automatisk slettingsfrist for opplysningene.
-
-Hvis en arrangør mister lenken: avklar kontaktpersonens identitet direkte, lag en ny lenke under forespørselens tilgangsseksjon og del den privat. Gammel lenke tilbakekalles. Det finnes ingen offentlig oppslagstjeneste med navn, e-post eller bookingreferanse. Sletting av forespørselen sletter også samtale og tilgang fra aktiv database. Sikkerhetskopier må følge avklart lagringsrutine.
-
-Databasen og opplastinger må ha vedvarende lagring, HTTPS og sikkerhetskopiering før åpning. Fullfør personverninformasjonen. E-post er ikke en teknisk forutsetning for meldingene, men uten varsler må både du og arrangørene aktivt følge opp sidene. Ingen automatiske løfter om svartid gis.
+E-post krever autorisasjon i driftsserverens sikre miljøoppsett. Kontrollpanelets e-postfelt oppretter ingen postkasse og endrer ikke DNS. Se EMAIL.md. Vanlig Google-passord skal ikke legges inn i nettstedets innholdsredigering.
 
 ## Gjennomgangskopien
 
-`/kontrollpanel-demo` bruker den samme administrasjonsvisningen med en egen adapter og tydelig fiktive data. Du kan prøve faner, svar, status, kalender og innholdsredigering. Bare minnet i den åpne siden endres; oppdatering tilbakestiller demoen. Den separate `/foresporsel-demo` illustrerer klientens side og er ikke koblet til eierdemoen. Private tilgangslenker og bildeopplasting krever serverversjonen.
+`/kontrollpanel-demo` bruker den samme eiergrensesnittet med fiktive data og en isolert minneadapter. Endringer gjelder bare den åpne siden og forsvinner ved oppdatering. Offentlige skjemaer og ekte sending er stengt. Det er en test av eierverktøyet, ikke en klientkonto.
 
-Den statiske gjennomgangskopien tar ikke imot ekte henvendelser. Den fullstendige Node/SQLite-versjonen ligger i GitHub og må driftes før ekte data kan mottas. Gjennomgangskopi kan bygges fra samme kode med `node scripts/export-review.mjs /absolutt/utdatamappe`.
+Varig redigering og mottak krever drift av Node/SQLite-versjonen med HTTPS, vedvarende disk, sikkerhetskopier og ferdig personverninformasjon. E-post må autoriseres og faktisk levering testes før offentlig åpning.
+
+## Tidligere klientportal
+
+Den tidligere funksjonen med private forespørselslenker beholdes som et avslått tilvalg (`CLIENT_PORTAL_ENABLED=false`). Den deles ikke ut ved innsending, og portal-API-et er avvist når tilvalget er av. Den skal ikke aktiveres som et krav for klientene i den nå valgte e-postflyten.

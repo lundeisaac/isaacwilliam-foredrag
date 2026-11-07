@@ -1,7 +1,8 @@
 FROM node:24-bookworm-slim
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000 DATA_DIR=/app/runtime
 WORKDIR /app
-COPY --chown=node:node package.json ./
+COPY --chown=node:node package.json package-lock.json ./
+RUN npm ci --omit=dev --ignore-scripts
 COPY --chown=node:node server ./server
 COPY --chown=node:node public ./public
 COPY --chown=node:node content ./content

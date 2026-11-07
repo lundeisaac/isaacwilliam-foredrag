@@ -25,3 +25,5 @@ header nav .mobile-booking{display:none}@media(max-width:1150px){header nav.open
 @media(min-width:1100px){.dashboard-metrics{grid-template-columns:repeat(5,minmax(0,1fr))}.dashboard-metrics>div{padding:20px}}
 
 .section.narrow{max-width:960px}.message h4{margin:0 0 14px}.record-conversation form{max-width:850px}
+
+@media(min-width:1100px){.dashboard-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}}

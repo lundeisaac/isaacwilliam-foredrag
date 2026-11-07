@@ -1,6 +1,7 @@
 // Preview-only adapter. No authentication or live data access is provided here.
 export function createDemoApi(seed){let site=structuredClone(seed.site),records=structuredClone(seed.records);const copy=v=>structuredClone(v);return async(path,method='GET',data={})=>{
  if(path==='/api/session')return {csrf:'preview-only'};
+ if(path==='/api/admin/email')return {enabled:false,configured:false,from:'post@isaacwilliam.no',owner:'post@isaacwilliam.no',verifiedThisSession:false,counts:{pending:0,sending:0,sent:0,failed:0},recent:[]};
  if(path==='/api/logout')return {ok:true};
  if(path==='/api/content')return copy(site);
  if(path==='/api/admin/enquiries'&&method==='GET')return copy(records);

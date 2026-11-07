@@ -35,7 +35,7 @@ test('topics introduce five themes and keep all thirty optional examples behind 
 
 test('owner sees unread client replies while read replies and owner messages do not count',()=>{
  const records={enquiries:[{status:'Under behandling',payload:{},messages:[{author:'arrangor',seen:0},{author:'arrangor',seen:1},{author:'isaac',seen:1}]}]};
- const data=overview(records,{bookingAvailable:true},'2099-01-01');assert.equal(data.unread,1);assert.equal(data.steps[0].tab,'enquiries');assert.match(data.steps[0].title,/1 ny klientmelding/);
+ const data=overview(records,{bookingAvailable:true,clientPortalAvailable:true},'2099-01-01');assert.equal(data.unread,1);assert.equal(data.steps[0].tab,'enquiries');assert.match(data.steps[0].title,/1 ny klientmelding/);
  records.enquiries[0].messages[0].seen=1;assert.equal(overview(records,{bookingAvailable:true}).unread,0);
 });
 

@@ -16,7 +16,7 @@ En selvstendig rekonstruksjon av den publiserte Durable-nettsiden, med norsk inn
 
 ## Lokal kjøring / første test
 
-Krever **Node.js 24 eller nyere**. Prosjektet har ingen npm-avhengigheter.
+Krever **Node.js 24 eller nyere**. SMTP-sending bruker Nodemailer. Installer de låste avhengighetene med `npm ci --ignore-scripts`.
 
 1. Kopier `.env.example` til `.env` og sett et unikt `ADMIN_PASSWORD` på minst 16 tegn.
 2. For en lokal test: sett `NODE_ENV=development` og `PUBLIC_ORIGIN=http://localhost:3000`.
@@ -54,6 +54,6 @@ Se [kort status før utrulling](docs/KLAR-FOR-DRIFT.md) og [driftsveiledningen](
 
 Se [migreringsnotatene](docs/MIGRERING.md) for tekstendringer og avvik fra originalen.
 
-### Administrasjon uten e-post
+### Eierdashboard og e-post
 
-Eierkontrollpanelet på `/min-side` har innhold, kalender, interne notater, honorarer og klientdialog. Etter innsending får klienten en unik privat lenke, uten konto. Meldinger lagres på serveren og begge parter sjekker sidene for nye svar. E-postvarsler er ikke aktivert. Se [kontrollpanelets veiledning](docs/KONTROLLPANEL.md). Gjennomgangskopi med isolerte, interaktive demodata bygges med `node scripts/export-review.mjs /absolutt/utdatamappe`; denne kopien tar ikke imot ekte henvendelser.
+`/min-side` er bare for eieren og beskyttes av passord og serverkontroll. Klientene trenger ingen konto eller private lenker; videre dialog skjer på e-post. Nye henvendelser lagres i kontrollpanelet og kan sendes til Google Workspace etter autorisasjon. Se [E-postoppsett](docs/EMAIL.md) og [Eierkontrollpanel](docs/KONTROLLPANEL.md). `EMAIL_ENABLED=false` og `CLIENT_PORTAL_ENABLED=false` er standard. Ingen faktisk sending er verifisert ennå.

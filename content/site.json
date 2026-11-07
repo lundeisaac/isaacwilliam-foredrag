@@ -6,7 +6,7 @@
     "phone": "+47 909 15 583",
     "address": "Mysen, Østfold, Norge",
     "bookingEnabled": false,
-    "privacyText": "Henvendelser og samtalemeldinger brukes til å svare på spørsmål og planlegge foredrag. De lagres på nettsidens server og er tilgjengelige for eieren i kontrollpanelet. Den private lenken gir tilgang til én forespørsel og samtalen knyttet til den. Alle med lenken kan lese og svare; ikke del den offentlig. Lenken er gyldig i 180 dager og kan erstattes av eieren etter at kontaktpersonen er avklart.\n\nIkke oppgi helseopplysninger eller andre sensitive personopplysninger i skjema eller samtale. Det sendes ikke automatiske e-postvarsler.\n\nFør nettsiden åpnes for innsending må behandlingsansvarlig, behandlingsgrunnlag, lagringstid, driftsleverandør og rutiner for personvernrettigheter avklares og publiseres. Lenkenes gyldighet er ikke en automatisk slettingsfrist for opplysningene."
+    "privacyText": "Henvendelser brukes til å svare på spørsmål og planlegge foredrag. Opplysningene lagres på nettsidens server og er tilgjengelige for eieren i et passordbeskyttet kontrollpanel. Når e-post er aktivert, sendes forespørselen også til post@isaacwilliam.no via Google Workspace. En mottakskvittering sendes til kontaktpersonens oppgitte e-postadresse. Videre dialog skjer på e-post; ingen kundekonto er nødvendig.\n\nIkke oppgi helseopplysninger eller andre sensitive personopplysninger i skjemaet.\n\nFør nettsiden åpnes for innsending må behandlingsansvarlig, behandlingsgrunnlag, lagringstid, driftsleverandør, e-postoppsett og rutiner for personvernrettigheter avklares og publiseres."
   },
   "pages": {
     "home": {
@@ -565,7 +565,7 @@
           "kind": "form",
           "eyebrow": "Book et foredrag",
           "title": "Fortell om arrangementet",
-          "text": "Fortell kort om arrangementet, hvem som skal delta og hva dere ønsker å snakke om. Jeg svarer personlig, så finner vi ut om jeg er riktig foredragsholder for dere.\n\nForespørselen er uforpliktende. Pris og fakturering avtales før dere bekrefter.\n\nEtter innsending får dere en privat lenke for svar og videre dialog. Dere trenger ingen konto. Lagre lenken; det sendes ikke automatiske e-postvarsler.",
+          "text": "Fortell kort om arrangementet, hvem som skal delta og hva dere ønsker å snakke om. Jeg følger opp på e-post, så finner vi ut om jeg er riktig foredragsholder for dere.\n\nIngen konto eller privat lenke er nødvendig. Forespørselen er uforpliktende. Pris og fakturering avtales før dere bekrefter.",
           "images": [],
           "links": [],
           "items": [],
@@ -759,7 +759,7 @@
             },
             {
               "title": "Hvordan betaler vi? Trenger vi en konto?",
-              "text": "Dere får faktura etter avtale. Ingen betaling på nettsiden og ingen kundekonto. Etter innsending får dere en privat lenke til forespørselen, der dere kan lese svar og skrive meldinger. Ta vare på lenken og sjekk siden for oppdateringer; det sendes ikke automatiske e-postvarsler."
+              "text": "Dere får faktura etter avtale. Nettsiden tar ikke imot betaling. Send en forespørsel uten å opprette konto; jeg følger opp på e-post. Dere trenger ikke lagre eller huske en lenke til nettstedet."
             }
           ]
         },

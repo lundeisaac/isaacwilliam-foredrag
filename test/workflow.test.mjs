@@ -7,7 +7,7 @@ import {join,resolve} from 'node:path';
 import {randomBytes} from 'node:crypto';
 import {DatabaseSync} from 'node:sqlite';
 const dir=mkdtempSync(join(tmpdir(),'iw-tests-')),password=randomBytes(32).toString('hex');let child,base,cookie,csrf,content;
-async function start(overrides={}){child=spawn(process.execPath,['server/index.mjs'],{cwd:resolve('.'),env:{...process.env,PORT:'0',HOST:'127.0.0.1',DATA_DIR:dir,ADMIN_PASSWORD:password,PUBLIC_ORIGIN:'',BOOKING_ENABLED:'true',NODE_ENV:'test',...overrides},stdio:['ignore','pipe','pipe']});base=await new Promise((yes,no)=>{child.stdout.on('data',c=>{let m=String(c).match(/port (\d+)/);if(m)yes('http://127.0.0.1:'+m[1]);});child.on('exit',c=>no(Error('Server exited '+c)));child.on('error',no);});}
+async function start(overrides={}){child=spawn(process.execPath,['server/index.mjs'],{cwd:resolve('.'),env:{...process.env,PORT:'0',HOST:'127.0.0.1',DATA_DIR:dir,ADMIN_PASSWORD:password,PUBLIC_ORIGIN:'',BOOKING_ENABLED:'true',NODE_ENV:'test',EMAIL_ENABLED:'false',CLIENT_PORTAL_ENABLED:'true',...overrides},stdio:['ignore','pipe','pipe']});base=await new Promise((yes,no)=>{child.stdout.on('data',c=>{let m=String(c).match(/port (\d+)/);if(m)yes('http://127.0.0.1:'+m[1]);});child.on('exit',c=>no(Error('Server exited '+c)));child.on('error',no);});}
 async function stop(){await new Promise(resolve=>{child.once('exit',resolve);child.kill();});}
 async function request(path,method='GET',b,authenticated=true,extra={}){return fetch(base+path,{method,headers:{'Content-Type':'application/json',Origin:base,...(authenticated?{Cookie:cookie||'','X-CSRF-Token':csrf||''}:{}),...extra},body:b===undefined?undefined:JSON.stringify(b),redirect:'manual'});}
 async function login(){let r=await request('/api/login','POST',{password},false);assert.equal(r.status,200);cookie=r.headers.get('set-cookie').split(';')[0];csrf=(await r.json()).csrf;}
@@ -105,4 +105,14 @@ test('all pages and local assets are served securely; reviews are anonymous and 
  const texts=[];for(let s of c.pages.testimonials.sections)for(let i of s.items){texts.push(i.text);assert.ok(['FAU-leder','Rektor','Rådgiver','Ansatt','Daglig leder','Deltaker','Lærer','Skolepsykolog','Ungdomskonsulent','Arrangementskoordinator','Skolerådgiver'].includes(i.title));assert.ok(['','Ungdomsskole','Videregående skole','Bibliotek','Ungdomsklubb','Åpent arrangement','Skole','Kommune','Frivillig organisasjon'].includes(i.caption));}
  assert.equal(texts.length,13);assert.equal(new Set(texts).size,texts.length);
  for(let p of Object.values(c.pages))for(let s of p.sections){for(let im of s.images){assert.ok(existsSync('public'+im.src),im.src);assert.equal((await request(im.src)).status,200);}for(let item of s.items)assert.ok(item.text.trim());}
+});
+
+test('email-first mode keeps owner data private and does not issue client links or require an account',async()=>{
+ await stop();await start({DATA_DIR:join(dir,'email-first'),CLIENT_PORTAL_ENABLED:'false'});await login();let c=await(await request('/api/content')).json();assert.equal(c.clientPortalAvailable,false);c.settings.bookingEnabled=true;let r=await request('/api/admin/content','PUT',{revision:c.revision,content:c});assert.equal(r.status,200);
+ r=await request('/api/enquiries','POST',{type:'booking',name:'Testperson',email:'client@example.invalid',organisation:'Testarrangør',organisationType:'Skole',topic:'Autisme',format:'Foredrag',audience:'Foresatte',date:'2099-05-21',location:'Digitalt',message:'Test av e-postflyt.',consent:true},false);assert.equal(r.status,201);const receipt=await r.json();assert.ok(!('portalToken' in receipt));assert.equal(receipt.emailQueued,false);
+ r=await request('/api/enquiry-page','GET',undefined,false);assert.equal(r.status,404);
+ for(const path of ['/api/admin/enquiries','/api/admin/email','/api/admin/export'])assert.equal((await request(path,'GET',undefined,false)).status,401);
+ r=await request('/api/admin/email');assert.equal(r.status,200);const mail=await r.json();assert.equal(mail.enabled,false);assert.ok(!('options' in mail));assert.equal(mail.recent.length,0);
+ r=await request('/api/admin/email/verify','POST',{},true,{'X-CSRF-Token':'wrong'});assert.equal(r.status,403);r=await request('/api/admin/email/verify','POST',{});assert.equal(r.status,409);
+ r=await request('/api/admin/enquiries/'+receipt.id+'/access','POST',{});assert.equal(r.status,409);
 });

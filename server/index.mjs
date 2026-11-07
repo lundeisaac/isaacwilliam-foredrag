@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {emailConfig,initEmailOutbox,createEmailService} from './email.mjs';
 import {renderPublicPage,escape as escapeHTML} from '../public/assets/app.js';
 import {visualPage} from './visual-qa.mjs';
 import { DatabaseSync } from 'node:sqlite';
@@ -25,6 +26,8 @@ CREATE TABLE IF NOT EXISTS auth_config(id INTEGER PRIMARY KEY CHECK(id=1),salt B
 CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY, csrf TEXT NOT NULL, expires INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS throttle(key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset INTEGER NOT NULL);`);
 if(!db.prepare('SELECT id FROM content WHERE id=1').get())db.prepare('INSERT INTO content(id,json) VALUES(1,?)').run(readFileSync(join(root,'content/site.json'),'utf8'));
+initEmailOutbox(db);const mailConfig=emailConfig(),email=createEmailService(db,mailConfig);const clientPortal=process.env.CLIENT_PORTAL_ENABLED==='true';
+const emailTimer=setInterval(()=>email.drain().catch(()=>{}),15000);emailTimer.unref();
 const prod=process.env.NODE_ENV==='production';
 const visualQA=!prod&&process.env.VISUAL_QA==='true';
 const password=process.env.ADMIN_PASSWORD || '';
@@ -110,7 +113,7 @@ const server=http.createServer(async(req,res)=>{
    if(!['GET','HEAD'].includes(req.method))originCheck(req);
    let ip=req.socket.remoteAddress||'unknown'; // Never trust a visitor-supplied X-Forwarded-For.
    if(req.method==='GET'&&path==='/api/owner-access')return reply(res,200,{signedIn:Boolean(session(req,res))});
-   if(req.method==='GET'&&path==='/api/content'){let c=content();return reply(res,200,{...c,bookingAvailable:active()});}
+   if(req.method==='GET'&&path==='/api/content'){let c=content();return reply(res,200,{...c,bookingAvailable:active(),clientPortalAvailable:clientPortal});}
    if(req.method==='GET'&&path==='/api/availability'){
     let start=date(u.searchParams.get('from')||today()),end=date(u.searchParams.get('to')||start);if(end<start||Date.parse(end)-Date.parse(start)>370*86400000)fail(400,'Velg et tidsrom på inntil ett år.');
     let blocks=db.prepare('SELECT start,end FROM blocks WHERE end>=? AND start<=?').all(start,end);
@@ -118,9 +121,10 @@ const server=http.createServer(async(req,res)=>{
     return reply(res,200,{unavailable:[...blocks,...confirmed.map(x=>({start:x.day,end:x.day}))]});
    }
    if(req.method==='POST'&&path==='/api/enquiries'){
-    if(!active())fail(503,'Skjemaet er ikke åpnet ennå. Ta kontakt på e-post.');rate('submit:'+ip,10,3600000);let b=await body(req,20000);if(b.website)fail(400,'Kunne ikke sende forespørselen.');let payload={...enquiry(b),privacyRevision:content().revision,privacyAcknowledgedAt:new Date().toISOString()};let id=randomUUID(),now=new Date().toISOString();const access=transaction(()=>{db.prepare('INSERT INTO enquiries(id,created,updated,status,payload) VALUES(?,?,?,?,?)').run(id,now,now,'Ny',JSON.stringify(payload));return newAccess(id);});return reply(res,201,{id,portalToken:access.token,portalExpires:access.expires,message:'Forespørselen er mottatt. Dette er ikke en bekreftet booking.'});
+    if(!active())fail(503,'Skjemaet er ikke åpnet ennå. Ta kontakt på e-post.');rate('submit:'+ip,10,3600000);let b=await body(req,20000);if(b.website)fail(400,'Kunne ikke sende forespørselen.');let payload={...enquiry(b),privacyRevision:content().revision,privacyAcknowledgedAt:new Date().toISOString()};let id=randomUUID(),now=new Date().toISOString();const access=transaction(()=>{db.prepare('INSERT INTO enquiries(id,created,updated,status,payload) VALUES(?,?,?,?,?)').run(id,now,now,'Ny',JSON.stringify(payload));email.enqueue(id,payload,content().settings);return clientPortal?newAccess(id):null;});setImmediate(()=>email.drain().catch(()=>{}));return reply(res,201,{id,...(access?{portalToken:access.token,portalExpires:access.expires}:{}),emailQueued:mailConfig.enabled,message:'Forespørselen er mottatt. Dette er ikke en bekreftet booking.'});
    }
    if(path==='/api/enquiry-page'){
+    if(!clientPortal)fail(404,'Denne nettsiden bruker e-post til oppfølging.');
     rate('portal-read:'+ip,300,900000);const access=portalAccess(req),row=db.prepare('SELECT id,status,payload,created FROM enquiries WHERE id=?').get(access.enquiry_id);if(!row)fail(401,'Lenken er ugyldig eller utløpt.');
     if(req.method==='GET'){const p=JSON.parse(row.payload);return reply(res,200,{id:row.id,status:row.status,created:row.created,expires:access.expires,enquiry:{type:p.type,organisation:p.organisation,topic:p.topic,format:p.format,date:p.date,time:p.time,location:p.location,audience:p.audience,message:p.message},messages:messages(row.id).map(({seen,...m})=>m)});}
     if(req.method==='POST'){rate('portal-write:'+ip,30,3600000);const b=await body(req,20000);addMessage(row.id,'arrangor',b.message);return reply(res,201,{ok:true});}
@@ -135,12 +139,16 @@ const server=http.createServer(async(req,res)=>{
    if(req.method==='GET'&&path==='/api/admin/enquiries')return reply(res,200,{enquiries:db.prepare('SELECT * FROM enquiries ORDER BY created DESC').all().map(e=>({...e,payload:JSON.parse(e.payload),messages:messages(e.id)})),blocks:db.prepare('SELECT * FROM blocks ORDER BY start').all(),statuses});
    const conversation=path.match(/^\/api\/admin\/enquiries\/([a-f0-9-]+)\/(messages|access|read)$/);
    if(conversation&&req.method==='POST'){
+    if(!clientPortal)fail(409,'Privat klientportal er ikke aktivert. Bruk e-post til oppfølging.');
     const [,id,action]=conversation;if(!db.prepare('SELECT id FROM enquiries WHERE id=?').get(id))fail(404,'Fant ikke forespørselen.');
     if(action==='access')return reply(res,201,newAccess(id));
     const b=await body(req,20000);
     if(action==='messages'){addMessage(id,'isaac',b.message);return reply(res,201,{ok:true});}
     if(!Array.isArray(b.ids)||b.ids.length>500||b.ids.some(id=>typeof id!=='string'||id.length>50))fail(400,'Ugyldige meldinger.');transaction(()=>{for(const messageId of b.ids)db.prepare("UPDATE enquiry_messages SET seen=1 WHERE id=? AND enquiry_id=? AND author='arrangor'").run(messageId,id);});return reply(res,200,{ok:true});
    }
+   if(req.method==='GET'&&path==='/api/admin/email')return reply(res,200,email.status());
+   if(req.method==='POST'&&path==='/api/admin/email/verify')return reply(res,200,await email.verify());
+   if(req.method==='POST'&&path==='/api/admin/email/retry'){email.retry();setImmediate(()=>email.drain().catch(()=>{}));return reply(res,200,{ok:true});}
    if(req.method==='PUT'&&path==='/api/admin/content'){
     let b=await body(req);validateContent(b.content);let row=db.prepare('SELECT * FROM content WHERE id=1').get();if(row.revision!==b.revision)fail(409,'Innholdet er endret. Last inn siden på nytt før du lagrer.');
     let serialized=JSON.stringify({settings:b.content.settings,pages:b.content.pages});db.exec('BEGIN IMMEDIATE');try{db.prepare('INSERT INTO content_history(json,created) VALUES(?,?)').run(row.json,new Date().toISOString());db.prepare('UPDATE content SET json=?,revision=revision+1 WHERE id=1').run(serialized);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}return reply(res,200,{revision:row.revision+1});
@@ -185,7 +193,7 @@ const server=http.createServer(async(req,res)=>{
   if(!existsSync(file)||!statSync(file).isFile())fail(404,'Fant ikke filen.');
   if(base&&!realpathSync(file).startsWith(realpathSync(base)+'/'))fail(404,'Fant ikke filen.');
   if(file===join(root,'public/index.html')){
-   const site={...content(),bookingAvailable:active()},signedIn=Boolean(session(req,res)),rendered=renderPublicPage(site,path,signedIn);
+   const site={...content(),bookingAvailable:active(),clientPortalAvailable:clientPortal},signedIn=Boolean(session(req,res)),rendered=renderPublicPage(site,path,signedIn);
    let html=readFileSync(file,'utf8').replace(/<title>[\s\S]*?<\/title>/,()=>`<title>${escapeHTML(rendered.title)}</title>`).replace(/<meta name="description" content="[^"]*">/,()=>`<meta name="description" content="${escapeHTML(rendered.description)}">`);
    html=html.replace('<header id="header"></header>',()=>`<header id="header">${rendered.header}</header>`).replace(/<main id="main">[\s\S]*?<\/main>/,()=>`<main id="main">${rendered.main}</main>`).replace('<footer id="footer"></footer>',()=>`<footer id="footer">${rendered.footer}</footer>`);
    const bootstrap=JSON.stringify({site,signedIn}).replace(/</g,'\\u003c');

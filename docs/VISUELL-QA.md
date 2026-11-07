@@ -83,3 +83,13 @@ Browserkontroll: fullt navn, lenker og ny meny vises uten horisontal overløp p�
 - Demoene er tydelig merket, bruker bare fiktive oppdragsdata og er ikke koblet sammen. Endringer tilbakestilles ved oppdatering. Ekte mottak og varig redigering krever serverdrift av Node/SQLite-versjonen. Offentlige innsendinger er stengt i den statiske kopien. E-post, DNS og Durable er uendret.
 
 Se KONTROLLPANEL.md for driftsflyt og begrensninger.
+
+## E-post som klientflyt – 7. november
+
+Eieren bekreftet post@isaacwilliam.no. Klienter skal sende forespørsel uten konto eller private lenker og følges opp på e-post. Eierkontrollpanelet er fortsatt passordbeskyttet og administrerer innhold, kalender og opprinnelige henvendelser. Offentlige sider forklarer denne flyten. Klientportalen er avslått som standard og deler verken token eller tilgang ved innsending. Innkommende e-postsvar leses i Google Workspace, ikke automatisk i dashboardet.
+
+SMTP-kode for eksisterende Google Workspace er klargjort med Nodemailer, en vedvarende SQLite-utboks, separat varsel/kvittering, Reply-To, nye forsøk, begrensede feilkoder og en privat E-post-fane for status, tilkoblingskontroll uten sending og nytt forsøk på feilede jobber. Avhengigheten er låst; Docker og CI installerer med npm ci. Det er ikke laget eller brukt ekte Google-hemmeligheter. SMTP og faktisk innboksmottak er ikke verifisert. Den tilkoblede Gmail-kontoen er management-kontoen, ikke postkassen. Sending forblir avslått.
+
+Tolv tester passerer: de tidligere portaltestene kjøres med eksplisitt aktivert tilvalg; en ny test bekrefter e-poststandard uten konto/token, avvisning av klientportal, eierkrav for data og e-poststatus, CSRF og deaktivert sending. Simulert SMTP tester korrekt Reply-To, fast kvittering uten reflektert klientmelding eller lenke, ingen dobbel kølegging, feil/redaksjon av hemmeligheter, ny sending med stabil Message-ID, gjenoppretting etter omstart og sletting av køjobber med forespørselen. Ingen virkelige e-poster ble sendt.
+
+Cloud Browser bekreftet den nye E-post-fanen, at klientmeldingsskjemaet er borte fra forespørselsvisningen, at bookingteksten ikke krever konto/lenke og at e-postfanen fungerer ved 320 CSS-piksler uten horisontal overløp. Demoens kundeportal-lenke og separate klientdemo er fjernet. Ingen DNS- eller Durable-endringer er gjort.
