@@ -4,6 +4,8 @@ Eieren bekreftet 7. november 2026 at adressen er **post@isaacwilliam.no**, ikke 
 
 ## Status
 
+Eier opplyser at eierens Google-konto er knyttet til Workspace-oppsettet. Dette er notert som informasjon for kontotilgang; det er ikke bekreftet som autorisasjon for nettstedets SMTP-avsender post@isaacwilliam.no.
+
 Serverkode for SMTP, vedvarende utboks og leveringsstatus er implementert og testet med en lokal simulert transport. Ingen faktiske meldinger er sendt. Google-autorisasjon, tilkobling fra driftsserveren og faktisk levering til innboks er **ikke verifisert**. Den tilgjengelige Gmail-tilkoblingen i ChatGPT er en separat management-konto, ikke denne Workspace-postkassen; ChatGPTs tilgang autoriserer ikke nettstedet til å sende.
 
 ## Flyt for klienten

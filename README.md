@@ -24,7 +24,7 @@ Krever **Node.js 24 eller nyere**. SMTP-sending bruker Nodemailer. Installer de 
 
 For å prøve innsending må både `BOOKING_ENABLED=true` i servermiljøet og «Åpne skjemaene» i administrasjonens innstillinger være aktivert. Begge er av som standard. Bruk kun testopplysninger du kontrollerer. `npm test` prøver hele forløpet i en egen midlertidig database uten å påvirke driftsdata.
 
-**Det sendes ikke automatiske e-postvarsler.** Nye henvendelser vises i administrasjonen. «Skriv e-post til arrangør» åpner e-postprogrammet med et utkast; du kontrollerer og sender selv. Eieren opplyser at `post@isaacwilliam.no` finnes i Google Workspace. Tilgang og e-postoppsett er satt på pause etter eierens ønske; dette arbeidet endrer ikke Workspace eller e-postruting.
+**E-postsending er klargjort, men fortsatt deaktivert.** Henvendelser lagres i kontrollpanelet. Google Workspace kan sende varsel og kvittering når serveren er autorisert; videre svar leses i postkassen. Ingen reell sending eller innbokslevering er verifisert ennå. Se [E-postoppsett](docs/EMAIL.md).
 
 ## Rediger selv
 
@@ -45,6 +45,7 @@ Se [kort status før utrulling](docs/KLAR-FOR-DRIFT.md) og [driftsveiledningen](
 ## Validering og status
 
 - `npm run check`: syntakskontroll av server og klientkode.
+- `npm run staging:check`: disponibel produksjonskontroll med backup/gjenoppretting, uten e-post.
 - `npm test`: HTTP-integrasjonstester for innhold, autentisering, CSRF, validering, lagring etter omstart, datoer, booking, kalender, personverngrenser og alle lokale bilder.
 - GitHub Actions kjører kontrollene ved push og pull requests.
 - Cloud Browser-kontroll er gjennomført på desktop og ved visningsbredder 320, 390 og 768 CSS-piksler. Fontvekter, mobiloverflyt, kortoppsett og trekkspillimport er rettet. Se `docs/VISUELL-QA.md`. Privat tilgang og bokføringslogikk er kontrollert med HTTP-tester. Kontrollpanelets utseende er kontrollert med tydelig merkede testdata.

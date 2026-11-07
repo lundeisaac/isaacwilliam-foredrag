@@ -15,3 +15,8 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm test
+      - run: npm run staging:check
+      - name: Build production image
+        run: docker build --tag isaacwilliam-staging:${{ github.sha }} .
+      - name: Smoke-test production image
+        run: node scripts/container-smoke.mjs isaacwilliam-staging:${{ github.sha }}

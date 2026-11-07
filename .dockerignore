@@ -1,7 +1,11 @@
 .git
 .env
-runtime
-node_modules
-test
-docs
-tools
+.env.*
+runtime/
+runtime-preview/
+node_modules/
+test/
+docs/
+tools/
+review-output/
+*.tar.gz

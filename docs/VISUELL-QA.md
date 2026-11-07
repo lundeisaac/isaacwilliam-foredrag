@@ -93,3 +93,9 @@ SMTP-kode for eksisterende Google Workspace er klargjort med Nodemailer, en vedv
 Tolv tester passerer: de tidligere portaltestene kjøres med eksplisitt aktivert tilvalg; en ny test bekrefter e-poststandard uten konto/token, avvisning av klientportal, eierkrav for data og e-poststatus, CSRF og deaktivert sending. Simulert SMTP tester korrekt Reply-To, fast kvittering uten reflektert klientmelding eller lenke, ingen dobbel kølegging, feil/redaksjon av hemmeligheter, ny sending med stabil Message-ID, gjenoppretting etter omstart og sletting av køjobber med forespørselen. Ingen virkelige e-poster ble sendt.
 
 Cloud Browser bekreftet den nye E-post-fanen, at klientmeldingsskjemaet er borte fra forespørselsvisningen, at bookingteksten ikke krever konto/lenke og at e-postfanen fungerer ved 320 CSS-piksler uten horisontal overløp. Demoens kundeportal-lenke og separate klientdemo er fjernet. Ingen DNS- eller Durable-endringer er gjort.
+
+## Ren produksjonsstaging – 7. november
+
+En separat kildekodekopi ble opprettet uten miljøfiler, runtime og node_modules. Ny npm ci, kodesjekk, 12 tester og sju produksjonskontroller passerte. Produksjonskopien ble deretter kjørt gjennom Cloud Browser med fiktiv kontakt staging-browser@example.invalid og avslått e-post. Browserkvitteringen med referanse af1f0da1 samsvarte med én lagret forespørsel; e-postutboksen var tom. Testforespørselen ble slettet. Skjermbildet clean-staging-receipt.jpg viser kvitteringen. Serveren er stoppet, og den vanlige statiske gjennomgangskopien er gjenopprettet som intern forhåndsvisning.
+
+Se STAGING-RESULTAT.md for testavgrensninger og SERVER-HANDOVER.md for vertens videre oppgaver. Docker-bygg og containerstart er lagt som obligatoriske steg i GitHub Actions; Docker finnes ikke lokalt i arbeidsmiljøet.

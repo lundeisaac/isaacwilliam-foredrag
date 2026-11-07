@@ -22,10 +22,10 @@ I produksjon må `NODE_ENV=production` brukes, slik at innloggingskapselen kreve
 - Kontroller kontaktopplysninger, priser, kvalifikasjoner og biografitekst. Originalens påstander er bevart; de må vurderes av eieren.
 - Bekreft oversettelser og anonymisering av de 13 unike tilbakemeldingene. Oppbevar samtykkene privat, utenfor repositoryet.
 - Fullfør personverninformasjonen med virksomhet/behandlingsansvarlig, valgt driftsleverandør, behandlingsgrunnlag, konkret lagringstid, sletting og håndtering av rettighetsforespørsler.
-- E-postarbeidet er satt på pause av eieren; se `EMAIL.md`. Ikke endre Google Workspace som del av nettstedets utrulling. Nettsiden oppretter ikke en postkasse. Ingen automatiske e-postvarsler er integrert.
+- Google Workspace-sending er klargjort, men ikke autorisert eller verifisert mot en ekte postkasse. Se `EMAIL.md` for sikker serverautorisasjon og test. Nettsiden oppretter ikke en postkasse eller endrer DNS. Behold sending av til kontotilgang og faktisk levering er verifisert.
 - Sett `BOOKING_ENABLED=true` og aktiver skjemaene i admin **i et testmiljø**. Send en testbooking og en kontaktmelding, kontroller mottak og personvern, endre status og pris, bekreft dato, sjekk at datoen blir opptatt, og slett testopplysningene.
 - Test opplasting av bilde, innholdslagring og innholdseksport. Test omstart med bevart database og bilder.
-- Test gjenoppretting fra sikkerhetskopi. Opprett en rutine for å lese nye forespørsler, siden e-postvarsler ikke er aktivert.
+- Test gjenoppretting fra sikkerhetskopi. Opprett en rutine for å lese nye forespørsler og leveringsfeil. E-postutboksen varsler først etter at serverens autorisasjon og sending er aktivert.
 
 ## 3. Sikkerhetskopiering og gjenoppretting
 
