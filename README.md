@@ -53,3 +53,7 @@ Se [kort status før utrulling](docs/KLAR-FOR-DRIFT.md) og [driftsveiledningen](
 - Personverninformasjon og faktisk driftsleverandør må ferdigstilles før skjemaene åpnes.
 
 Se [migreringsnotatene](docs/MIGRERING.md) for tekstendringer og avvik fra originalen.
+
+### Administrasjon uten e-post
+
+Eierkontrollpanelet på `/min-side` har innhold, kalender, interne notater, honorarer og klientdialog. Etter innsending får klienten en unik privat lenke, uten konto. Meldinger lagres på serveren og begge parter sjekker sidene for nye svar. E-postvarsler er ikke aktivert. Se [kontrollpanelets veiledning](docs/KONTROLLPANEL.md). Gjennomgangskopi med isolerte, interaktive demodata bygges med `node scripts/export-review.mjs /absolutt/utdatamappe`; denne kopien tar ikke imot ekte henvendelser.

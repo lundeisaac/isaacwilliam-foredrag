@@ -72,3 +72,14 @@ Verifiserte eksterne lenker er lagt til under Omtale og arrangementer:
 Kun kort oppsummering og lenker, ingen kopierte pressebilder. Eksisterende egne bilder er beholdt. Artiklene er merket som mulige abonnementssaker. Politisk rolleinformasjon og katalogoppføringer er ikke tatt inn som foredragsreferanser.
 
 Browserkontroll: fullt navn, lenker og ny meny vises uten horisontal overløp på desktop. Tilbakemeldinger er synlig i hovedmenyen og har alle 13 anmeldelser; bookingknappen åpner egen side med ett skjema. Kodesjekk og fem tester passerer.
+
+## Eierdashboard og dialog uten e-post – 7. november
+
+- Fortellerstemmen på Om og øvrige egne tekster er konsekvent første person. Sitater fra deltakere beholder sin egen stemme. Lenker til de ikke-foredragsrelaterte Blikk-/FRI-sakene er fjernet fra nettstedets innhold. Ingen konstruerte bookingtall, knapphetsmeldinger eller påstander om popularitet er lagt til.
+- Klienten får en unik privat forespørselslenke i kvitteringen, uten kundekonto. Dialog lagres i serverens SQLite-database; eieren leser og svarer i kontrollpanelet. Nye klientmeldinger telles i oversikten og kan markeres som lest. Notater og honorarfelt er interne; tilbud deles eksplisitt i samtalen. Betaling er fortsatt ekstern faktura.
+- 256-bits tilfeldig tilgang, kun hashet lagring, 180 dagers gyldighet, no-store og no-referrer på siden. Serveren håndhever tilgang, Origin, CSRF for eiermutasjoner, meldingsgrenser og ratebegrensning. Eier kan tilbakekalle gammel lenke ved å lage en ny etter direkte identitetsavklaring. Dette er ikke en ekstern sikkerhetsrevisjon.
+- Automatiserte tester verifiserer avvisning uten/med feil token, isolasjon mellom to forespørsler, at interne notater/pris og faktura-e-post ikke deles, avvisning av feil Origin/CSRF, tom melding, lesemarkering, lenkerotasjon, utløp, hashet lagring, vedvarende meldinger etter restart og bortfall av tilgang ved sletting. Sju tester og kodesjekk passerer.
+- Gjennomgangskopien har nå en interaktiv dashboarddemo som bruker samme administrasjonsvisning med fiktive data og en isolert minneadapter. Browserkontroll testet faner, svar og lagring av innhold. Separat klientdemo testet sending av melding og at HTML-lignende tekst gjengis som tekst. Begge sider ble sjekket ved 320 CSS-piksler, også åpen forespørsel, uten horisontal overløp.
+- Demoene er tydelig merket, bruker bare fiktive oppdragsdata og er ikke koblet sammen. Endringer tilbakestilles ved oppdatering. Ekte mottak og varig redigering krever serverdrift av Node/SQLite-versjonen. Offentlige innsendinger er stengt i den statiske kopien. E-post, DNS og Durable er uendret.
+
+Se KONTROLLPANEL.md for driftsflyt og begrensninger.

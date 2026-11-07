@@ -17,6 +17,9 @@ CREATE TABLE IF NOT EXISTS content(id INTEGER PRIMARY KEY CHECK(id=1), json TEXT
 CREATE TABLE IF NOT EXISTS content_history(id INTEGER PRIMARY KEY, json TEXT NOT NULL, created TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS enquiries(id TEXT PRIMARY KEY, created TEXT NOT NULL, updated TEXT NOT NULL, status TEXT NOT NULL, payload TEXT NOT NULL, notes TEXT NOT NULL DEFAULT '', quote INTEGER, version INTEGER NOT NULL DEFAULT 1);
 CREATE UNIQUE INDEX IF NOT EXISTS unique_confirmed_day ON enquiries(json_extract(payload,'$.date')) WHERE status='Bekreftet';
+CREATE TABLE IF NOT EXISTS enquiry_access(hash TEXT PRIMARY KEY,enquiry_id TEXT NOT NULL REFERENCES enquiries(id) ON DELETE CASCADE,expires INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS enquiry_messages(id TEXT PRIMARY KEY,enquiry_id TEXT NOT NULL REFERENCES enquiries(id) ON DELETE CASCADE,author TEXT NOT NULL CHECK(author IN ('arrangor','isaac')),text TEXT NOT NULL,created TEXT NOT NULL,seen INTEGER NOT NULL DEFAULT 0);
+CREATE INDEX IF NOT EXISTS messages_by_enquiry ON enquiry_messages(enquiry_id,created);
 CREATE TABLE IF NOT EXISTS blocks(id TEXT PRIMARY KEY, start TEXT NOT NULL, end TEXT NOT NULL, label TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS auth_config(id INTEGER PRIMARY KEY CHECK(id=1),salt BLOB NOT NULL,hash BLOB NOT NULL);
 CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY, csrf TEXT NOT NULL, expires INTEGER NOT NULL);
@@ -90,6 +93,10 @@ function enquiry(b){
  }
  if(b.consent!==true)fail(400,'Bekreft at du har lest personverninformasjonen.');return out;
 }
+function newAccess(id){const token=randomBytes(32).toString('hex'),expires=Date.now()+180*86400000;db.prepare('DELETE FROM enquiry_access WHERE enquiry_id=?').run(id);db.prepare('INSERT INTO enquiry_access VALUES(?,?,?)').run(createHash('sha256').update(token).digest('hex'),id,expires);return {token,expires};}
+function portalAccess(req){const token=(req.headers.authorization||'').replace(/^Bearer /,'');if(!/^[a-f0-9]{64}$/.test(token))fail(401,'Lenken er ugyldig eller utløpt.');const row=db.prepare('SELECT enquiry_id,expires FROM enquiry_access WHERE hash=? AND expires>?').get(createHash('sha256').update(token).digest('hex'),Date.now());if(!row)fail(401,'Lenken er ugyldig eller utløpt.');return row;}
+function messages(id){return db.prepare('SELECT id,author,text,created,seen FROM enquiry_messages WHERE enquiry_id=? ORDER BY created,rowid').all(id);}
+function addMessage(id,author,value){const message=text(value,6000,true);if(db.prepare('SELECT count(*) AS n FROM enquiry_messages WHERE enquiry_id=?').get(id).n>=500)fail(400,'Samtalen har nådd grensen. Ta kontakt direkte.');const now=new Date().toISOString();db.prepare('INSERT INTO enquiry_messages VALUES(?,?,?,?,?,?)').run(randomUUID(),id,author,message,now,author==='isaac'?1:0);db.prepare('UPDATE enquiries SET updated=? WHERE id=?').run(now,id);}
 const server=http.createServer(async(req,res)=>{
  res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options',visualQA?'SAMEORIGIN':'DENY');
  res.setHeader('Content-Security-Policy',`default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https:; font-src 'self'; connect-src 'self'; frame-ancestors ${visualQA?"'self'":"'none'"}; base-uri 'none'; form-action 'self'`);
@@ -111,7 +118,13 @@ const server=http.createServer(async(req,res)=>{
     return reply(res,200,{unavailable:[...blocks,...confirmed.map(x=>({start:x.day,end:x.day}))]});
    }
    if(req.method==='POST'&&path==='/api/enquiries'){
-    if(!active())fail(503,'Skjemaet er ikke åpnet ennå. Ta kontakt på e-post.');rate('submit:'+ip,10,3600000);let b=await body(req,20000);if(b.website)fail(400,'Kunne ikke sende forespørselen.');let payload={...enquiry(b),privacyRevision:content().revision,privacyAcknowledgedAt:new Date().toISOString()};let id=randomUUID(),now=new Date().toISOString();db.prepare('INSERT INTO enquiries(id,created,updated,status,payload) VALUES(?,?,?,?,?)').run(id,now,now,'Ny',JSON.stringify(payload));return reply(res,201,{id,message:'Forespørselen er mottatt. Dette er ikke en bekreftet booking.'});
+    if(!active())fail(503,'Skjemaet er ikke åpnet ennå. Ta kontakt på e-post.');rate('submit:'+ip,10,3600000);let b=await body(req,20000);if(b.website)fail(400,'Kunne ikke sende forespørselen.');let payload={...enquiry(b),privacyRevision:content().revision,privacyAcknowledgedAt:new Date().toISOString()};let id=randomUUID(),now=new Date().toISOString();const access=transaction(()=>{db.prepare('INSERT INTO enquiries(id,created,updated,status,payload) VALUES(?,?,?,?,?)').run(id,now,now,'Ny',JSON.stringify(payload));return newAccess(id);});return reply(res,201,{id,portalToken:access.token,portalExpires:access.expires,message:'Forespørselen er mottatt. Dette er ikke en bekreftet booking.'});
+   }
+   if(path==='/api/enquiry-page'){
+    rate('portal-read:'+ip,300,900000);const access=portalAccess(req),row=db.prepare('SELECT id,status,payload,created FROM enquiries WHERE id=?').get(access.enquiry_id);if(!row)fail(401,'Lenken er ugyldig eller utløpt.');
+    if(req.method==='GET'){const p=JSON.parse(row.payload);return reply(res,200,{id:row.id,status:row.status,created:row.created,expires:access.expires,enquiry:{type:p.type,organisation:p.organisation,topic:p.topic,format:p.format,date:p.date,time:p.time,location:p.location,audience:p.audience,message:p.message},messages:messages(row.id).map(({seen,...m})=>m)});}
+    if(req.method==='POST'){rate('portal-write:'+ip,30,3600000);const b=await body(req,20000);addMessage(row.id,'arrangor',b.message);return reply(res,201,{ok:true});}
+    fail(405,'Metoden støttes ikke.');
    }
    if(req.method==='POST'&&path==='/api/login'){
     rate('login:'+ip,8,900000);let b=await body(req,2000);if(!passwordHash)fail(503,'Administrasjon må konfigureres på serveren først.');let supplied=typeof b.password==='string'?b.password:'';let check=scryptSync(supplied,salt,64);if(!timingSafeEqual(check,passwordHash))fail(401,'Feil passord.');db.prepare('DELETE FROM sessions WHERE expires<?').run(Date.now());let token=randomBytes(32).toString('hex'),csrf=randomBytes(24).toString('hex');db.prepare('INSERT INTO sessions VALUES(?,?,?)').run(createHash('sha256').update(token).digest('hex'),csrf,Date.now()+28800000);return reply(res,200,{csrf},{'Set-Cookie':cookie(token)});
@@ -119,7 +132,15 @@ const server=http.createServer(async(req,res)=>{
    let s=auth(req,res,!['GET','HEAD'].includes(req.method));
    if(req.method==='GET'&&path==='/api/session')return reply(res,200,{csrf:s.csrf});
    if(req.method==='POST'&&path==='/api/logout'){db.prepare('DELETE FROM sessions WHERE hash=?').run(s.hash);return reply(res,200,{ok:true},{'Set-Cookie':cookie('',0)});}
-   if(req.method==='GET'&&path==='/api/admin/enquiries')return reply(res,200,{enquiries:db.prepare('SELECT * FROM enquiries ORDER BY created DESC').all().map(e=>({...e,payload:JSON.parse(e.payload)})),blocks:db.prepare('SELECT * FROM blocks ORDER BY start').all(),statuses});
+   if(req.method==='GET'&&path==='/api/admin/enquiries')return reply(res,200,{enquiries:db.prepare('SELECT * FROM enquiries ORDER BY created DESC').all().map(e=>({...e,payload:JSON.parse(e.payload),messages:messages(e.id)})),blocks:db.prepare('SELECT * FROM blocks ORDER BY start').all(),statuses});
+   const conversation=path.match(/^\/api\/admin\/enquiries\/([a-f0-9-]+)\/(messages|access|read)$/);
+   if(conversation&&req.method==='POST'){
+    const [,id,action]=conversation;if(!db.prepare('SELECT id FROM enquiries WHERE id=?').get(id))fail(404,'Fant ikke forespørselen.');
+    if(action==='access')return reply(res,201,newAccess(id));
+    const b=await body(req,20000);
+    if(action==='messages'){addMessage(id,'isaac',b.message);return reply(res,201,{ok:true});}
+    if(!Array.isArray(b.ids)||b.ids.length>500||b.ids.some(id=>typeof id!=='string'||id.length>50))fail(400,'Ugyldige meldinger.');transaction(()=>{for(const messageId of b.ids)db.prepare("UPDATE enquiry_messages SET seen=1 WHERE id=? AND enquiry_id=? AND author='arrangor'").run(messageId,id);});return reply(res,200,{ok:true});
+   }
    if(req.method==='PUT'&&path==='/api/admin/content'){
     let b=await body(req);validateContent(b.content);let row=db.prepare('SELECT * FROM content WHERE id=1').get();if(row.revision!==b.revision)fail(409,'Innholdet er endret. Last inn siden på nytt før du lagrer.');
     let serialized=JSON.stringify({settings:b.content.settings,pages:b.content.pages});db.exec('BEGIN IMMEDIATE');try{db.prepare('INSERT INTO content_history(json,created) VALUES(?,?)').run(row.json,new Date().toISOString());db.prepare('UPDATE content SET json=?,revision=revision+1 WHERE id=1').run(serialized);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}return reply(res,200,{revision:row.revision+1});
@@ -151,12 +172,13 @@ const server=http.createServer(async(req,res)=>{
    fail(404,'Fant ikke endepunktet.');
   }
   if(!['GET','HEAD'].includes(req.method))fail(405,'Metoden støttes ikke.');
-  if(path==='/robots.txt'){res.writeHead(200,{'Content-Type':'text/plain'});return res.end(process.env.ALLOW_INDEXING==='true'?'User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /min-side\nDisallow: /api/\n':'User-agent: *\nDisallow: /\n');}
+  if(path==='/robots.txt'){res.writeHead(200,{'Content-Type':'text/plain'});return res.end(process.env.ALLOW_INDEXING==='true'?'User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /min-side\nDisallow: /api/\nDisallow: /foresporsel\n':'User-agent: *\nDisallow: /\n');}
   if(path==='/pricing'){res.writeHead(302,{Location:'/pricing-and-services'});return res.end();}
   if(['/booking.html','/personvern.html','/rediger.html'].includes(path)){res.writeHead(302,{Location:{'/booking.html':'/booking','/personvern.html':'/personvern','/rediger.html':'/admin'}[path]});return res.end();}
   let file,base;
   if(path.startsWith('/uploads/')){base=join(dataDir,'uploads');if(!/^\/uploads\/[a-f0-9-]+\.(png|jpg|webp)$/.test(path))fail(404,'Fant ikke bildet.');file=join(base,path.slice(9));}
   else if(path.startsWith('/assets/')){base=join(root,'public');file=resolve(base,'.'+decodeURIComponent(path));if(!file.startsWith(base+'/'))fail(404,'Fant ikke filen.');}
+  else if(['/foresporsel','/foresporsel/'].includes(path)){res.setHeader('X-Robots-Tag','noindex, nofollow');res.setHeader('Cache-Control','no-store');res.setHeader('Referrer-Policy','no-referrer');file=join(root,'public/enquiry.html');}
   else if(['/admin','/admin/','/min-side','/min-side/'].includes(path)){res.setHeader('X-Robots-Tag','noindex, nofollow');file=join(root,'public/admin.html');}
   else if(['/','/about','/topics','/booking','/contact','/pricing-and-services','/faq','/testimonials','/personvern'].includes(path.replace(/\/$/,'' )||'/'))file=join(root,'public/index.html');
   else {res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});return res.end('<!doctype html><html lang="nb"><title>Fant ikke siden</title><h1>Fant ikke siden</h1><p><a href="/">Gå til forsiden</a></p></html>');}

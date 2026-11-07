@@ -6,7 +6,7 @@
     "phone": "+47 909 15 583",
     "address": "Mysen, Østfold, Norge",
     "bookingEnabled": false,
-    "privacyText": "Henvendelser brukes til å svare på spørsmål og planlegge foredrag. Ikke oppgi helseopplysninger eller andre sensitive personopplysninger i skjemaet. Før nettsiden åpnes for innsending må behandlingsansvarlig, lagringstid og driftsleverandør avklares."
+    "privacyText": "Henvendelser og samtalemeldinger brukes til å svare på spørsmål og planlegge foredrag. De lagres på nettsidens server og er tilgjengelige for eieren i kontrollpanelet. Den private lenken gir tilgang til én forespørsel og samtalen knyttet til den. Alle med lenken kan lese og svare; ikke del den offentlig. Lenken er gyldig i 180 dager og kan erstattes av eieren etter at kontaktpersonen er avklart.\n\nIkke oppgi helseopplysninger eller andre sensitive personopplysninger i skjema eller samtale. Det sendes ikke automatiske e-postvarsler.\n\nFør nettsiden åpnes for innsending må behandlingsansvarlig, behandlingsgrunnlag, lagringstid, driftsleverandør og rutiner for personvernrettigheter avklares og publiseres. Lenkenes gyldighet er ikke en automatisk slettingsfrist for opplysningene."
   },
   "pages": {
     "home": {
@@ -172,7 +172,7 @@
         {
           "kind": "intro",
           "title": "Erfaringer som gir rom for samtale",
-          "text": "Isaac William er autist og vokste opp på bygda, der utenforskap og sosial ekskludering preget skolehverdagen. Han opplevde mobbing gjennom 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet.\n\nEgne erfaringer med psykiske utfordringer, selvskading og selvmordstanker er en sentral del av bakgrunnen for foredragene. Han har jobbet på hjelpetelefon for unge og er sertifisert i førstehjelp ved selvmordsfare.\n\nGjennom foredrag ønsker Isaac William å gi stemme til dem som ikke blir sett, og bidra til at voksne og fagpersoner får bedre forståelse av hva barn og unge opplever.",
+          "text": "Jeg er autist og vokste opp på bygda, der utenforskap og sosial ekskludering preget skolehverdagen. Jeg opplevde mobbing gjennom 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet.\n\nEgne erfaringer med psykiske utfordringer, selvskading og selvmordstanker er en sentral del av bakgrunnen for foredragene mine. Jeg har jobbet på hjelpetelefon for unge og er sertifisert i førstehjelp ved selvmordsfare.\n\nGjennom foredrag ønsker jeg å gi stemme til dem som ikke blir sett, og bidra til at voksne og fagpersoner får bedre forståelse av hva barn og unge opplever.",
           "items": [],
           "links": [],
           "images": [],
@@ -182,7 +182,7 @@
           "kind": "intro",
           "eyebrow": "Foredragserfaring",
           "title": "Erfaring fra ulike arenaer",
-          "text": "Isaac William har over sju års erfaring med formidling og foredragsrelatert arbeid for skoler, bibliotek, kommuner og ungdomsorganisasjoner. Han holder også innlegg i panelsamtaler, på konferanser og i mindre grupper.\n\nHan har fulgt sosiale mediers fremvekst fra innsiden. Erfaringene fra en digital oppvekst er en del av grunnlaget for foredragene om nettkultur, digitale relasjoner og unges hverdag.",
+          "text": "Jeg har over sju års erfaring med formidling og foredragsrelatert arbeid for skoler, bibliotek, kommuner og ungdomsorganisasjoner. Jeg bidrar også i panelsamtaler, på konferanser og i mindre grupper.\n\nJeg har fulgt sosiale mediers fremvekst fra innsiden. Erfaringene fra en digital oppvekst er en del av grunnlaget for foredragene mine om nettkultur, digitale relasjoner og unges hverdag.",
           "items": [],
           "images": [],
           "links": [
@@ -244,7 +244,7 @@
           "items": [
             {
               "title": "Min personlige bakgrunn",
-              "text": "Isaac William Tufte Lunde skaper rolige og meningsbærende samtaler om temaer som mobbing, digital oppvekst, autisme, psykisk helse og forebygging av selvskading og selvmord. Det som skiller ham er ikke bare faglig innsikt, men personlig erfaring fra innsiden av utfordringene han snakker om.\n\nIsaac William er selv autist og vokste opp på bygda der utenforskap og sosial ekskludering preget skolehverdagen. Han opplevde mobbing som offer i 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet. Gjennom oppveksten bar han på en indre kamp med mørke tanker, og han har selv overlevd selvmordsforsøk. Han lever i dag med kroniske selvmordstanker, har en selvskadingshistorikk og er diagnostisert med depresjon, angst, tvangslidelse og spiseforstyrrelse. Han er sertifisert i førstehjelp ved selvmordsfare etter å ha jobbet på hjelpetelefon for unge.\n\nDisse erfaringene bærer han ikke som en byrde, men som et grunnlag for ekte og troverdig formidling. Isaac William snakker åpent og direkte for å gi stemme til de som ikke blir sett, og for å utruste voksne og fagpersoner med bedre forståelse av hva barn og unge faktisk opplever.\n\nMed en oppvekst fra tidlig 2000-tall, da internett fortsatt var i sin spede begynnelse, har Isaac William fulgt sosiale mediers fremvekst fra innsiden. Den erfaringen gir ham et unikt og nyansert perspektiv på internettets muligheter og fallgruver, særlig for unge som vokser opp i et digitalt landskap uten klare grenser."
+              "text": "Jeg heter Isaac William Tufte Lunde. Jeg holder foredrag om mobbing, digital oppvekst, autisme, psykisk helse og forebygging av selvskading og selvmord. Utgangspunktet mitt er personlig erfaring fra innsiden av utfordringene jeg snakker om.\n\nJeg er autist og vokste opp på bygda, der utenforskap og sosial ekskludering preget skolehverdagen. Jeg opplevde mobbing i 14 år, men kjente også på presset om å delta i mobbingen av andre for å oppnå tilhørighet.\n\nGjennom oppveksten bar jeg på mørke tanker, og jeg har overlevd selvmordsforsøk. Jeg lever med kroniske selvmordstanker, har en selvskadingshistorikk og er diagnostisert med depresjon, angst, tvangslidelse og spiseforstyrrelse. Jeg er sertifisert i førstehjelp ved selvmordsfare og har jobbet på hjelpetelefon for unge.\n\nDisse erfaringene er en del av grunnlaget for formidlingen min. Jeg snakker åpent og direkte fordi jeg ønsker å bidra til forståelse for det barn, unge og voksne kan bære på.\n\nJeg vokste opp på 2000-tallet og har fulgt sosiale mediers fremvekst fra innsiden. Det gir meg et personlig perspektiv på mulighetene og utfordringene i en digital oppvekst."
             },
             {
               "title": "Hvilke arrangementer passer foredragene for?",
@@ -254,28 +254,6 @@
           "links": [],
           "images": [],
           "eyebrow": ""
-        },
-        {
-          "kind": "intro",
-          "eyebrow": "Omtale og arrangementer",
-          "title": "Les mer utenfor denne nettsiden",
-          "text": "Blikk har intervjuet Isaac William om svømming, tilhørighet og inkludering i idretten, i april og juli 2025.\n\nI programmet for Transsynlighetsdagen på Sølvberget i Stavanger 31. mars 2023 er han oppført som deltaker i panelet om fellesskap.\n\nLenkene går til eksterne nettsider. Blikk-artiklene kan kreve abonnement.",
-          "items": [],
-          "images": [],
-          "links": [
-            {
-              "label": "Blikk · intervju 9. april 2025",
-              "href": "https://www.blikk.no/idrett-likestilling-sport/isaac-william-vil-holde-pa-med-idretten-han-elsker-men-transmannen-finner-ikke-plass/267172"
-            },
-            {
-              "label": "Blikk · oppfølging 24. juli 2025",
-              "href": "https://www.blikk.no/askim-idrett-indre-ostfold/isaac-william-fikk-endelig-henvendelsen-han-hapet-pa-na-kan-jeg-drive-med-det-jeg-elsker/275663"
-            },
-            {
-              "label": "FRI · panelprogram 31. mars 2023",
-              "href": "https://www.friosloviken.no/events/transsynlighetsdage-2023-stavanger/"
-            }
-          ]
         },
         {
           "kind": "intro",
@@ -587,7 +565,7 @@
           "kind": "form",
           "eyebrow": "Book et foredrag",
           "title": "Fortell om arrangementet",
-          "text": "Fortell kort om arrangementet, hvem som skal delta og hva dere ønsker å snakke om. Jeg svarer personlig, så finner vi ut om jeg er riktig foredragsholder for dere.\n\nForespørselen er uforpliktende. Pris og fakturering avtales før dere bekrefter.",
+          "text": "Fortell kort om arrangementet, hvem som skal delta og hva dere ønsker å snakke om. Jeg svarer personlig, så finner vi ut om jeg er riktig foredragsholder for dere.\n\nForespørselen er uforpliktende. Pris og fakturering avtales før dere bekrefter.\n\nEtter innsending får dere en privat lenke for svar og videre dialog. Dere trenger ingen konto. Lagre lenken; det sendes ikke automatiske e-postvarsler.",
           "images": [],
           "links": [],
           "items": [],
@@ -742,13 +720,13 @@
           "images": [],
           "links": [
             {
-              "label": "Kontakt Isaac William",
+              "label": "Kontakt meg",
               "href": "/contact"
             }
           ],
           "items": [
             {
-              "title": "Kan Isaac William tilpasse foredraget til vår målgruppe?",
+              "title": "Kan du tilpasse foredraget til vår målgruppe?",
               "text": "Ja. Vi avtaler alder, målgruppe, tematikk og ønsket språk i forkant. Flere temaer kan kombineres."
             },
             {
@@ -756,7 +734,7 @@
               "text": "Et vanlig foredrag varer 45–60 minutter. Workshops, seminarer og fagdager gir mer rom for samtale. Spørsmålsrunden inngår i den avtalte tidsrammen."
             },
             {
-              "title": "Reiser Isaac William til andre steder enn Østfold-regionen for foredrag?",
+              "title": "Reiser du utenfor Østfold?",
               "text": "Ja, oppdrag over hele Norge kan avtales. Reise og eventuell overnatting inngår i det skriftlige pristilbudet."
             },
             {
@@ -764,15 +742,15 @@
               "text": "Send ønsket dato, sted og målgruppe. Jeg sjekker tilgjengeligheten og avklarer innhold og pris med dere. Forespørselen er uforpliktende."
             },
             {
-              "title": "Hvor mye koster det å booke Isaac William?",
+              "title": "Hva koster et foredrag?",
               "text": "Et foredrag starter fra 2 000 kr. Se prissiden for øvrige formater. Endelig totalpris, eventuell avgift og avtalte reisekostnader fremgår av tilbudet."
             },
             {
-              "title": "Kan Isaac William holde foredrag på konferanser og bedriftsarrangementer?",
+              "title": "Holder du foredrag på konferanser og arbeidsplasser?",
               "text": "Ja. Vi avklarer om tema, format og erfaringsperspektiv passer deres publikum."
             },
             {
-              "title": "Hvor lang tid i forveien bør vi booke Isaac William?",
+              "title": "Hvor tidlig bør vi ta kontakt?",
               "text": "Ta gjerne kontakt tidlig, særlig hvis oppdraget krever reise. Det er også mulig å spørre på kort varsel."
             },
             {
@@ -781,7 +759,7 @@
             },
             {
               "title": "Hvordan betaler vi? Trenger vi en konto?",
-              "text": "Dere får faktura etter avtale. Ingen betaling på nettsiden og ingen kundekonto. Fakturaopplysninger kan legges ved i forespørselen eller avklares senere."
+              "text": "Dere får faktura etter avtale. Ingen betaling på nettsiden og ingen kundekonto. Etter innsending får dere en privat lenke til forespørselen, der dere kan lese svar og skrive meldinger. Ta vare på lenken og sjekk siden for oppdateringer; det sendes ikke automatiske e-postvarsler."
             }
           ]
         },

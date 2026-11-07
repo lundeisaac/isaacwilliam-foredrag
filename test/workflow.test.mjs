@@ -5,6 +5,7 @@ import {mkdtempSync,rmSync,readFileSync,existsSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {randomBytes} from 'node:crypto';
+import {DatabaseSync} from 'node:sqlite';
 const dir=mkdtempSync(join(tmpdir(),'iw-tests-')),password=randomBytes(32).toString('hex');let child,base,cookie,csrf,content;
 async function start(overrides={}){child=spawn(process.execPath,['server/index.mjs'],{cwd:resolve('.'),env:{...process.env,PORT:'0',HOST:'127.0.0.1',DATA_DIR:dir,ADMIN_PASSWORD:password,PUBLIC_ORIGIN:'',BOOKING_ENABLED:'true',NODE_ENV:'test',...overrides},stdio:['ignore','pipe','pipe']});base=await new Promise((yes,no)=>{child.stdout.on('data',c=>{let m=String(c).match(/port (\d+)/);if(m)yes('http://127.0.0.1:'+m[1]);});child.on('exit',c=>no(Error('Server exited '+c)));child.on('error',no);});}
 async function stop(){await new Promise(resolve=>{child.once('exit',resolve);child.kill();});}
@@ -46,12 +47,31 @@ test('complete private booking and content workflow',async()=>{
  r=await request('/api/enquiries','POST',{...sample,date:'2000-01-01'},false);assert.equal(r.status,400);
  r=await request('/api/enquiries','POST',{...sample,invoiceEmail:'invalid'},false);assert.equal(r.status,400);
  r=await request('/api/enquiries','POST',{...sample,organisationNumber:'123'},false);assert.equal(r.status,400);
- r=await request('/api/enquiries','POST',sample,false);assert.equal(r.status,201);let id=(await r.json()).id;
- r=await request('/api/enquiries','POST',sample,false);assert.equal(r.status,201);let duplicateId=(await r.json()).id;
+ r=await request('/api/enquiries','POST',sample,false);assert.equal(r.status,201);const receipt=await r.json();let id=receipt.id;let portalToken=receipt.portalToken;assert.match(portalToken,/^[a-f0-9]{64}$/);
+ r=await request('/api/enquiries','POST',sample,false);assert.equal(r.status,201);const otherReceipt=await r.json();let duplicateId=otherReceipt.id;const otherToken=otherReceipt.portalToken;
  let overview=await(await request('/api/admin/enquiries')).json();assert.equal(overview.enquiries.length,2);assert.equal(overview.enquiries[0].payload.name,'Testperson');const saved=overview.enquiries.find(e=>e.id===id).payload;assert.equal(saved.invoiceEmail,'invoice@example.invalid');assert.equal(saved.organisationNumber,'123456789');assert.equal(saved.invoiceReference,'REF-TEST');assert.equal(saved.returningClient,true);
  r=await request('/api/content','GET',undefined,false);assert.ok(!JSON.stringify(await r.json()).includes('invoice@example.invalid'));
  r=await request('/api/availability?from=2099-05-20&to=2099-05-20', 'GET',undefined,false);assert.deepEqual((await r.json()).unavailable,[]);
  r=await request('/api/admin/enquiries/'+id,'PATCH',{version:1,status:'Bekreftet',quote:2500,notes:'Testnotat'});assert.equal(r.status,200);
+ // Each receipt is a private capability, independent of accounts and email.
+ const portal=(method='GET',body,token=portalToken,extra={})=>request('/api/enquiry-page',method,body,false,{Authorization:'Bearer '+token,...extra});
+ assert.equal((await request('/api/enquiry-page','GET',undefined,false)).status,401);
+ assert.equal((await portal('GET',undefined,'0'.repeat(64))).status,401);
+ assert.equal((await portal('GET',undefined,id)).status,401);
+ r=await portal();assert.equal(r.status,200);let privatePage=await r.json();assert.equal(privatePage.id,id);assert.equal(privatePage.status,'Bekreftet');assert.ok(!JSON.stringify(privatePage).includes('Testnotat'));assert.ok(!('quote' in privatePage));assert.ok(!('invoiceEmail' in privatePage.enquiry));
+ r=await portal('POST',{message:'Test fra arrangør' },portalToken,{Origin:'https://untrusted.invalid'});assert.equal(r.status,403);
+ r=await portal('POST',{message:''});assert.equal(r.status,400);
+ r=await portal('POST',{message:'Kan vi starte klokken 13?',author:'isaac',enquiry_id:duplicateId});assert.equal(r.status,201);
+ r=await request('/api/admin/enquiries');let conversation=(await r.json()).enquiries.find(e=>e.id===id).messages;assert.equal(conversation[0].author,'arrangor');assert.equal(conversation[0].seen,0);
+ r=await request('/api/admin/enquiries/'+id+'/messages','POST',{message:'Hei, det passer. <script>test</script>'},true,{'X-CSRF-Token':'wrong'});assert.equal(r.status,403);
+ r=await request('/api/admin/enquiries/'+id+'/messages','POST',{message:'Hei, det passer. <script>test</script>'});assert.equal(r.status,201);
+ r=await request('/api/admin/enquiries/'+id+'/read','POST',{ids:conversation.map(m=>m.id)});assert.equal(r.status,200);
+ r=await portal();privatePage=await r.json();assert.equal(privatePage.messages.length,2);assert.equal(privatePage.messages[1].author,'isaac');
+ assert.equal((await (await portal('GET',undefined,otherToken)).json()).messages.length,0);
+ r=await request('/api/admin/enquiries');assert.equal((await r.json()).enquiries.find(e=>e.id===id).messages[0].seen,1);
+ r=await request('/api/admin/enquiries/'+id+'/access','POST',{});assert.equal(r.status,201);const renewed=await r.json();assert.notEqual(renewed.token,portalToken);assert.equal((await portal()).status,401);portalToken=renewed.token;assert.equal((await portal()).status,200);const inspectDb=new DatabaseSync(join(dir,'site.sqlite'));const storedAccess=inspectDb.prepare('SELECT hash FROM enquiry_access WHERE enquiry_id=?').get(id);assert.notEqual(storedAccess.hash,portalToken);inspectDb.prepare('UPDATE enquiry_access SET expires=0 WHERE enquiry_id=?').run(id);inspectDb.close();assert.equal((await portal()).status,401);r=await request('/api/admin/enquiries/'+id+'/access','POST',{});portalToken=(await r.json()).token;
+ assert.equal((await request('/api/admin/enquiries/'+id+'/messages','POST',{message:'Not allowed'},false)).status,401);
+ r=await request('/foresporsel','GET',undefined,false);assert.equal(r.status,200);assert.equal(r.headers.get('referrer-policy'),'no-referrer');assert.equal(r.headers.get('cache-control'),'no-store');assert.ok(!(await r.text()).includes('Kan vi starte klokken 13?'));
  r=await request('/api/availability?from=2099-05-20&to=2099-05-20','GET',undefined,false);let avail=await r.json();assert.equal(avail.unavailable.length,1);assert.equal(JSON.stringify(avail).includes('Testperson'),false);
  r=await request('/api/admin/enquiries/'+duplicateId,'PATCH',{version:1,status:'Bekreftet',quote:2500,notes:''});assert.equal(r.status,409);
  r=await request('/api/enquiries','POST',sample,false);assert.equal(r.status,409);
@@ -64,7 +84,8 @@ test('complete private booking and content workflow',async()=>{
  r=await request('/api/admin/uploads','POST',{data:Buffer.from('<svg onload="alert(1)"></svg>').toString('base64')});assert.equal(r.status,400);
  r=await request('/api/admin/export');assert.equal(r.status,200);assert.equal((await r.json()).settings.email,'post@isaacwilliam.no');
  await stop();await start();await login();overview=await(await request('/api/admin/enquiries')).json();assert.equal(overview.enquiries.length,3);assert.equal(overview.enquiries.find(e=>e.id===id).status,'Bekreftet');
- r=await request('/api/admin/enquiries/'+id,'DELETE',{});assert.equal(r.status,200);
+ assert.equal((await portal()).status,200);assert.equal((await (await portal()).json()).messages.length,2);
+ r=await request('/api/admin/enquiries/'+id,'DELETE',{});assert.equal(r.status,200);assert.equal((await portal()).status,401);
  r=await request('/api/availability?from=2099-05-20&to=2099-05-20');assert.equal((await r.json()).unavailable.length,0);
  r=await request('/api/logout','POST',{});assert.equal(r.status,200);r=await request('/api/admin/enquiries');assert.equal(r.status,401);
  // Changing the owner password invalidates old persisted sessions; removing it cannot expose data.
