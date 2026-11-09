@@ -1,5 +1,8 @@
 # Drift og kontrollert lansering
 
+> For den faktiske utrullingen på FlowCreate web-01 (container, porter,
+> miljøfil, backup og cutover-status): se `docs/DRIFT-FLOWCREATE-WEB01.md`.
+
 ## 1. Sett opp testmiljø uten å endre domenet
 
 Kjør én Node.js-prosess med et vedvarende `DATA_DIR`, enten direkte med Node 24 eller med den medfølgende Docker-konfigurasjonen. Applikasjonen bruker synkron SQLite med WAL og skal ikke kjøres på flyktig eller delt nettverkslagring. Databasen må ligge på en lokal, vedvarende disk.
