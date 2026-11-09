@@ -4,10 +4,10 @@ Dette gjelder **isaacwilliam.no**, ikke Heartfold Ink. Nettsiden er en Node 24 /
 
 ## Hent riktig kildekode
 
-Den komplette erstatningen ligger i en egen, testet gren; `main` er fortsatt den eldre løsningen.
+Erstatningen er merget til `main` (PR #2, 2026-11-09). Den eldre Jekyll-løsningen er tilgjengelig som tag `legacy-jekyll`.
 
 ```sh
-git clone --branch rebuild/durable-independent https://github.com/taylorcolonwrites/isaacwilliam-foredrag.git
+git clone https://github.com/lundeisaac/isaacwilliam-foredrag.git
 cd isaacwilliam-foredrag
 cp .env.example .env
 ```

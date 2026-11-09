@@ -35,7 +35,7 @@ Den rene stagingkopien hadde bare generert testpassord og fiktive `.invalid`-kon
 
 Repository: https://github.com/taylorcolonwrites/isaacwilliam-foredrag
 
-Gren: `rebuild/durable-independent` · PR: https://github.com/taylorcolonwrites/isaacwilliam-foredrag/pull/2
+Gren ved test: `rebuild/durable-independent` (siden merget til `main` 2026-11-09) · PR: https://github.com/lundeisaac/isaacwilliam-foredrag/pull/2
 
 Automatiske kontroller: https://github.com/taylorcolonwrites/isaacwilliam-foredrag/actions
 

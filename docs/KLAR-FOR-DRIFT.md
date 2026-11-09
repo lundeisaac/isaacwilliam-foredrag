@@ -22,6 +22,6 @@ Status vurdert 7. november 2026.
 
 ## Gren og gjennomgang
 
-Full kildekode ligger i `rebuild/durable-independent`, PR #2. `main` er ikke oppdatert eller slått sammen automatisk. Bruk riktig gren ved serverstaging. Gjennomgangskopien på https://isaacwilliam-review.publickey1.chatgpt.site er statisk med stengte skjemaer og eierdemo med fiktive data; den er ikke en driftsserver.
+Full kildekode ligger på `main` (PR #2 merget 2026-11-09). Den gamle Jekyll-versjonen ligger bak tag `legacy-jekyll`. Gjennomgangskopien på https://isaacwilliam-review.publickey1.chatgpt.site er statisk med stengte skjemaer og eierdemo med fiktive data; den er ikke en driftsserver.
 
 Se SERVER-HANDOVER.md for kort serveroverlevering og STAGING-RESULTAT.md for testbevis og avgrensninger.

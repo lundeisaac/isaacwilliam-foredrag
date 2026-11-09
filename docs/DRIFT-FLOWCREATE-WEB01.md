@@ -23,7 +23,7 @@ bindeleddet mellom appen og serveren den kjører på.
 | Kritikalitet | Lav–middels. Nedetid påvirker omdømme/markedsføring, men ingen betaling eller kundedataleveranse |
 | Tjenesteeier | Isaac William Lunde (innhold, godkjenning av lansering, DNS, Google Workspace) |
 | Teknisk drift | FlowCreate-infrastruktur (web-01/edge-01), se `flowcreatetime/flowcreate-infrastructure` |
-| Applikasjonskilde | `lundeisaac/isaacwilliam-foredrag`, gren `rebuild/durable-independent` |
+| Applikasjonskilde | `lundeisaac/isaacwilliam-foredrag`, gren `main` (rebuild-grenen ble merget til `main` via PR #2 2026-11-09; tag `legacy-jekyll` peker på den gamle Jekyll-versjonen) |
 
 ### Omfang
 
@@ -53,7 +53,7 @@ ingen CI-lane ennå.
 ### Runtime-lagt på web-01
 
 ```text
-/srv/projects/isaacwilliam-foredrag/      # git checkout, gren rebuild/durable-independent
+/srv/projects/isaacwilliam-foredrag/      # git checkout, gren main
 /opt/isaacwilliam/production/runtime/   # DATA_DIR: site.sqlite (+ -wal/-shm) + uploads/ (uid 1000)
 /etc/flowcreate-web/env/isaacwilliam.env # root:root 0600 — runtime-miljøvariabler
 ```
@@ -115,7 +115,7 @@ avhengig av isaacwilliam:
 ```bash
 ssh ubuntu@10.0.0.17
 cd /srv/projects/isaacwilliam-foredrag
-git pull --ff-only                       # gren: rebuild/durable-independent
+git pull --ff-only                       # gren: main
 SHA=$(git rev-parse HEAD)
 docker build -t "isaacwilliam:$SHA" .
 sudo docker stop isaacwilliam && sudo docker rm isaacwilliam
