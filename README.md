@@ -1,10 +1,17 @@
 # Isaac William Lunde – uavhengig foredragsnettsted
 
-En selvstendig rekonstruksjon av den publiserte Durable-nettsiden, med norsk innholdsredigering og bookingadministrasjon. Planlagt domene er **isaacwilliam.no**, og kontaktadressen er **post@isaacwilliam.no**. Ingen DNS-poster er endret, og Durable-nettsiden er ikke endret eller slettet.
+Et selvstendig norskspråklig nettsted for foredrag, med egen innholdsredigering, bookingadministrasjon og drift på en server du velger. Sider, bilder, skrifter og data leveres av denne applikasjonen. Durable er bare historisk designreferanse og kreves ikke for drift, redigering eller publisering. Planlagt domene er **isaacwilliam.no**, og kontaktadressen er **post@isaacwilliam.no**. Ingen DNS-poster er endret, og Durable-nettsiden er ikke endret eller slettet.
+
+## Start her
+
+Repositoryet eies av **lundeisaac**. Den tidligere rekonstruksjonen er merget til `main` via PR #2; den gamle Jekyll-versjonen er bevart som `legacy-jekyll`. Den nyeste lanseringskandidaten samles på `staging/launch-review-20261110`, med oppdatert innhold og driftsrettinger. Kontroller publiseringsstatus i [siste gjennomgang](docs/LAUNCH-AUDIT.md) før henting.
+
+Eksisterende serveroppsett er dokumentert i [FlowCreate-driften](docs/DRIFT-FLOWCREATE-WEB01.md), med provisorisk adresse `https://isaacwilliam.flowcreate.no`. GitHub lagrer koden; skjemaer og eierkontrollpanel kjører på app-serveren. [Serveroverleveringen](docs/SERVER-HANDOVER.md) beskriver staging og gjenstående åpning.
 
 ## Hva som finnes
 
-- Alle åtte hovedsider: Hjem, Om, Foredragstemaer, Bestill foredrag, Kontakt, Priser & Tjenester, Ofte stilte spørsmål og Tilbakemeldinger.
+- Alle åtte hovedsider: Hjem, Om, Foredragstemaer, Bestill foredrag, Kontakt, Priser og formater, Ofte stilte spørsmål og Tilbakemeldinger.
+- Seks temaområder, 14 utvalgte foredragsforslag og tydelig adgang til egne temaer. Tilbud for barn, ungdom og voksne; konsekvent tredjeperson i presentasjonen.
 - Tekst, 21 lokale bildeoriginaler og lokale Inter-/Playfair-skrifter fra det inspiserte designet. Bilder er optimalisert som WebP. Ingen Durable-kode, Durable API-er eller eksternt CMS kreves.
 - Sidetekst, navigasjon og metadata leveres direkte fra serveren og kan leses uten JavaScript. Skjemaer krever JavaScript og er sperret før det er aktivert.
 - Responsiv navigasjon, fleksible rutenett, tastaturbetjente trekkspill, tydelige skjemaetiketter og en personvernside.
@@ -40,16 +47,17 @@ Under **Innstillinger** kan navn, kontaktopplysninger og personverninformasjon e
 
 Dette er nå en Node-/SQLite-applikasjon, **ikke en Jekyll-side eller en ren GitHub Pages-side**. GitHub lagrer kildekoden. En server med vedvarende lagring og HTTPS kreves for bookingadministrasjonen.
 
-Se [kort status før utrulling](docs/KLAR-FOR-DRIFT.md) og [driftsveiledningen](docs/DRIFT.md) for Docker, sikkerhetskopiering, test og kontrollert domenebytte. Ikke flytt domenet før erstatningen er gjennomgått og godkjent. Ikke slett Durable-siden ved denne utrullingen.
+Start med [staging på egen server](docs/STAGING-SERVER.md). Se [kort status før utrulling](docs/KLAR-FOR-DRIFT.md) og [driftsveiledningen](docs/DRIFT.md) for Docker, sikkerhetskopiering, test og kontrollert domenebytte. Ikke flytt domenet før erstatningen er gjennomgått og godkjent. Ikke slett Durable-siden ved denne utrullingen.
 
 ## Validering og status
 
 - `npm run check`: syntakskontroll av server og klientkode.
+- `npm run audit:server -- https://staging-adresse`: lesekontroll av faktisk staging-server; legg til `--live` først ved sluttkontroll etter godkjent åpning. Sender ingen meldinger.
 - `npm run staging:check`: disponibel produksjonskontroll med backup/gjenoppretting, uten e-post.
 - `npm test`: HTTP-integrasjonstester for innhold, autentisering, CSRF, validering, lagring etter omstart, datoer, booking, kalender, personverngrenser og alle lokale bilder.
-- GitHub Actions kjører kontrollene ved push og pull requests.
+- GitHub Actions kjører kontrollene ved push og pull requests, bygger Docker-imaget og tester oppstart. Nyeste gjennomgang inkluderer 19 tester, sju produksjonskontroller, intern lenkekontroll og npm-avhengighetsskann.
 - Cloud Browser-kontroll er gjennomført på desktop og ved visningsbredder 320, 390 og 768 CSS-piksler. Fontvekter, mobiloverflyt, kortoppsett og trekkspillimport er rettet. Se `docs/VISUELL-QA.md`. Privat tilgang og bokføringslogikk er kontrollert med HTTP-tester. Kontrollpanelets utseende er kontrollert med tydelig merkede testdata.
-- Ingen produksjonsserver er valgt eller konfigurert i denne endringen. Det er ikke opprettet en offentlig erstatningsadresse.
+- En tidligere versjon er satt opp på FlowCreate; den nyeste kandidaten er ikke verifisert utrullet der. Den private [gjennomgangskopien](https://isaacwilliam-review.publickey1.chatgpt.site) er statisk og har stengte skjemaer.
 - Innsending er stengt og søkeindeksering er blokkert som standard.
 - Personverninformasjon og faktisk driftsleverandør må ferdigstilles før skjemaene åpnes.
 

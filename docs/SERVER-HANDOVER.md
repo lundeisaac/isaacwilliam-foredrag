@@ -2,6 +2,12 @@
 
 Dette gjelder **isaacwilliam.no**, ikke Heartfold Ink. Nettsiden er en Node 24 / SQLite-applikasjon i GitHub, med ett eierkontrollpanel og vanlige offentlige sider. Klienter sender forespørsel uten konto og følges opp på e-post. Ingen nettbetaling; oppdrag faktureres utenfor nettsiden.
 
+## Aktuell stagingkandidat
+
+Seneste innholds- og lanseringsrettinger samles på `staging/launch-review-20261110`. `main` har den tidligere appen. Se `LAUNCH-AUDIT.md` for bekreftet GitHub-status, før en eventuell ny checkout. Den eksisterende FlowCreate-instansen og dens lagring er beskrevet i `DRIFT-FLOWCREATE-WEB01.md`; bevar driftsdokumentet og databasen.
+
+Ved oppdatering av en eksisterende database: følg `FOREDRAGSKATALOG.md` og `TEKST-OG-TONE.md`. Kodeutrulling alene endrer ikke innhold som allerede ligger i SQLite. Bruk sikkerhetskopi, fersk innholdseksport og gjennomgått import; ikke slett runtime.
+
 ## Hent riktig kildekode
 
 Erstatningen er merget til `main` (PR #2, 2026-11-09). Den eldre Jekyll-løsningen er tilgjengelig som tag `legacy-jekyll`.
@@ -19,6 +25,10 @@ docker compose up -d --build
 ```
 
 Compose eksponerer bare `127.0.0.1:3000`. Sett en HTTPS-reversproxy foran og bruk en staging-adresse dere kontrollerer. Det er foreløpig **ikke godkjent å endre DNS for isaacwilliam.no eller slette/endre Durable-siden**. En enkelt Node-prosess og lokal, vedvarende disk kreves. Databasen og bildeopplastinger ligger i Docker-volumet `website_data`.
+
+Se også LAUNCH-AUDIT.md for gjenstående faktiske lanseringskrav. Proxyens klient-IP må settes opp etter DRIFT.md; ikke stol på besøkendes egne headere.
+
+Se STAGING-SERVER.md for separate staging-/driftsmiljøer og kontroll av den faktiske HTTPS-adressen. Kildekodepakken kan brukes direkte dersom GitHub-skrivetilgangen ennå ikke er gjenopprettet.
 
 ## Test før åpning
 

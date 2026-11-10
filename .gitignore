@@ -4,3 +4,7 @@ runtime/
 coverage/
 .openai/
 runtime-preview/
+runtime-launch-audit/
+
+.env.*
+!.env.example

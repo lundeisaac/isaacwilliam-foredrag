@@ -19,18 +19,39 @@ test('accordion imports retain the correct distinct answers and clean titles',()
   for(const item of items){assert.doesNotMatch(item.title,/^\d{2}/);assert.ok(item.text.length>50);}
  }
  const autism=site.pages.topics.sections[0].items.find(i=>i.title==='Autisme og nevrodiversitet');
- assert.match(autism.text,/sensoriske utfordringer/i);
+ assert.match(autism.text,/sanseinntrykk/i);
 });
 
-test('topics introduce five themes and keep all thirty optional examples behind five closed disclosures',async()=>{
- const {renderPublicPage}=await import('../public/assets/app.js');
- const site=JSON.parse(readFileSync('content/site.json'));
- const html=renderPublicPage(site,'/topics').main;
- assert.equal((html.match(/class="topic-examples"/g)||[]).length,5);
- assert.equal((html.match(/<article>/g)||[]).length,30);
- assert.doesNotMatch(html,/<details[^>]*\sopen/);
- for(let n=1;n<=5;n++){assert.ok(html.includes(`id="tema-${n}"`));assert.ok(html.includes(`/booking?tema=${n}`));}
- for(const section of site.pages.topics.sections.slice(1,6))assert.ok(section.text.length<250);
+test('individual talks stay collapsed and carry the chosen title into booking',async()=>{
+ const {renderPublicPage,talkCatalogue,requestedTalk}=await import('../public/assets/app.js');
+ const site=JSON.parse(readFileSync('content/site.json')),talks=talkCatalogue(site);
+ const html=renderPublicPage(site,'/topics').main,booking=renderPublicPage(site,'/booking').main;
+ assert.equal(talks.length,14);assert.equal(new Set(talks.map(t=>t.id)).size,14);
+ assert.equal(new Set(talks.map(t=>t.title)).size,14);
+ assert.equal((html.match(/class="talk"/g)||[]).length,14);
+ assert.doesNotMatch(html,/<details[^>]*\sopen/);assert.doesNotMatch(html,/undertemaer/);
+ for(let n=1;n<=6;n++)assert.ok(html.includes(`id="tema-${n}"`));
+ for(const talk of talks){
+  assert.ok(talk.text.split(/\s+/).length<=65);
+  assert.ok(html.includes(`/booking/?foredrag=${talk.id}`));
+  assert.ok(booking.includes(`<option value="${talk.title}">`));
+  assert.equal(requestedTalk(site,`?foredrag=${talk.id}`),talk.title);
+ }
+ assert.equal(requestedTalk(site,'?foredrag=missing'),'');
+ assert.equal(requestedTalk(site,'?foredrag=%3Cscript%3E'),'');
+ assert.equal(requestedTalk(site,'?tema=2'),'Eget tema / tilpasset foredrag');
+ assert.equal(requestedTalk(site,'?foredrag=veiledning'),'Hjelp til å velge foredrag');
+ assert.equal(requestedTalk(site,'?tema=99'),'');
+ assert.equal(requestedTalk(site,'?tema=6'),'Eget tema / tilpasset foredrag');
+ assert.equal(requestedTalk(site,'?foredrag=tilpasset'),'Eget tema / tilpasset foredrag');
+ assert.match(html,/Utvalgte foredrag og vinklinger/);assert.match(html,/barn, ungdom og voksne/);
+ assert.ok(html.includes('/booking/?foredrag=tilpasset'));
+ assert.match(booking,/Eget tema \/ tilpasset foredrag/);assert.match(booking,/Ønsket innhold og arrangement/);
+ assert.ok(talks.some(t=>t.summary.includes('Spiseforstyrrelser')));
+ assert.ok(talks.some(t=>t.summary.includes('Kjønnsidentitet')));
+ const title=talks[0].title;site.pages.topics.sections[1].items[0].title='Endret tittel';
+ assert.equal(requestedTalk(site,'?foredrag='+talks[0].id),'Endret tittel');
+ assert.ok(!renderPublicPage(site,'/booking').main.includes(`<option value="${title}">`));
 });
 
 test('owner sees unread client replies while read replies and owner messages do not count',()=>{
@@ -39,7 +60,7 @@ test('owner sees unread client replies while read replies and owner messages do 
  records.enquiries[0].messages[0].seen=1;assert.equal(overview(records,{bookingAvailable:true}).unread,0);
 });
 
-test('biography uses first-person narrative and unrelated article links are absent',()=>{
+test('speaker introduction uses third person and explains experience alongside research',()=>{
  const site=JSON.parse(readFileSync('content/site.json'));const about=site.pages.about.sections.map(s=>s.text+' '+s.items.map(i=>i.text).join(' ')).join(' ');
- assert.match(about,/Jeg er autist/);assert.match(about,/14 år/);assert.match(about,/sertifisert i førstehjelp ved selvmordsfare/);assert.doesNotMatch(about,/\bHan (har|er)|\bhan (har|er|holder)|Isaac William (har|er|holder)/);assert.ok(!JSON.stringify(site).includes('blikk.no'));assert.ok(!JSON.stringify(site).includes('friosloviken.no'));
+ assert.match(about,/Han er autist/);assert.match(about,/relevant forskning og statistikk/);assert.match(about,/14 år/);assert.match(about,/sertifisert i førstehjelp ved selvmordsfare/);assert.doesNotMatch(about,/\b[Jj]eg\b|\bmeg\b/);assert.ok(!JSON.stringify(site).includes('blikk.no'));assert.ok(!JSON.stringify(site).includes('friosloviken.no'));
 });
