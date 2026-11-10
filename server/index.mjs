@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {isIP} from 'node:net';
 import {emailConfig,initEmailOutbox,createEmailService} from './email.mjs';
 import {renderPublicPage,escape as escapeHTML} from '../public/assets/app.js';
 import {visualPage} from './visual-qa.mjs';
@@ -29,6 +30,10 @@ if(!db.prepare('SELECT id FROM content WHERE id=1').get())db.prepare('INSERT INT
 initEmailOutbox(db);const mailConfig=emailConfig(),email=createEmailService(db,mailConfig);const clientPortal=process.env.CLIENT_PORTAL_ENABLED==='true';
 const emailTimer=setInterval(()=>email.drain().catch(()=>{}),15000);emailTimer.unref();
 const prod=process.env.NODE_ENV==='production';
+const publicOrigin=process.env.PUBLIC_ORIGIN||'';
+if(prod){let origin;try{origin=new URL(publicOrigin);}catch{}if(!origin||origin.protocol!=='https:'||origin.origin!==publicOrigin)throw new Error('PUBLIC_ORIGIN må være en HTTPS-origin uten sti eller avsluttende skråstrek i produksjon.');}
+const trustedProxyIPs=(process.env.TRUST_PROXY_IPS||'127.0.0.1,::1,::ffff:127.0.0.1').split(',').map(x=>x.trim());
+if(process.env.TRUST_PROXY==='true'&&trustedProxyIPs.some(ip=>!isIP(ip)))throw new Error('TRUST_PROXY_IPS må inneholde konkrete IP-adresser.');
 const visualQA=!prod&&process.env.VISUAL_QA==='true';
 const password=process.env.ADMIN_PASSWORD || '';
 if(password && password.length<16)throw new Error('ADMIN_PASSWORD må ha minst 16 tegn.');
@@ -45,7 +50,7 @@ const content=()=>{let row=db.prepare('SELECT json,revision FROM content WHERE i
 const active=()=>process.env.BOOKING_ENABLED==='true' && content().settings.bookingEnabled===true;
 function reply(res,status,value,headers={}) {res.writeHead(status,{'Content-Type':'application/json; charset=utf-8',...headers});res.end(JSON.stringify(value));}
 function fail(status,message){throw Object.assign(new Error(message),{status});}
-async function body(req,limit=2_000_000){let chunks=[],size=0;for await(let c of req){size+=c.length;if(size>limit)fail(413,'Innholdet er for stort.');chunks.push(c);}try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{fail(400,'Ugyldig JSON.');}}
+async function body(req,limit=2_000_000){let chunks=[],size=0;for await(let c of req){size+=c.length;if(size>limit)fail(413,'Innholdet er for stort.');chunks.push(c);}try{const value=JSON.parse(Buffer.concat(chunks).toString('utf8'));if(!value||typeof value!=='object'||Array.isArray(value))fail(400,'Forventet et JSON-objekt.');return value;}catch{fail(400,'Ugyldig JSON.');}}
 function text(v,max=500,required=false){if(typeof v!=='string'||v.length>max||(required&&!v.trim()))fail(400,'Kontroller at alle feltene er riktig utfylt.');return v.trim();}
 function date(v){if(typeof v!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(v)||!Number.isFinite(Date.parse(v+'T12:00:00Z'))||new Date(v+'T12:00:00Z').toISOString().slice(0,10)!==v)fail(400,'Ugyldig dato.');return v;}
 function today(){return new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Oslo'}).format(new Date());}
@@ -73,7 +78,7 @@ function validateContent(c){
    if(!['hero','intro','accordion','cards','form','quotes','stats'].includes(s.kind))fail(400,'Ugyldig seksjonstype.');
    text(s.title,700);text(s.text,20000);text(s.eyebrow,300);
    if(!Array.isArray(s.items)||s.items.length>50||!Array.isArray(s.links)||s.links.length>10||!Array.isArray(s.images)||s.images.length>20)fail(400,'Ugyldige innholdsfelt.');
-   for(let i of s.items){text(i.title,700);text(i.text,20000);if(i.caption!==undefined)text(i.caption,700);}
+   for(let i of s.items){text(i.title,700);if(key==='topics'&&i.id!==undefined)text(i.title,200,true);text(i.text,20000);if(i.caption!==undefined)text(i.caption,700);if(i.summary!==undefined)text(i.summary,350);if(i.id!==undefined&&!/^[a-z0-9][a-z0-9-]{0,99}$/.test(i.id))fail(400,'Ugyldig foredrags-ID.');}
    for(let l of s.links){text(l.label,300);url(l.href);}for(let i of s.images){url(i.src);text(i.alt,1000);}
   }
  }
@@ -111,7 +116,9 @@ const server=http.createServer(async(req,res)=>{
   if(path.startsWith('/api/')){
    res.setHeader('Cache-Control','no-store');
    if(!['GET','HEAD'].includes(req.method))originCheck(req);
-   let ip=req.socket.remoteAddress||'unknown'; // Never trust a visitor-supplied X-Forwarded-For.
+   let ip=req.socket.remoteAddress||'unknown';
+   // Enable only behind a proxy that OVERWRITES X-Real-IP; never read X-Forwarded-For.
+   if(process.env.TRUST_PROXY==='true'&&trustedProxyIPs.includes(ip)){const real=req.headers['x-real-ip'];if(typeof real==='string'&&isIP(real))ip=real;}
    if(req.method==='GET'&&path==='/api/owner-access')return reply(res,200,{signedIn:Boolean(session(req,res))});
    if(req.method==='GET'&&path==='/api/content'){let c=content();return reply(res,200,{...c,bookingAvailable:active(),clientPortalAvailable:clientPortal});}
    if(req.method==='GET'&&path==='/api/availability'){
@@ -180,14 +187,15 @@ const server=http.createServer(async(req,res)=>{
    fail(404,'Fant ikke endepunktet.');
   }
   if(!['GET','HEAD'].includes(req.method))fail(405,'Metoden støttes ikke.');
-  if(path==='/robots.txt'){res.writeHead(200,{'Content-Type':'text/plain'});return res.end(process.env.ALLOW_INDEXING==='true'?'User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /min-side\nDisallow: /api/\nDisallow: /foresporsel\n':'User-agent: *\nDisallow: /\n');}
+  if(path==='/sitemap.xml'){const origin=publicOrigin||`http://${req.headers.host}`;const paths=['/','/about','/topics','/booking','/contact','/pricing-and-services','/faq','/testimonials','/personvern'];res.writeHead(200,{'Content-Type':'application/xml; charset=utf-8'});return res.end(req.method==='HEAD'?undefined:`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(p=>`<url><loc>${escapeHTML(origin+p)}</loc></url>`).join('')}</urlset>`);}
+  if(path==='/robots.txt'){res.writeHead(200,{'Content-Type':'text/plain'});return res.end(process.env.ALLOW_INDEXING==='true'?'User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /min-side\nDisallow: /api/\nDisallow: /foresporsel\n'+(publicOrigin?'Sitemap: '+publicOrigin+'/sitemap.xml\n':''):'User-agent: *\nDisallow: /\n');}
   if(path==='/pricing'){res.writeHead(302,{Location:'/pricing-and-services'});return res.end();}
   if(['/booking.html','/personvern.html','/rediger.html'].includes(path)){res.writeHead(302,{Location:{'/booking.html':'/booking','/personvern.html':'/personvern','/rediger.html':'/admin'}[path]});return res.end();}
   let file,base;
   if(path.startsWith('/uploads/')){base=join(dataDir,'uploads');if(!/^\/uploads\/[a-f0-9-]+\.(png|jpg|webp)$/.test(path))fail(404,'Fant ikke bildet.');file=join(base,path.slice(9));}
   else if(path.startsWith('/assets/')){base=join(root,'public');file=resolve(base,'.'+decodeURIComponent(path));if(!file.startsWith(base+'/'))fail(404,'Fant ikke filen.');}
   else if(['/foresporsel','/foresporsel/'].includes(path)){res.setHeader('X-Robots-Tag','noindex, nofollow');res.setHeader('Cache-Control','no-store');res.setHeader('Referrer-Policy','no-referrer');file=join(root,'public/enquiry.html');}
-  else if(['/admin','/admin/','/min-side','/min-side/'].includes(path)){res.setHeader('X-Robots-Tag','noindex, nofollow');file=join(root,'public/admin.html');}
+  else if(['/admin','/admin/','/min-side','/min-side/'].includes(path)){res.setHeader('X-Robots-Tag','noindex, nofollow');res.setHeader('Cache-Control','no-store');file=join(root,'public/admin.html');}
   else if(['/','/about','/topics','/booking','/contact','/pricing-and-services','/faq','/testimonials','/personvern'].includes(path.replace(/\/$/,'' )||'/'))file=join(root,'public/index.html');
   else {res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});return res.end('<!doctype html><html lang="nb"><title>Fant ikke siden</title><h1>Fant ikke siden</h1><p><a href="/">Gå til forsiden</a></p></html>');}
   if(!existsSync(file)||!statSync(file).isFile())fail(404,'Fant ikke filen.');
@@ -195,6 +203,9 @@ const server=http.createServer(async(req,res)=>{
   if(file===join(root,'public/index.html')){
    const site={...content(),bookingAvailable:active(),clientPortalAvailable:clientPortal},signedIn=Boolean(session(req,res)),rendered=renderPublicPage(site,path,signedIn);
    let html=readFileSync(file,'utf8').replace(/<title>[\s\S]*?<\/title>/,()=>`<title>${escapeHTML(rendered.title)}</title>`).replace(/<meta name="description" content="[^"]*">/,()=>`<meta name="description" content="${escapeHTML(rendered.description)}">`);
+   const origin=publicOrigin||`http://${req.headers.host}`;
+   const canonical=origin+(path.replace(/\/$/,'')||'/');
+   html=html.replace('</head>',()=>`<link rel="canonical" href="${escapeHTML(canonical)}"><meta property="og:type" content="website"><meta property="og:locale" content="nb_NO"><meta property="og:title" content="${escapeHTML(rendered.title)}"><meta property="og:description" content="${escapeHTML(rendered.description)}"><meta property="og:url" content="${escapeHTML(canonical)}"></head>`);
    html=html.replace('<header id="header"></header>',()=>`<header id="header">${rendered.header}</header>`).replace(/<main id="main">[\s\S]*?<\/main>/,()=>`<main id="main">${rendered.main}</main>`).replace('<footer id="footer"></footer>',()=>`<footer id="footer">${rendered.footer}</footer>`);
    const bootstrap=JSON.stringify({site,signedIn}).replace(/</g,'\\u003c');
    html=html.replace('</body>',()=>`<script id="site-data" type="application/json">${bootstrap}</script></body>`);

@@ -16,6 +16,10 @@ jobs:
       - run: npm run check
       - run: npm test
       - run: npm run staging:check
+      - name: Validate independent server and staging configuration
+        run: |
+          APP_ENV_FILE=.env.example docker compose --env-file .env.example config --quiet
+          APP_ENV_FILE=.env.example APP_PORT=3001 docker compose --env-file .env.example -p isaacwilliam-staging config --quiet
       - name: Build production image
         run: docker build --tag isaacwilliam-staging:${{ github.sha }} .
       - name: Smoke-test production image

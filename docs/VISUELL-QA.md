@@ -101,3 +101,8 @@ En separat kildekodekopi ble opprettet uten miljøfiler, runtime og node_modules
 Se STAGING-RESULTAT.md for testavgrensninger og SERVER-HANDOVER.md for vertens videre oppgaver. Docker-bygg og containerstart er lagt som obligatoriske steg i GitHub Actions; Docker finnes ikke lokalt i arbeidsmiljøet.
 
 GitHub Actions-kjøring 42323468095 passerte også Docker-bygg og Smoke-test production image for commit 916ab419c8e5fa133213c8bf9beee2638f758222. Dermed er containeroppsettet testet i tillegg til den rene Node-stagingkopien.
+
+
+## Full gjennomgang 8. november 2026
+
+Alle offentlige sider og eierinnlogging ble gjennomgått på desktop. Alle åtte hovedsider og innlogging ble kontrollert i Cloud Browser ved 320, 390 og 768 px med en utviklingsspesifikk iframe: 27 ferdiglastede visninger uten horisontal overflyt. Mobilmeny og Escape samt åpning av temaeksempler er testet. Produksjonen tilbyr ikke testvisningene. Se LAUNCH-AUDIT.md for testomfang og avgrensninger.

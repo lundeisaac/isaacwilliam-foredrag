@@ -27,3 +27,24 @@ header nav .mobile-booking{display:none}@media(max-width:1150px){header nav.open
 .section.narrow{max-width:960px}.message h4{margin:0 0 14px}.record-conversation form{max-width:850px}
 
 @media(min-width:1100px){.dashboard-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Keep navigation available if scripts are disabled or fail to load. */
+@media(max-width:1150px){html:not(.js-enabled) header nav{display:grid;grid-template-columns:1fr 1fr}html:not(.js-enabled) .menu-toggle{display:none}html:not(.js-enabled) header nav .mobile-booking{display:inline-flex}}
+@media(max-width:700px){html:not(.js-enabled) header nav{grid-template-columns:1fr}}
+.talk-list{min-width:0;border-top:1px solid var(--line)}
+.talk{border-bottom:1px solid var(--line)}
+.talk>summary{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;list-style:none;cursor:pointer;padding:24px 4px;min-height:56px}
+.talk>summary::-webkit-details-marker{display:none}
+.talk>summary:hover .talk-title{text-decoration:underline;text-underline-offset:.2em}
+.talk-label{display:grid;gap:7px;min-width:0}
+.talk-title{font-size:clamp(1.15rem,2vw,1.45rem);font-weight:650;line-height:1.3}
+.talk-subtitle{font-size:1rem;line-height:1.5}
+.talk-audience{font-size:.875rem;color:#454952;line-height:1.5}
+.talk[open] .plus{transform:rotate(45deg)}
+.talk-description{max-width:68ch;padding:0 4px 28px;font-size:1rem;line-height:1.65}
+.talk-description .button{margin-top:6px;white-space:normal;text-align:left}
+.topic-section:has(.talk-list){display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.25fr);align-items:start;gap:48px}
+.topic-section:has(.talk-list) .topic-heading h2{font-size:clamp(1.8rem,3vw,2.6rem)}
+@media(max-width:800px){.topic-section:has(.talk-list){display:grid;grid-template-columns:1fr;gap:24px}.talk>summary{padding:20px 2px;gap:18px}.talk-description{padding-left:2px;padding-right:2px}}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

@@ -31,7 +31,7 @@ test('complete private booking and content workflow',async()=>{
  // Server-rendered text and metadata are present without running JavaScript.
  r=await request('/about','GET',undefined,false);let html=await r.text();
  assert.match(html,/<title>Om Isaac William Tufte Lunde \| Isaac William Lunde<\/title>/);
- assert.match(html,/Erfaringer som gir rom for samtale/);
+ assert.match(html,/Erfaring, kunnskap og forebygging/);
  assert.equal((html.match(/<h1>/g)||[]).length,1);
  assert.doesNotMatch(html,/<a href="\/min-side">/);
  r=await request('/','GET',undefined,true);assert.match(await r.text(),/<a href="\/min-side">Mitt kontrollpanel<\/a>/);
@@ -109,7 +109,8 @@ test('all pages and local assets are served securely; reviews are anonymous and 
 
 test('email-first mode keeps owner data private and does not issue client links or require an account',async()=>{
  await stop();await start({DATA_DIR:join(dir,'email-first'),CLIENT_PORTAL_ENABLED:'false'});await login();let c=await(await request('/api/content')).json();assert.equal(c.clientPortalAvailable,false);c.settings.bookingEnabled=true;let r=await request('/api/admin/content','PUT',{revision:c.revision,content:c});assert.equal(r.status,200);
- r=await request('/api/enquiries','POST',{type:'booking',name:'Testperson',email:'client@example.invalid',organisation:'Testarrangør',organisationType:'Skole',topic:'Autisme',format:'Foredrag',audience:'Foresatte',date:'2099-05-21',location:'Digitalt',message:'Test av e-postflyt.',consent:true},false);assert.equal(r.status,201);const receipt=await r.json();assert.ok(!('portalToken' in receipt));assert.equal(receipt.emailQueued,false);
+ r=await request('/api/enquiries','POST',{type:'booking',name:'Testperson',email:'client@example.invalid',organisation:'Testarrangør',organisationType:'Skole',topic:'Eget tema / tilpasset foredrag',format:'Foredrag',audience:'Elever, 5.–7. trinn',date:'2099-05-21',location:'Digitalt',message:'Tilpasset foredrag om vennskap og det å begynne på en ny skole.',consent:true},false);assert.equal(r.status,201);const receipt=await r.json();assert.ok(!('portalToken' in receipt));assert.equal(receipt.emailQueued,false);
+ r=await request('/api/admin/enquiries');const saved=(await r.json()).enquiries.find(e=>e.id===receipt.id);assert.equal(saved.payload.topic,'Eget tema / tilpasset foredrag');assert.equal(saved.payload.audience,'Elever, 5.–7. trinn');assert.match(saved.payload.message,/vennskap og det å begynne på en ny skole/);
  r=await request('/api/enquiry-page','GET',undefined,false);assert.equal(r.status,404);
  for(const path of ['/api/admin/enquiries','/api/admin/email','/api/admin/export'])assert.equal((await request(path,'GET',undefined,false)).status,401);
  r=await request('/api/admin/email');assert.equal(r.status,200);const mail=await r.json();assert.equal(mail.enabled,false);assert.ok(!('options' in mail));assert.equal(mail.recent.length,0);

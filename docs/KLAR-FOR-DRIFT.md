@@ -1,27 +1,11 @@
-# Klar til serverstaging – ikke offentlig lansert
+# Klar for kontrollert staging – ikke offentlig lansering
 
-Status vurdert 7. november 2026.
+Oppdatert 10. november 2026. Se LAUNCH-AUDIT.md for kontrollresultater og konkrete begrensninger.
 
-## Ferdig og kontrollert
+Kandidaten har seks temaområder, 14 utvalgte foredragsforslag, egne temaønsker og innhold for barn, ungdom og voksne. Norsk tredjeperson, 13 anonymiserte tilbakemeldinger, originale lokale bilder, eierstyrt innhold og bookingadministrasjon er beholdt. Fakturareferansen er valgfri og forklart. Betaling skjer med ekstern faktura.
 
-- Alle åtte offentlige sider, originale bilder, korte temaintroduksjoner med 30 valgfrie undertemaer, konsekvent førsteperson og 13 genuine anonymiserte anmeldelser.
-- Eget passordbeskyttet eierkontrollpanel for innhold, priser, bilder, forespørsler, kalender, interne notater og e-poststatus. Klienter trenger ingen konto eller private lenker.
-- Google SMTP-utboks med kø, nye forsøk og Reply-To er implementert. E-post er avslått til autorisasjon og faktisk levering er kontrollert. Betaling skjer med ekstern faktura.
-- Ren kildekodekopi uten miljøfiler, kundedata eller installerte avhengigheter: `npm ci --ignore-scripts`, kodesjekk, 12 tester og sju produksjonskontroller passerer.
-- Produksjonskontrollen prøver manglende eierpassord, private API-grenser, Secure-økt, CSRF, sider/bilder, innholdsredigering, opplasting, eksport, kontofri booking, opptatt dato, omstart og gjenoppretting fra stoppet sikkerhetskopi.
-- GitHub Actions har bygget produksjonsimaget og startet en disponibel Docker-container med vellykket helsesjekk og beskyttede eierdata (kjøring 42323468095).
-- Ekte nettleserinnsending mot den rene staging-serveren ga kvittering som samsvarte med databasen. Bare fiktive `.invalid`-opplysninger ble brukt. Ingen e-post ble sendt, og testhenvendelsen ble fjernet.
+18 tester, sju produksjonskontroller og 30 responsive nettleserkontroller er bestått. Private data krever eierøkt. Ingen ekte e-post er sendt; nettstedets Google-autorisasjon er ikke verifisert. Hoveddomenet svarte 404 fra kontrollmiljøet. Den eksisterende FlowCreate-versjonen har mangler i kanoniske adresser og sidekart og trenger ny utrulling.
 
-## Det som gjenstår på den faktiske serveren
+PR #2 er merget til main; legacy-jekyll bevarer den gamle siden. Nyeste kandidat er samlet lokalt på staging/launch-review-20261110 med main innflettet. Opplasting er blokkert av GitHub-integrasjonens 403 og manglende terminalautentisering. Kildekodepakken med samlet patch er alternativ leveranse til en autorisert GitHub-bruker.
 
-1. Node 24 eller Docker, HTTPS-reversproxy, vedvarende lokal disk, hemmelig eierpassord og kontrollert sikkerhetskopiering.
-2. Autoriser Google Workspace som avsender for post@isaacwilliam.no. Eier opplyser at Workspace er knyttet til eierens Google-konto; den kontoen er ikke verifisert her som serverautorisasjon. Se EMAIL.md. Test både varsel, kvittering, Reply-To og faktisk innboksmottak.
-3. Fullfør virksomhets- og personvernopplysninger med den valgte driftsleverandøren, lagringstid og rutiner. Kontroller egne kontaktopplysninger og samtykker til publiserte anmeldelser.
-4. Test innlogging, skjema, redigering og sikkerhetskopiering på serverens staging-adresse. Eier må godkjenne dette før endelig åpning.
-5. Først etter godkjenning: koble endelig domene og åpne skjemaer. Ikke slett eller endre originalen på Durable som del av serveroppsettet.
-
-## Gren og gjennomgang
-
-Full kildekode ligger på `main` (PR #2 merget 2026-11-09). Den gamle Jekyll-versjonen ligger bak tag `legacy-jekyll`. Gjennomgangskopien på https://isaacwilliam-review.publickey1.chatgpt.site er statisk med stengte skjemaer og eierdemo med fiktive data; den er ikke en driftsserver.
-
-Se SERVER-HANDOVER.md for kort serveroverlevering og STAGING-RESULTAT.md for testbevis og avgrensninger.
+Før lansering: publiser kandidaten i GitHub og på faktisk staging, test Google-varsel og klientkvittering i innboks, fullfør personvern og korrekt fakturautsteder, kontroller eierinnlogging og backup, rett domeneruting og få eiergodkjenning. Ingen DNS, e-postkonfigurasjon eller originalside er endret her.

@@ -15,7 +15,7 @@ cp .env.example .env
 docker compose up -d --build
 ```
 
-Porten er bare bundet til `127.0.0.1:3000`. Sett en HTTPS-reversproxy foran. Bruk en egen testadresse som du allerede kontrollerer, eller en lokal nettleser for første test. `PUBLIC_ORIGIN` må være den nøyaktige origin-adressen i nettleseren, med protokoll og eventuell port, men uten avsluttende `/`. Ikke stol på videresendte klient-IP-headere uten egen proxykonfigurasjon: dagens forsøkssperre bruker tilkoblingens IP, slik at besøkende bak samme proxy deler innsending-/innloggingsgrensen.
+Porten er bare bundet til `127.0.0.1:3000`. Sett en HTTPS-reversproxy foran. Bruk en egen testadresse som du allerede kontrollerer, eller en lokal nettleser for første test. `PUBLIC_ORIGIN` må være den nøyaktige origin-adressen i nettleseren, med protokoll og eventuell port, men uten avsluttende `/`. Som standard bruker forsøkssperren tilkoblingens IP. Bak en reversproxy: aktiver `TRUST_PROXY=true`, og sett `TRUST_PROXY_IPS` til de konkrete IP-adressene som proxyen kobler fra. Proxyen må overskrive `X-Real-IP` med den faktiske klientadressen og fjerne besøkendes egen verdi. Applikasjonsporten skal bare være tilgjengelig fra proxyen. `X-Forwarded-For` blir aldri brukt. I Docker er proxyens adresse ofte broens gateway, ikke 127.0.0.1; finn den i det faktiske nettverket og oppgi kun den kjente adressen. Feil oppsett kan enten gi felles forsøkssperre eller la en klient unngå sperren. Test dette på verten før åpning.
 
 I produksjon må `NODE_ENV=production` brukes, slik at innloggingskapselen krever HTTPS. Appen bruker ingen tredjepartstjeneste for innsending. Driftsleverandøren får tilgang til serverlagrede data som del av driftsoppdraget.
 

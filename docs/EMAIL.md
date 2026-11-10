@@ -2,6 +2,10 @@
 
 Eieren bekreftet 7. november 2026 at adressen er **post@isaacwilliam.no**, ikke post@isaacwilliamlunde.no. Arbeidet med e-post er gjenopptatt. Google Workspace er eksisterende leverandør. Ingen DNS-endringer er gjort.
 
+## Kontroll 10. november 2026
+
+DNS viste Google MX, SPF med Google-inkludering, publisert google._domainkey og DMARC p=none. Dette bekrefter ikke aktiv DKIM-signering, SMTP-autorisasjon eller innboksmottak. Ingen DNS ble endret. Tilgjengelig Gmail-tilkobling er fortsatt en management-konto; nettstedets Google-sender er ikke autorisert i dette arbeidsmiljøet. FlowCreate-dokumentasjonen oppgir EMAIL_ENABLED=false. Se LAUNCH-AUDIT.md for funn på eksisterende server og gjenstående leveringsprøve.
+
 ## Status
 
 Eier opplyser at eierens Google-konto er knyttet til Workspace-oppsettet. Dette er notert som informasjon for kontotilgang; det er ikke bekreftet som autorisasjon for nettstedets SMTP-avsender post@isaacwilliam.no.
