@@ -1,0 +1,225 @@
+[
+  {
+    "path": [
+      "pages",
+      "home",
+      "sections",
+      4,
+      "links",
+      1,
+      "label"
+    ],
+    "before": "Se priser fra 2 000 kr",
+    "after": "Se priser fra 3 000 kr"
+  },
+  {
+    "path": [
+      "pages",
+      "pricing-and-services"
+    ],
+    "before": {
+      "title": "Priser og formater",
+      "sections": [
+        {
+          "kind": "hero",
+          "eyebrow": "",
+          "title": "Finn et format som passer",
+          "text": "Fra ett foredrag til en hel dag. Prisene nedenfor er veiledende; dere får et skriftlig tilbud før dere bestemmer dere.",
+          "images": [],
+          "links": [
+            {
+              "label": "Be om et pristilbud",
+              "href": "/booking"
+            }
+          ],
+          "items": []
+        },
+        {
+          "kind": "cards",
+          "eyebrow": "Foredragsformater",
+          "title": "Formater og fra-priser",
+          "text": "Velg en ramme å ta utgangspunkt i. Innholdet tilpasses publikum.",
+          "images": [],
+          "links": [],
+          "items": [
+            {
+              "title": "Foredrag · 45–60 min",
+              "text": "Fra 2 000 kr\n\nEtt avgrenset tema med formidling, eksempler og refleksjon tilpasset målgruppen. Tid til spørsmål avtales innenfor rammen."
+            },
+            {
+              "title": "Workshop · 1,5–3 timer",
+              "text": "Fra 3 500 kr\n\nEt mer deltakende opplegg med samtale og refleksjon. Innhold, gruppestørrelse og pauser avtales."
+            },
+            {
+              "title": "Seminar · 2–4 timer",
+              "text": "Fra 5 000 kr\n\nFordypning i ett eller flere temaer, med tid til spørsmål og diskusjon underveis."
+            },
+            {
+              "title": "Fagdag · 5–8 timer",
+              "text": "Fra 7 500 kr\n\nFlere økter med rom for fordypning og dialog. Program, målgrupper og pauser settes sammen etter avtale."
+            },
+            {
+              "title": "Panelsamtale · 45–90 min",
+              "text": "Fra 1 000 kr\n\nBidrag i en moderert samtale eller debatt om temaene i foredragskatalogen. Rolle, innhold og forberedelser avtales på forhånd."
+            },
+            {
+              "title": "Tilpasset opplegg",
+              "text": "Pris etter avtale\n\nFor arrangementer med flere målgrupper, kombinerte temaer eller annen tidsramme. Innhold og pris avklares ut fra behovet."
+            }
+          ]
+        },
+        {
+          "kind": "intro",
+          "eyebrow": "Viktig Informasjon",
+          "title": "Tydelig pris før dere bekrefter",
+          "text": "Prisene er veiledende fra-priser. Endelig totalpris, eventuell avgift og avtalte reise- og overnattingskostnader fremgår av det skriftlige tilbudet. Ingen booking er bekreftet før oppdraget er avtalt skriftlig.\n\nBetaling skjer med faktura, ikke på nettsiden. Fakturareferanse og betalingsfrist avklares i avtalen. Har dere et begrenset budsjett, kan dere beskrive rammene i forespørselen.",
+          "images": [],
+          "links": [],
+          "items": []
+        },
+        {
+          "kind": "intro",
+          "eyebrow": "",
+          "title": "Et opplegg innenfor deres rammer",
+          "text": "Oppgi budsjett, målgruppe og ønsket varighet i forespørselen. Kortere formater eller et avgrenset tema kan være aktuelle alternativer.",
+          "images": [],
+          "links": [
+            {
+              "label": "Spør om et tilbud",
+              "href": "/booking"
+            }
+          ],
+          "items": []
+        }
+      ]
+    },
+    "after": {
+      "title": "Priser og formater",
+      "sections": [
+        {
+          "kind": "hero",
+          "eyebrow": "",
+          "title": "Finn et format som passer",
+          "text": "Fra ett foredrag til en hel dag. Prisene nedenfor er veiledende; dere får et skriftlig tilbud før dere bestemmer dere.",
+          "images": [],
+          "links": [
+            {
+              "label": "Be om et pristilbud",
+              "href": "/booking"
+            }
+          ],
+          "items": []
+        },
+        {
+          "kind": "cards",
+          "eyebrow": "Foredragsformater",
+          "title": "Formater og fra-priser",
+          "text": "Velg en ramme å ta utgangspunkt i. Innholdet tilpasses publikum.",
+          "images": [],
+          "links": [],
+          "items": [
+            {
+              "title": "Foredrag · 45–60 min",
+              "text": "Fra 3 000 kr\n\nEtt avgrenset tema med formidling, eksempler og refleksjon tilpasset målgruppen. Tid til spørsmål avtales innenfor rammen."
+            },
+            {
+              "title": "Workshop · 1,5–3 timer",
+              "text": "Fra 5 000 kr\n\nEt mer deltakende opplegg med samtale og refleksjon. Innhold, gruppestørrelse og pauser avtales."
+            },
+            {
+              "title": "Seminar · 2–4 timer",
+              "text": "Fra 6 000 kr\n\nFordypning i ett eller flere temaer, med tid til spørsmål og diskusjon underveis."
+            },
+            {
+              "title": "Fagdag · 5–8 timer",
+              "text": "Fra 9 000 kr\n\nFlere økter med rom for fordypning og dialog. Program, målgrupper og pauser settes sammen etter avtale."
+            },
+            {
+              "title": "Panelsamtale · 45–90 min",
+              "text": "Fra 1 500 kr\n\nBidrag i en moderert samtale eller debatt om temaene i foredragskatalogen. Rolle, innhold og forberedelser avtales på forhånd."
+            },
+            {
+              "title": "Tilpasset opplegg",
+              "text": "Pris etter avtale\n\nFor arrangementer med flere målgrupper, kombinerte temaer eller annen tidsramme. Innhold og pris avklares ut fra behovet."
+            }
+          ]
+        },
+        {
+          "kind": "accordion",
+          "eyebrow": "Velg riktig format",
+          "title": "Hva innebærer de ulike formatene?",
+          "text": "Usikker på format? Beskriv arrangementet, så avklares et passende opplegg. Åpne et format for å lese mer.",
+          "images": [],
+          "links": [
+            {
+              "label": "Spør om et opplegg",
+              "href": "/booking"
+            }
+          ],
+          "items": [
+            {
+              "title": "Foredrag – et felles utgangspunkt",
+              "text": "Et samlet innlegg om ett avgrenset tema, med eksempler og refleksjon tilpasset publikum. Deltakerne lytter, og en eventuell spørsmålsrunde inngår i de avtalte 45–60 minuttene.\n\nEksempel: En elevsamling om utenforskap, eller en foreldrekveld om digital oppvekst. Tema, alder og ønsket fokus avklares på forhånd."
+            },
+            {
+              "title": "Workshop – deltakerne arbeider med temaet",
+              "text": "En veksling mellom korte innlegg og oppgaver, samtaler eller refleksjon i mindre grupper. Deltakerne får tid til å undersøke spørsmål og knytte dem til egen hverdag.\n\nEksempel: En ungdomsgruppe utforsker hva som skaper tilhørighet, eller ansatte diskuterer hvordan ulike behov kan møtes. Oppgaver, gruppestørrelse, pauser og nødvendig tilrettelegging avtales før gjennomføring. Varighet: 1,5–3 timer."
+            },
+            {
+              "title": "Seminar – fordypning med plass til diskusjon",
+              "text": "Et lengre opplegg med ett eller flere innlegg, utdypende eksempler og felles spørsmål og diskusjon. Hovedvekten ligger på formidling og samtale; et seminar krever ikke gruppeoppgaver slik en workshop vanligvis gjør.\n\nEksempel: En temakveld om autisme og psykisk helse for foresatte og ansatte. Temaer, forkunnskaper og rom for spørsmål avklares. Varighet: 2–4 timer, med avtalte pauser."
+            },
+            {
+              "title": "Fagdag – et sammensatt program",
+              "text": "En større ramme med flere økter gjennom dagen. Programmet kan kombinere foredrag, samtale og workshop, med pauser og tid til spørsmål. En fagdag betyr ikke ett sammenhengende foredrag på fem til åtte timer.\n\nEksempel: En planleggingsdag for ansatte med innlegg om utenforskap og tilrettelegging, etterfulgt av refleksjon rundt egen praksis. Mål, innhold, deltakere, pauser og ansvarsfordeling avtales i et konkret program. Varighet: 5–8 timer inkludert avtalte pauser."
+            },
+            {
+              "title": "Panelsamtale – et bidrag i deres program",
+              "text": "Isaac William deltar som paneldeltaker i en samtale ledet av en moderator. Innspill og perspektiver knyttes til det avtalte temaet, med plass til spørsmål fra moderator og eventuelt publikum.\n\nEksempel: En samtale om unges tilhørighet, psykisk helse eller digital oppvekst. Arrangøren stiller normalt med moderator og avklarer øvrige deltakere. Honorar gjelder deltakelse, ikke ledelse av hele arrangementet. Varighet: 45–90 minutter."
+            },
+            {
+              "title": "Tilpasset opplegg – når behovet ikke passer en ferdig ramme",
+              "text": "Et opplegg kan settes sammen for et bestemt tema, en annen varighet eller flere målgrupper. Forslagene på nettsiden er utgangspunkt for dialog, ikke de eneste mulighetene.\n\nEksempel: Et elevforedrag på dagtid og en egen foreldrekveld samme dag. Beskriv publikum, ønsket innhold, tidspunkt og budsjett. Omfang, gjennomførbarhet og totalpris avklares før en eventuell avtale."
+            }
+          ]
+        },
+        {
+          "kind": "intro",
+          "eyebrow": "Viktig Informasjon",
+          "title": "Tydelig pris før dere bekrefter",
+          "text": "Prisene er veiledende fra-priser. Endelig totalpris, eventuell avgift og avtalte reise- og overnattingskostnader fremgår av det skriftlige tilbudet. Ingen booking er bekreftet før oppdraget er avtalt skriftlig.\n\nBetaling skjer med faktura, ikke på nettsiden. Fakturareferanse og betalingsfrist avklares i avtalen. Har dere et begrenset budsjett, kan dere beskrive rammene i forespørselen.",
+          "images": [],
+          "links": [],
+          "items": []
+        },
+        {
+          "kind": "intro",
+          "eyebrow": "",
+          "title": "Et opplegg innenfor deres rammer",
+          "text": "Usikker på tema eller format? Oppgi målgruppe, ønsket varighet og budsjett i forespørselen. Et kortere format eller et avgrenset tema kan være aktuelt. Innhold og totalpris avklares før dere bestemmer dere.",
+          "images": [],
+          "links": [
+            {
+              "label": "Spør om et tilbud",
+              "href": "/booking"
+            }
+          ],
+          "items": []
+        }
+      ]
+    }
+  },
+  {
+    "path": [
+      "pages",
+      "faq",
+      "sections",
+      1,
+      "items",
+      4,
+      "text"
+    ],
+    "before": "Et foredrag starter fra 2 000 kr. Se prissiden for øvrige formater. Endelig totalpris, eventuell avgift og avtalte reisekostnader fremgår av tilbudet.",
+    "after": "Et foredrag starter fra 3 000 kr. Se prissiden for øvrige formater. Endelig totalpris, eventuell avgift og avtalte reisekostnader fremgår av tilbudet."
+  }
+]
