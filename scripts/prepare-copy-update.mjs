@@ -21,9 +21,9 @@ export function mergePublicCopy(current,changes){
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const [input,output,mode]=process.argv.slice(2);
- if(mode!==undefined&&!['featured','from-main'].includes(mode))throw new Error('Ukjent oppdatering. Bruk from-main fra den eldre main-versjonen, featured fra mellomversjonen, eller utelat valget for språkoppdateringen.');
+ if(mode!==undefined&&!['featured','from-main','prices-formats'].includes(mode))throw new Error('Ukjent oppdatering. Bruk from-main fra den eldre main-versjonen, featured fra mellomversjonen, eller utelat valget for språkoppdateringen.');
  if(!input||!output||resolve(input)===resolve(output))throw new Error('Bruk: node scripts/prepare-copy-update.mjs nåværende-eksport.json ny-import.json (ulike filer).');
- const updateFile=mode==='from-main'?'from-main-copy-update.json':mode==='featured'?'featured-selection-update.json':'professional-copy-update.json';
+ const updateFile=mode==='prices-formats'?'prices-formats-update.json':mode==='from-main'?'from-main-copy-update.json':mode==='featured'?'featured-selection-update.json':'professional-copy-update.json';
  const changes=JSON.parse(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)),'../content/'+updateFile)));
  const result=mergePublicCopy(JSON.parse(readFileSync(input)),changes);
  writeFileSync(output,JSON.stringify(result,null,2)+'\n',{flag:'wx',mode:0o600});
