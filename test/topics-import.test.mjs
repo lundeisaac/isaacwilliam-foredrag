@@ -6,6 +6,7 @@ import {mergePublicCopy} from '../scripts/prepare-copy-update.mjs';
 
 test('professional copy update preserves settings and edited reviews, and refuses conflicting owner copy',()=>{
  const seed=JSON.parse(readFileSync('content/site.json'));
+ for(const ch of JSON.parse(readFileSync('content/background-audience-update.json'))){let p=seed;for(const k of ch.path.slice(0,-1))p=p[k];p[ch.path.at(-1)]=structuredClone(ch.before);}
  const changes=JSON.parse(readFileSync('content/professional-copy-update.json'));
  const current=structuredClone(seed);
  const featured=JSON.parse(readFileSync('content/featured-selection-update.json'));
@@ -26,6 +27,7 @@ test('professional copy update preserves settings and edited reviews, and refuse
 });
 test('catalogue import preserves owner settings, other pages and customised homepage copy',()=>{
  const seed=JSON.parse(readFileSync('content/site.json'));
+ for(const ch of JSON.parse(readFileSync('content/background-audience-update.json'))){let p=seed;for(const k of ch.path.slice(0,-1))p=p[k];p[ch.path.at(-1)]=structuredClone(ch.before);}
  const original=structuredClone(seed);original.settings.email='owner@example.invalid';original.settings.bookingEnabled=true;
  original.pages.about.title='Min egen oppdatering';original.pages.home.sections[1].text='Min egen introduksjon';
  original.pages.topics.sections[1].items=[];
@@ -40,6 +42,7 @@ test('catalogue import preserves owner settings, other pages and customised home
 
 test('direct old-main upgrade preserves owner data, is repeatable and stops on edited copy',()=>{
  const seed=JSON.parse(readFileSync('content/site.json'));
+ for(const ch of JSON.parse(readFileSync('content/background-audience-update.json'))){let p=seed;for(const k of ch.path.slice(0,-1))p=p[k];p[ch.path.at(-1)]=structuredClone(ch.before);}
  const changes=JSON.parse(readFileSync('content/from-main-copy-update.json'));
  const old=structuredClone(seed);
  for(const change of changes){let parent=old;for(const key of change.path.slice(0,-1))parent=parent[key];parent[change.path.at(-1)]=structuredClone(change.before);}
@@ -58,4 +61,17 @@ test('direct old-main upgrade preserves owner data, is repeatable and stops on e
  assert.equal(old.pages.topics.sections[1].text,'Eierens tilpassede innhold');
  const malformed=structuredClone(old);delete malformed.pages.about;
  assert.throws(()=>mergePublicCopy(malformed,changes),/Egne endringer må gjennomgås/);
+});
+
+test('background update preserves settings and reviews, is idempotent and rejects edits',()=>{
+ const seed=JSON.parse(readFileSync('content/site.json')),changes=JSON.parse(readFileSync('content/background-audience-update.json'));
+ const before=structuredClone(seed);
+ for(const ch of changes){let p=before;for(const k of ch.path.slice(0,-1))p=p[k];p[ch.path.at(-1)]=structuredClone(ch.before);}
+ before.settings.bookingEnabled=true;before.pages.testimonials.sections[1].items[0].text='Approved owner review';
+ const next=mergePublicCopy(before,changes);
+ assert.deepEqual(next.settings,before.settings);assert.deepEqual(next.pages.testimonials,before.pages.testimonials);
+ assert.deepEqual(next.pages.about,seed.pages.about);assert.deepEqual(next.pages.topics,seed.pages.topics);
+ assert.deepEqual(mergePublicCopy(next,changes),next);
+ before.pages.about.sections[1].text='Owner has edited this';
+ assert.throws(()=>mergePublicCopy(before,changes),/Egne endringer/);
 });
