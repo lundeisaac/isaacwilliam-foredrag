@@ -26,7 +26,7 @@ async function emailView(){
  try{
   const mail=await api('/api/admin/email');
   if(tab!=='email')return;
-  const pref=mail.settings||{},canTest=mail.configured&&!demoRequest;
+  const pref=mail.settings||{},locked=Boolean(demoRequest||mail.configurationError),lockedAttr=locked?'disabled':'',canTest=mail.configured&&!locked;
   view.innerHTML=
    '<h2>E-post og Google Workspace</h2>'+
    '<p>Sett opp avsenderen direkte her. Forespørsler lagres i kontrollpanelet; e-postvarsler og kvitteringer sendes når du aktiverer sending. Kundesvar leses i Google Workspace.</p>'+
@@ -34,14 +34,16 @@ async function emailView(){
    '<p>Status: <strong>'+(mail.enabled?'Automatisk sending på':'Automatisk sending av')+'</strong> · '+
    (mail.configured?'Avsender konfigurert':'Mangler Google-app-passord')+'</p>'+
    (demoRequest?'<p class="notice">Dette er en demo. Oppsett og testsending krever innlogging på den virkelige serveren.</p>':'')+
+   (mail.configurationError?'<p class="notice" role="alert">'+e(mail.configurationError)+'</p>':'')+
+   (pref.source==='server'&&mail.configured?'<p class="small">Dette oppsettet styres av serverens miljøfil. For å administrere passordet her må du legge inn app-passordet på nytt; serverens hemmelighet kan ikke kopieres inn i skjemaet.</p>':'')+
    '<form id="mail-settings-form" autocomplete="off"><div class="row">'+
-   '<label>Avsenderadresse (Google Workspace)<input name="from" type="email" maxlength="254" required value="'+e(pref.from||mail.from||'post@isaacwilliam.no')+'" '+(demoRequest?'disabled':'')+'></label>'+
-   '<label>Varsler til (mottaker)<input name="owner" type="email" maxlength="254" required value="'+e(pref.owner||mail.owner||'post@isaacwilliam.no')+'" '+(demoRequest?'disabled':'')+'></label></div>'+
-   '<label>Google-app-passord<input name="appPassword" type="password" maxlength="128" autocomplete="new-password" placeholder="'+(pref.hasAppPassword?'La stå tomt for å beholde eksisterende passord':'Lim inn 16-tegns app-passord')+'" '+(demoRequest?'disabled':'')+'></label>'+
+   '<label>Avsenderadresse (Google Workspace)<input name="from" type="email" maxlength="254" required value="'+e(pref.from||mail.from||'post@isaacwilliam.no')+'" '+lockedAttr+'></label>'+
+   '<label>Varsler til (mottaker)<input name="owner" type="email" maxlength="254" required value="'+e(pref.owner||mail.owner||'post@isaacwilliam.no')+'" '+lockedAttr+'></label></div>'+
+   '<label>Google-app-passord<input name="appPassword" type="password" maxlength="128" autocomplete="new-password" placeholder="'+(pref.source==='admin'&&pref.hasAppPassword?'La stå tomt for å beholde lagret passord':'Lim inn Google-app-passord for dette panelet')+'" '+lockedAttr+'></label>'+
    '<p class="small">Bruk et app-passord fra Google Workspace, ikke det vanlige Google-passordet. SMTP er låst til smtp.gmail.com på port 465 med TLS. Passordet vises aldri på nytt i kontrollpanelet.</p>'+
-   '<label class="check"><input name="enabled" type="checkbox" '+(pref.enabled?'checked':'')+' '+(demoRequest?'disabled':'')+'><span>Aktiver automatiske e-postvarsler og kundekvitteringer</span></label>'+
+   '<label class="check"><input name="enabled" type="checkbox" '+(pref.enabled?'checked':'')+' '+lockedAttr+'><span>Aktiver automatiske e-postvarsler og kundekvitteringer</span></label>'+
    '<p class="small">Lagre oppsettet først og test det før sending aktiveres. Oppsettet lagres privat på serveren, ikke i nettsideinnholdet eller GitHub. Booking- og kontaktskjemaene åpnes ikke av denne bryteren.</p>'+
-   '<button class="button" type="submit" '+(demoRequest?'disabled':'')+'>Lagre e-postoppsett</button><p class="form-status" id="mail-save-result" role="status"></p></form></section>'+
+   '<button class="button" type="submit" '+lockedAttr+'>Lagre e-postoppsett</button><p class="form-status" id="mail-save-result" role="status"></p></form></section>'+
    '<section class="panel"><h3>Test Google Workspace</h3><p>Kontroller forbindelsen først. Send deretter en ekte testmelding til en adresse du selv kontrollerer, og sjekk innboks og søppelpost. SMTP-svar bekrefter ikke innbokslevering.</p>'+
    '<button id="verify-email" type="button" class="button secondary mini" '+(canTest?'':'disabled')+'>Test SMTP-tilkobling</button>'+
    '<form id="mail-test-form"><div class="row"><label>Testmottaker<input name="to" type="email" maxlength="254" placeholder="din-testadresse@eksempel.no" required '+(canTest?'':'disabled')+'></label>'+
@@ -50,7 +52,7 @@ async function emailView(){
    '<div><span>Akseptert av e-postserver</span><strong>'+Number(mail.counts.sent)+'</strong></div>'+
    '<div><span>Feilet etter forsøk</span><strong>'+Number(mail.counts.failed)+'</strong></div></div>'+
    '<p class="small">Meldinger blir liggende i kontrollpanelet selv om e-postsending feiler. Sendt-status betyr ikke at mottakeren har lest meldingen.</p>'+
-   '<button id="retry-email" class="button secondary mini" '+(mail.enabled&&mail.counts.failed&&!demoRequest?'':'disabled')+'>Prøv feilede e-poster på nytt</button> '+
+   '<button id="retry-email" class="button secondary mini" '+(mail.enabled&&mail.counts.failed&&!locked?'':'disabled')+'>Prøv feilede e-poster på nytt</button> '+
    '<button id="refresh-email" class="button secondary mini">Oppdater status</button>'+
    '<div class="panel"><h3>Siste leveringsforsøk</h3>'+
    (mail.recent.length?mail.recent.map(j=>'<p>'+e(j.kind==='owner'?'Varsel til deg':'Kvittering til arrangør')+' · '+e(j.recipient)+' · '+e(j.status)+(j.error_code?' ('+e(j.error_code)+')':'')+'</p>').join(''):'<p>Ingen e-poster er lagt i kø ennå.</p>')+

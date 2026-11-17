@@ -1,7 +1,7 @@
 import {test,before,after} from 'node:test';
 import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
-import {mkdtempSync,rmSync} from 'node:fs';
+import {mkdtempSync,rmSync,renameSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {randomBytes} from 'node:crypto';
@@ -64,4 +64,29 @@ test('admin mail setup has auth/CSRF, encrypted storage, no secret echoes and su
  assert.equal(r.body.settings.owner,'other@example.no');
  assert.equal(r.body.settings.hasAppPassword,true);
  assert.equal(JSON.stringify(r.body).includes(secret),false);
+ // The encrypted credential must never turn a lost-key incident into a public outage.
+ await stop();
+ const keyFile=join(temp,'.mail-settings.key'),keyBackup=keyFile+'.backup';
+ renameSync(keyFile,keyBackup);
+ await start();await login();
+ r=await request('/api/content');
+ assert.equal(r.status,200,'public pages and content remain available after key loss');
+ assert.equal(r.body.bookingAvailable,false);
+ r=await request('/api/admin/email','GET',undefined,true);
+ assert.equal(r.status,200);
+ assert.equal(r.body.enabled,false,'outbound email stays off instead of falling back to env SMTP');
+ assert.equal(r.body.settings.source,'recovery-required');
+ assert.match(r.body.configurationError,/Gjenopprett/);
+ assert.equal((await request('/api/admin/email/verify','POST',{},true)).status,503);
+ assert.equal((await request('/api/admin/email/test','POST',{to:'owner@example.no'},true)).status,503);
+ assert.equal((await request('/api/admin/email/settings','PUT',settings,true)).status,503);
+ await stop();
+ renameSync(keyBackup,keyFile);
+ await start();await login();
+ r=await request('/api/admin/email','GET',undefined,true);
+ assert.equal(r.status,200);
+ assert.equal(r.body.settings.source,'admin');
+ assert.equal(r.body.enabled,true);
+ assert.equal(r.body.settings.owner,'other@example.no');
+ assert.equal(r.body.configurationError,null);
 });
