@@ -2,6 +2,10 @@
 
 Et selvstendig norskspråklig nettsted for foredrag, med egen innholdsredigering, bookingadministrasjon og drift på en server du velger. Sider, bilder, skrifter og data leveres av denne applikasjonen. Durable er bare historisk designreferanse og kreves ikke for drift, redigering eller publisering. Planlagt domene er **isaacwilliam.no**, og kontaktadressen er **post@isaacwilliam.no**. Ingen DNS-poster er endret, og Durable-nettsiden er ikke endret eller slettet.
 
+## Gjeldende sluttkontroll
+
+Se [gjenstående lanseringsarbeid for Christer og Devin](docs/REMAINING-LAUNCH-TASKS.md). Eier har bekreftet innlogging og begge skjema-/e-posttester, og har endret priser i dashboardet. Bevar databaseinnholdet ved utrulling; eldre statusrapporter er historiske.
+
 ## Start her
 
 Repositoryet eies av **lundeisaac**. Den tidligere rekonstruksjonen er merget til `main` via PR #2; den gamle Jekyll-versjonen er bevart som `legacy-jekyll`. Den nyeste lanseringskandidaten samles på `staging/launch-review-20261110`, med oppdatert innhold og driftsrettinger. Kontroller publiseringsstatus i [siste gjennomgang](docs/LAUNCH-AUDIT.md) før henting.
