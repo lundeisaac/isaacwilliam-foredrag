@@ -37,8 +37,14 @@ function configuredEmail(){
   GOOGLE_CLIENT_ID:'',GOOGLE_CLIENT_SECRET:'',GOOGLE_REFRESH_TOKEN:'',SMTP_RELAY_IP_AUTH:'false'}):emailConfig();
 }
 let mailConfig=configuredEmail(),email=createEmailService(db,mailConfig);
+let emailDrainActive=false;
+async function drainEmail(){
+ if(emailDrainActive)return;
+ emailDrainActive=true;
+ try{await email.drain();}finally{emailDrainActive=false;}
+}
 const clientPortal=process.env.CLIENT_PORTAL_ENABLED==='true';
-const emailTimer=setInterval(()=>email.drain().catch(()=>{}),15000);emailTimer.unref();
+const emailTimer=setInterval(()=>drainEmail().catch(()=>{}),15000);emailTimer.unref();
 const prod=process.env.NODE_ENV==='production';
 const publicOrigin=process.env.PUBLIC_ORIGIN||'';
 if(prod){let origin;try{origin=new URL(publicOrigin);}catch{}if(!origin||origin.protocol!=='https:'||origin.origin!==publicOrigin)throw new Error('PUBLIC_ORIGIN må være en HTTPS-origin uten sti eller avsluttende skråstrek i produksjon.');}
@@ -141,7 +147,7 @@ const server=http.createServer(async(req,res)=>{
    }
    if(req.method==='GET'&&path.startsWith('/api/brreg/')){rate('brreg:'+ip,30,3600000);const nr=decodeURIComponent(path.slice(11)).replace(/\D/g,'');if(!/^\d{9}$/.test(nr))fail(400,'Organisasjonsnummer må ha ni sifre.');return reply(res,200,await brreg(nr));}
    if(req.method==='POST'&&path==='/api/enquiries'){
-    if(!active())fail(503,'Skjemaet er ikke åpnet ennå. Ta kontakt på e-post.');rate('submit:'+ip,10,3600000);let b=await body(req,20000);if(b.website)fail(400,'Kunne ikke sende forespørselen.');let payload={...enquiry(b),privacyRevision:content().revision,privacyAcknowledgedAt:new Date().toISOString()};let id=randomUUID(),now=new Date().toISOString();const access=transaction(()=>{db.prepare('INSERT INTO enquiries(id,created,updated,status,payload) VALUES(?,?,?,?,?)').run(id,now,now,'Ny',JSON.stringify(payload));email.enqueue(id,payload,content().settings);return clientPortal?newAccess(id):null;});setImmediate(()=>email.drain().catch(()=>{}));return reply(res,201,{id,...(access?{portalToken:access.token,portalExpires:access.expires}:{}),emailQueued:mailConfig.enabled,message:'Forespørselen er mottatt. Dette er ikke en bekreftet booking.'});
+    if(!active())fail(503,'Skjemaet er ikke åpnet ennå. Ta kontakt på e-post.');rate('submit:'+ip,10,3600000);let b=await body(req,20000);if(b.website)fail(400,'Kunne ikke sende forespørselen.');let payload={...enquiry(b),privacyRevision:content().revision,privacyAcknowledgedAt:new Date().toISOString()};let id=randomUUID(),now=new Date().toISOString();const access=transaction(()=>{db.prepare('INSERT INTO enquiries(id,created,updated,status,payload) VALUES(?,?,?,?,?)').run(id,now,now,'Ny',JSON.stringify(payload));email.enqueue(id,payload,content().settings);return clientPortal?newAccess(id):null;});setImmediate(()=>drainEmail().catch(()=>{}));return reply(res,201,{id,...(access?{portalToken:access.token,portalExpires:access.expires}:{}),emailQueued:mailConfig.enabled,message:'Forespørselen er mottatt. Dette er ikke en bekreftet booking.'});
    }
    if(path==='/api/enquiry-page'){
     if(!clientPortal)fail(404,'Denne nettsiden bruker e-post til oppfølging.');
@@ -184,7 +190,7 @@ const server=http.createServer(async(req,res)=>{
      const input=await body(req,2000);
      return reply(res,200,await email.sendTest(input.to));
     }
-   if(req.method==='POST'&&path==='/api/admin/email/retry'){email.retry();setImmediate(()=>email.drain().catch(()=>{}));return reply(res,200,{ok:true});}
+   if(req.method==='POST'&&path==='/api/admin/email/retry'){email.retry();setImmediate(()=>drainEmail().catch(()=>{}));return reply(res,200,{ok:true});}
    if(req.method==='PUT'&&path==='/api/admin/content'){
     let b=await body(req);validateContent(b.content);let row=db.prepare('SELECT * FROM content WHERE id=1').get();if(row.revision!==b.revision)fail(409,'Innholdet er endret. Last inn siden på nytt før du lagrer.');
     let serialized=JSON.stringify({settings:b.content.settings,pages:b.content.pages});db.exec('BEGIN IMMEDIATE');try{db.prepare('INSERT INTO content_history(json,created) VALUES(?,?)').run(row.json,new Date().toISOString());db.prepare('UPDATE content SET json=?,revision=revision+1 WHERE id=1').run(serialized);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}return reply(res,200,{revision:row.revision+1});
