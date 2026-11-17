@@ -15,7 +15,7 @@
         {
           "kind": "hero",
           "title": "Foredrag om psykisk helse, autisme og utenforskap",
-          "text": "Isaac William Lunde holder foredrag for barn, ungdom og voksne om mobbing, autisme, psykisk helse, digital oppvekst, kropp og identitet. Innholdet tilpasses skoler, fritidsmiljøer, foresatte, arbeidsplasser og organisasjoner, med forståelse, forebygging og læring som formål.",
+          "text": "Isaac William Lunde holder foredrag for barn, ungdom og voksne om mobbing, autisme, psykisk helse, selvskading og selvmordstanker, digital oppvekst, kropp og identitet. Innholdet tilpasses skoler, fritidsmiljøer, foresatte, arbeidsplasser og organisasjoner, med forståelse, forebygging og læring som formål.",
           "items": [],
           "links": [
             {
@@ -54,7 +54,7 @@
             },
             {
               "title": "Selvskading og selvmordstanker",
-              "text": "Forståelse av psykisk smerte og hvordan voksne kan møte mennesker som strever."
+              "text": "Om psykisk smerte, skam, håp og det å søke støtte. For elever, ungdom, foresatte og ansatte, med innhold og språk tilpasset målgruppen."
             },
             {
               "title": "Digital oppvekst og relasjoner",
@@ -157,7 +157,7 @@
         {
           "kind": "hero",
           "title": "Isaac William Tufte Lunde",
-          "text": "Foredragsholder om mobbing, autisme, psykisk helse, digital oppvekst, kropp og identitet. Opplegg for barn, ungdom og voksne i skole, fritid og arbeidsliv.",
+          "text": "Foredrag om mobbing i skole og arbeidsliv, autisme, psykisk helse, selvskading og selvmordstanker, digital oppvekst, kropp og identitet.",
           "items": [],
           "links": [
             {
@@ -175,26 +175,12 @@
         },
         {
           "kind": "intro",
-          "title": "Erfaring, kunnskap og forebygging",
-          "text": "Isaac William kombinerer personlige erfaringer med relevant forskning og statistikk der det bidrar til å belyse temaet. Tall og fagkunnskap settes i sammenheng med situasjoner publikum kan forstå og kjenne igjen. Målet er å informere, forebygge og gi bedre forståelse av menneskene temaene angår.\n\nHan er autist og opplevde mobbing og sosial ekskludering gjennom 14 år. Bakgrunnen omfatter også psykiske utfordringer og arbeid på hjelpetelefon for unge. Isaac William er sertifisert i førstehjelp ved selvmordsfare.\n\nIsaac William er åpen om å være trans. Kjønnsidentitet, normer og tilhørighet er også aktuelle temaer i foredragene.",
+          "title": "Erfaring som gir temaene et ansikt",
+          "text": "Isaac William Tufte Lunde formidler om utenforskap, psykiske belastninger og tilhørighet gjennom foredrag for elever, ungdom og voksne. Bakgrunnen omfatter egne erfaringer, arbeid i skole og barnehage og erfaring fra hjelpetelefon for unge.\n\nForedragene kombinerer konkrete situasjoner med relevant forskning og statistikk. Målet er å informere, forebygge og gjøre det lettere å snakke om det som er vanskelig.",
           "items": [],
           "links": [],
           "images": [],
           "eyebrow": ""
-        },
-        {
-          "kind": "intro",
-          "eyebrow": "Foredragserfaring",
-          "title": "Erfaring fra ulike arenaer",
-          "text": "Isaac William har over sju års erfaring med formidling og foredragsrelatert arbeid for skoler, bibliotek, kommuner og ungdomsorganisasjoner. Han bidrar også i panelsamtaler, på konferanser og i mindre grupper.\n\nInnhold og form tilpasses arrangementet, enten det er et foredrag for barn i skolen, en ungdomsgruppe, et foreldremøte eller en fagdag for ansatte.",
-          "items": [],
-          "images": [],
-          "links": [
-            {
-              "label": "Se foredragstemaene",
-              "href": "/topics"
-            }
-          ]
         },
         {
           "kind": "intro",
@@ -220,39 +206,21 @@
           ]
         },
         {
-          "kind": "cards",
-          "title": "Tydelig innhold. Tilpasset publikum.",
-          "text": "",
-          "items": [
-            {
-              "title": "Tilgjengelig formidling",
-              "text": "Konkrete eksempler og forklaringer gjør krevende temaer lettere å forstå."
-            },
-            {
-              "title": "Relevant for målgruppen",
-              "text": "Alder, forkunnskaper og arrangementets formål styrer innhold og språk."
-            },
-            {
-              "title": "Rom for refleksjon",
-              "text": "Tid til spørsmål og samtale avtales som en del av programmet."
-            }
-          ],
-          "links": [],
-          "images": [],
-          "eyebrow": ""
-        },
-        {
           "kind": "accordion",
-          "title": "Bakgrunn og målgrupper",
-          "text": "Mer om bakgrunnen for foredragene og hvilke arrangementer de passer for.",
+          "title": "Bakgrunn og erfaring",
+          "text": "Les mer om erfaringene som ligger til grunn for foredragene.",
           "items": [
             {
               "title": "Personlig bakgrunn",
-              "text": "Isaac William Tufte Lunde vokste opp på bygda og opplevde mobbing og sosial ekskludering gjennom 14 år. Han har også beskrevet presset om å delta i utestenging av andre for selv å få tilhørighet.\n\nErfaringer med autisme, depresjon, angst, tvangslidelse og spiseforstyrrelse er en del av bakgrunnen for formidlingen. Han har en historie med selvskading og selvmordsforsøk og lever med kroniske selvmordstanker. Dette gir foredragene et nært perspektiv på psykiske belastninger og betydningen av støtte.\n\nOppveksten på 2000-tallet, med fremveksten av sosiale medier, er også bakgrunn for foredragene om nettkultur og digitale relasjoner."
+              "text": "Isaac William vokste opp på bygda og opplevde mobbing og sosial ekskludering gjennom 14 år. Han har også beskrevet presset om å delta i utestenging av andre for selv å få tilhørighet. Erfaringene gir bakgrunn for å snakke om makt, gruppepress og hvordan mobbing rammer – både i skolen og blant voksne.\n\nHan er autist og har erfaring med depresjon, angst, tvangslidelse og spiseforstyrrelse. Maskering, sansebelastning, forholdet til kropp og mat og det å fungere utad når man strever, er derfor konkrete innganger til temaene.\n\nHan har en historie med selvskading og selvmordsforsøk og lever med kroniske selvmordstanker. I foredragene brukes denne bakgrunnen til å belyse psykisk smerte, reaksjoner fra omgivelsene og det å søke støtte. Disse foredragene holdes også for elever og ungdom, med innhold tilpasset alderen.\n\nIsaac William er åpen om å være trans. Det gir et personlig perspektiv på kjønnsidentitet, normer og det å bli møtt med respekt. Oppveksten med sosiale medier og digitale fellesskap er også en del av bakgrunnen for foredragene om nettliv og relasjoner."
             },
             {
-              "title": "Hvilke arrangementer passer foredragene for?",
-              "text": "Skoleforedrag, foreldremøter, ungdomsarrangementer, biblioteker, arbeidsplasser, kommuner og organisasjoner. Tema, målgruppe og format avklares før et oppdrag bekreftes."
+              "title": "Arbeidserfaring og opplæring",
+              "text": "Isaac William har arbeidserfaring fra skole og barnehage. Dette gir kjennskap til barns hverdag i organiserte fellesskap og møtene mellom barn og voksne. Han har også arbeidet som bartender.\n\nErfaring fra hjelpetelefon for unge inngår i bakgrunnen for foredragene om psykisk helse og vanskelige samtaler. Han er sertifisert i førstehjelp ved selvmordsfare. Foredragene er formidling og forebygging, ikke behandling eller klinisk opplæring."
+            },
+            {
+              "title": "Hvem er foredragene for?",
+              "text": "Elever, ungdomsgrupper, foresatte, ansatte og ledere. Mobbing behandles både som et skolemiljøproblem og som en utfordring i arbeidslivet. Selvskading og selvmordstanker er et eget hovedtema med opplegg for ungdom og voksne. Språk, eksempler og rammer avtales med arrangøren."
             }
           ],
           "links": [],
@@ -305,7 +273,7 @@
             },
             {
               "title": "Selvskading og selvmordstanker",
-              "text": "Forståelse av psykisk smerte og hvordan voksne kan møte mennesker som strever."
+              "text": "Om psykisk smerte, skam, håp og det å søke støtte. For elever, ungdom, foresatte og ansatte, med innhold og språk tilpasset målgruppen."
             },
             {
               "title": "Digital oppvekst og relasjoner",
@@ -335,9 +303,9 @@
             {
               "id": "fellesskapet-stenger-doren",
               "title": "Når fellesskapet stenger døren",
-              "summary": "Utestenging, makt og tilhørighet blant voksne",
+              "summary": "Mobbing og utestenging på arbeidsplassen",
               "caption": "For arbeidsplasser, ledere, kommuner og organisasjoner",
-              "text": "Uskrevne regler, makt og små avvisninger kan stenge mennesker ute fra et fellesskap. Her undersøkes hvordan sosial ekskludering kommer til uttrykk blant voksne, og hva tilhørighet betyr på en arbeidsplass eller i en organisasjon. Publikum inviteres til å reflektere over egen kultur, inkludering og ansvar."
+              "text": "Når kolleger holdes utenfor møter, latterliggjøres eller stadig får sin kompetanse undergravd, kan mobbing bli en del av arbeidsmiljøet. Foredraget tar opp maktforhold, tilskuernes rolle og forskjellen mellom uenighet og gjentatt nedverdigelse. Et utgangspunkt for samtale om arbeidsplassens kultur og ansvar."
             }
           ]
         },
@@ -385,14 +353,14 @@
               "title": "Det synes ikke alltid",
               "summary": "Psykisk helse bak fasaden",
               "caption": "For ungdomsskole, videregående og ungdomsgrupper; også foresatte og ansatte",
-              "text": "Angst, depresjon og andre psykiske belastninger er ikke alltid synlige i skole eller arbeidsliv. Her belyses presset om å fungere, skam og barrierer mot å be om hjelp. Foredraget setter ord på det som kan være vanskelig å oppdage, og på betydningen av å bli lyttet til og tatt på alvor."
+              "text": "Hvordan kan angst, depresjon og tvangstanker påvirke skolegang, jobb og relasjoner uten at andre merker det? Foredraget tar opp skjulte symptomer, varierende kapasitet og misforståelsen om at synlig prestasjon betyr at alt går bra."
             },
             {
               "id": "nar-gode-rad-ikke-hjelper",
               "title": "Når gode råd ikke hjelper",
               "summary": "Å lytte når noen har det vanskelig",
               "caption": "For eldre ungdom, foresatte, ansatte og frivillige",
-              "text": "Gode intensjoner er ikke alltid nok i en vanskelig samtale. Dette foredraget utforsker lytting, raske råd, taushet og frykten for å si noe feil. Ungdom kan få et utgangspunkt for å være en støttende venn og vite når voksne må involveres. Egne vinklinger passer for foresatte, ansatte og frivillige."
+              "text": "«Tenk positivt» og raske løsninger kan gjøre en vanskelig samtale enda vanskeligere. Gjennom eksempler undersøkes hva som skjer når bekymring møtes med bagatellisering, og hvordan lytting og åpne spørsmål kan gi en annen samtale. Også om grenser for eget ansvar som venn eller pårørende."
             }
           ]
         },
@@ -400,7 +368,7 @@
           "kind": "accordion",
           "eyebrow": "",
           "title": "Selvskading og selvmordstanker",
-          "text": "Forståelse av psykisk smerte og hvordan voksne kan møte mennesker som strever.",
+          "text": "Om psykisk smerte, skam, håp og det å søke støtte. For elever, ungdom, foresatte og ansatte, med innhold og språk tilpasset målgruppen.",
           "images": [],
           "links": [],
           "items": [
@@ -408,15 +376,15 @@
               "id": "nar-smerten-ikke-har-ord",
               "title": "Når smerten ikke har ord",
               "summary": "Å forstå selvskading",
-              "caption": "For foresatte og voksne som møter ungdom",
-              "text": "Hva kan selvskading være et uttrykk for, og hvordan kan voksne møte det uten å forsterke skam? Foredraget tar for seg psykisk smerte, reaksjoner fra omgivelsene og betydningen av støtte. Innholdet er rettet mot voksne og formidles uten metodebeskrivelser. Publikum og praktiske rammer avklares på forhånd."
+              "caption": "For elever, ungdom, foresatte og ansatte",
+              "text": "Selvskading kan være vanskelig å forstå og vanskelig å fortelle om. Her handler det om følelsene bak handlingene, skam, vanlige misforståelser og hva reaksjoner fra venner og voksne kan bety. For ungdom inngår det å finne ord og oppsøke støtte; for voksne også hvordan bekymring kan tas opp. Ingen metodebeskrivelser."
             },
             {
               "id": "mote-noen-som-ikke-orker-mer",
               "title": "Å møte noen som ikke orker mer",
               "summary": "Selvmordstanker og det å bli møtt",
-              "caption": "For voksne i skoler, kommuner, organisasjoner og familier",
-              "text": "Taushet, håpløshet og frykt for andres reaksjoner kan gjøre selvmordstanker vanskelige å fortelle om. Foredraget belyser hvordan det kan oppleves å søke støtte, og betydningen av å bli tatt på alvor og få kontakt med hjelp. Beregnet for voksne; innholdet tilpasses arrangementet. Foredraget er ikke klinisk opplæring i risikovurdering."
+              "caption": "For elever, ungdom, foresatte og ansatte",
+              "text": "Hvordan kan livet oppleves når håpløsheten tar over, og hva gjør det vanskelig å fortelle om selvmordstanker? Foredraget handler om ambivalens, det å bli tatt på alvor og veier til hjelp. Ungdomsopplegg tar også opp bekymring for en venn og hvorfor ansvaret må deles med en trygg voksen. Innholdet tilpasses alder; dette er ikke klinisk risikovurdering."
             }
           ]
         },
