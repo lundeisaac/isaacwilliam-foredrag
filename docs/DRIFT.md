@@ -25,14 +25,14 @@ I produksjon må `NODE_ENV=production` brukes, slik at innloggingskapselen kreve
 - Kontroller kontaktopplysninger, priser, kvalifikasjoner og biografitekst. Originalens påstander er bevart; de må vurderes av eieren.
 - Bekreft oversettelser og anonymisering av de 13 unike tilbakemeldingene. Oppbevar samtykkene privat, utenfor repositoryet.
 - Fullfør personverninformasjonen med virksomhet/behandlingsansvarlig, valgt driftsleverandør, behandlingsgrunnlag, konkret lagringstid, sletting og håndtering av rettighetsforespørsler.
-- Google Workspace-sending er klargjort, men ikke autorisert eller verifisert mot en ekte postkasse. Se `EMAIL.md` for sikker serverautorisasjon og test. Nettsiden oppretter ikke en postkasse eller endrer DNS. Behold sending av til kontotilgang og faktisk levering er verifisert.
+- Google Workspace kan nå settes opp direkte i `/min-side` → **E-post**, med avsender, varselmottaker og app-passord. Test tilkoblingen og en reell testmelding før automatisk sending aktiveres. Se `EMAIL.md` for sikker lagring, serverbasert fallback og leveringsprøve. Nettsiden oppretter ingen postkasse eller endrer DNS.
 - Sett `BOOKING_ENABLED=true` og aktiver skjemaene i admin **i et testmiljø**. Send en testbooking og en kontaktmelding, kontroller mottak og personvern, endre status og pris, bekreft dato, sjekk at datoen blir opptatt, og slett testopplysningene.
 - Test opplasting av bilde, innholdslagring og innholdseksport. Test omstart med bevart database og bilder.
 - Test gjenoppretting fra sikkerhetskopi. Opprett en rutine for å lese nye forespørsler og leveringsfeil. E-postutboksen varsler først etter at serverens autorisasjon og sending er aktivert.
 
 ## 3. Sikkerhetskopiering og gjenoppretting
 
-Sikkerhetskopier hele `DATA_DIR`: databasen, eventuelle `-wal`/`-shm`-filer og `uploads/`. En konsistent, enkel metode er å stoppe appen kort, kopiere hele datamappen sikkert og starte appen igjen. Ikke kopier bare SQLite-hovedfilen mens serveren skriver.
+Sikkerhetskopier hele `DATA_DIR`: databasen, eventuelle `-wal`/`-shm`-filer og `uploads/`. Ta også med den private `.mail-settings.key` dersom eier har konfigurert Google Workspace i kontrollpanelet. Den ligger i samme datavolum som kryptert SMTP-oppsett, og hele volumet må sikkerhetskopieres og beskyttes kryptert. En konsistent, enkel metode er å stoppe appen kort, kopiere hele datamappen sikkert og starte appen igjen. Ikke kopier bare SQLite-hovedfilen mens serveren skriver.
 
 Krypter sikkerhetskopier, begrens tilgang og oppbevar dem utenfor webrot og GitHub. Avtal en slettetid også for sikkerhetskopier. Gjenopprett til en stoppet app med samme datamappeoppsett og korrekte filtillatelser; start så og verifiser innhold og forespørsler. En innholdseksport fra admin er nyttig, men erstatter ikke database- og bildebackup.
 

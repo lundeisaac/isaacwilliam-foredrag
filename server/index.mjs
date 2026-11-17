@@ -1,6 +1,7 @@
 import http from 'node:http';
 import {isIP} from 'node:net';
 import {emailConfig,initEmailOutbox,createEmailService} from './email.mjs';
+import {initMailSettings} from './mail-settings.mjs';
 import {renderPublicPage,escape as escapeHTML} from '../public/assets/app.js';
 import {visualPage} from './visual-qa.mjs';
 import { DatabaseSync } from 'node:sqlite';
@@ -27,8 +28,36 @@ CREATE TABLE IF NOT EXISTS auth_config(id INTEGER PRIMARY KEY CHECK(id=1),salt B
 CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY, csrf TEXT NOT NULL, expires INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS throttle(key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset INTEGER NOT NULL);`);
 if(!db.prepare('SELECT id FROM content WHERE id=1').get())db.prepare('INSERT INTO content(id,json) VALUES(1,?)').run(readFileSync(join(root,'content/site.json'),'utf8'));
-initEmailOutbox(db);const mailConfig=emailConfig(),email=createEmailService(db,mailConfig);const clientPortal=process.env.CLIENT_PORTAL_ENABLED==='true';
-const emailTimer=setInterval(()=>email.drain().catch(()=>{}),15000);emailTimer.unref();
+initEmailOutbox(db);
+const mailSettings=initMailSettings(db,dataDir);
+let mailRecoveryError='';
+function configuredEmail(){
+ try{
+  const saved=mailSettings.load();
+  mailRecoveryError='';
+  return saved?emailConfig({...process.env,EMAIL_ENABLED:String(saved.enabled),SMTP_HOST:'smtp.gmail.com',SMTP_PORT:'465',
+   SMTP_USER:saved.from,BOOKING_EMAIL_TO:saved.owner,SMTP_APP_PASSWORD:saved.appPassword,
+   GOOGLE_CLIENT_ID:'',GOOGLE_CLIENT_SECRET:'',GOOGLE_REFRESH_TOKEN:'',SMTP_RELAY_IP_AUTH:'false'}):emailConfig();
+ }catch(error){
+  if(error.status!==503)throw error;
+  // A lost or corrupt key must stop outbound email, not bring down public pages.
+  // Never fail over silently to server SMTP when owner credentials are unreadable.
+  mailRecoveryError='Lagret Google Workspace-oppsett kan ikke leses. Gjenopprett e-postnøkkelen fra sikkerhetskopi før sending kan brukes.';
+  return emailConfig({EMAIL_ENABLED:'false'});
+ }
+}
+const mailOverview=()=>mailRecoveryError?
+ {source:'recovery-required',enabled:false,configured:false,from:'',owner:'',
+  hasAppPassword:false,host:'smtp.gmail.com',port:465}:mailSettings.overview(mailConfig);
+let mailConfig=configuredEmail(),email=createEmailService(db,mailConfig);
+let emailDrainActive=false;
+async function drainEmail(){
+ if(emailDrainActive)return;
+ emailDrainActive=true;
+ try{await email.drain();}finally{emailDrainActive=false;}
+}
+const clientPortal=process.env.CLIENT_PORTAL_ENABLED==='true';
+const emailTimer=setInterval(()=>drainEmail().catch(()=>{}),15000);emailTimer.unref();
 const prod=process.env.NODE_ENV==='production';
 const publicOrigin=process.env.PUBLIC_ORIGIN||'';
 if(prod){let origin;try{origin=new URL(publicOrigin);}catch{}if(!origin||origin.protocol!=='https:'||origin.origin!==publicOrigin)throw new Error('PUBLIC_ORIGIN må være en HTTPS-origin uten sti eller avsluttende skråstrek i produksjon.');}
@@ -131,7 +160,7 @@ const server=http.createServer(async(req,res)=>{
    }
    if(req.method==='GET'&&path.startsWith('/api/brreg/')){rate('brreg:'+ip,30,3600000);const nr=decodeURIComponent(path.slice(11)).replace(/\D/g,'');if(!/^\d{9}$/.test(nr))fail(400,'Organisasjonsnummer må ha ni sifre.');return reply(res,200,await brreg(nr));}
    if(req.method==='POST'&&path==='/api/enquiries'){
-    if(!active())fail(503,'Skjemaet er ikke åpnet ennå. Ta kontakt på e-post.');rate('submit:'+ip,10,3600000);let b=await body(req,20000);if(b.website)fail(400,'Kunne ikke sende forespørselen.');let payload={...enquiry(b),privacyRevision:content().revision,privacyAcknowledgedAt:new Date().toISOString()};let id=randomUUID(),now=new Date().toISOString();const access=transaction(()=>{db.prepare('INSERT INTO enquiries(id,created,updated,status,payload) VALUES(?,?,?,?,?)').run(id,now,now,'Ny',JSON.stringify(payload));email.enqueue(id,payload,content().settings);return clientPortal?newAccess(id):null;});setImmediate(()=>email.drain().catch(()=>{}));return reply(res,201,{id,...(access?{portalToken:access.token,portalExpires:access.expires}:{}),emailQueued:mailConfig.enabled,message:'Forespørselen er mottatt. Dette er ikke en bekreftet booking.'});
+    if(!active())fail(503,'Skjemaet er ikke åpnet ennå. Ta kontakt på e-post.');rate('submit:'+ip,10,3600000);let b=await body(req,20000);if(b.website)fail(400,'Kunne ikke sende forespørselen.');let payload={...enquiry(b),privacyRevision:content().revision,privacyAcknowledgedAt:new Date().toISOString()};let id=randomUUID(),now=new Date().toISOString();const access=transaction(()=>{db.prepare('INSERT INTO enquiries(id,created,updated,status,payload) VALUES(?,?,?,?,?)').run(id,now,now,'Ny',JSON.stringify(payload));email.enqueue(id,payload,content().settings);return clientPortal?newAccess(id):null;});setImmediate(()=>drainEmail().catch(()=>{}));return reply(res,201,{id,...(access?{portalToken:access.token,portalExpires:access.expires}:{}),emailQueued:mailConfig.enabled,message:'Forespørselen er mottatt. Dette er ikke en bekreftet booking.'});
    }
    if(path==='/api/enquiry-page'){
     if(!clientPortal)fail(404,'Denne nettsiden bruker e-post til oppfølging.');
@@ -156,9 +185,27 @@ const server=http.createServer(async(req,res)=>{
     if(action==='messages'){addMessage(id,'isaac',b.message);return reply(res,201,{ok:true});}
     if(!Array.isArray(b.ids)||b.ids.length>500||b.ids.some(id=>typeof id!=='string'||id.length>50))fail(400,'Ugyldige meldinger.');transaction(()=>{for(const messageId of b.ids)db.prepare("UPDATE enquiry_messages SET seen=1 WHERE id=? AND enquiry_id=? AND author='arrangor'").run(messageId,id);});return reply(res,200,{ok:true});
    }
-   if(req.method==='GET'&&path==='/api/admin/email')return reply(res,200,email.status());
-   if(req.method==='POST'&&path==='/api/admin/email/verify')return reply(res,200,await email.verify());
-   if(req.method==='POST'&&path==='/api/admin/email/retry'){email.retry();setImmediate(()=>email.drain().catch(()=>{}));return reply(res,200,{ok:true});}
+   if(req.method==='GET'&&path==='/api/admin/email')return reply(res,200,{...email.status(),settings:mailOverview(),configurationError:mailRecoveryError||null});
+   if(req.method==='PUT'&&path==='/api/admin/email/settings'){
+     rate('mail-settings:'+ip,12,3600000);
+     const submitted=await body(req,4000);
+     mailSettings.save(submitted);
+     mailConfig=configuredEmail();
+     email=createEmailService(db,mailConfig);
+     return reply(res,200,{...email.status(),settings:mailOverview(),configurationError:mailRecoveryError||null});
+    }
+    if(req.method==='POST'&&path==='/api/admin/email/verify'){
+     if(mailRecoveryError)fail(503,mailRecoveryError);
+     rate('mail-verify:'+ip,10,3600000);
+     return reply(res,200,await email.verify());
+    }
+    if(req.method==='POST'&&path==='/api/admin/email/test'){
+     if(mailRecoveryError)fail(503,mailRecoveryError);
+     rate('mail-send-test:'+ip,3,3600000);
+     const input=await body(req,2000);
+     return reply(res,200,await email.sendTest(input.to));
+    }
+   if(req.method==='POST'&&path==='/api/admin/email/retry'){email.retry();setImmediate(()=>drainEmail().catch(()=>{}));return reply(res,200,{ok:true});}
    if(req.method==='PUT'&&path==='/api/admin/content'){
     let b=await body(req);validateContent(b.content);let row=db.prepare('SELECT * FROM content WHERE id=1').get();if(row.revision!==b.revision)fail(409,'Innholdet er endret. Last inn siden på nytt før du lagrer.');
     let serialized=JSON.stringify({settings:b.content.settings,pages:b.content.pages});db.exec('BEGIN IMMEDIATE');try{db.prepare('INSERT INTO content_history(json,created) VALUES(?,?)').run(row.json,new Date().toISOString());db.prepare('UPDATE content SET json=?,revision=revision+1 WHERE id=1').run(serialized);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}return reply(res,200,{revision:row.revision+1});

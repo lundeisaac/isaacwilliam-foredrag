@@ -13,7 +13,7 @@
 
 Innkommende e-postsvar leses i Google Workspace og importeres ikke automatisk hit. Interne notater og honorarfelt er private. Faktura håndteres utenfor nettsiden.
 
-E-post krever autorisasjon i driftsserverens sikre miljøoppsett. Kontrollpanelets e-postfelt oppretter ingen postkasse og endrer ikke DNS. Se EMAIL.md. Vanlig Google-passord skal ikke legges inn i nettstedets innholdsredigering.
+Google Workspace konfigureres direkte under **E-post** med avsender, mottaker og Google-app-passord. Her finnes både tilkoblingstest og ekte testmelding. App-passordet lagres kryptert på serveren, og vanlig Google-passord skal aldri brukes. Oppsettet oppretter ingen postkasse og endrer ikke DNS. Se EMAIL.md. Eldre serverkonfigurasjon fungerer fortsatt uten lagret eieroppsett.
 
 ## Gjennomgangskopien
 
