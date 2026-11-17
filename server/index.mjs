@@ -1,6 +1,7 @@
 import http from 'node:http';
 import {isIP} from 'node:net';
 import {emailConfig,initEmailOutbox,createEmailService} from './email.mjs';
+import {initMailSettings} from './mail-settings.mjs';
 import {renderPublicPage,escape as escapeHTML} from '../public/assets/app.js';
 import {visualPage} from './visual-qa.mjs';
 import { DatabaseSync } from 'node:sqlite';
@@ -27,7 +28,16 @@ CREATE TABLE IF NOT EXISTS auth_config(id INTEGER PRIMARY KEY CHECK(id=1),salt B
 CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY, csrf TEXT NOT NULL, expires INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS throttle(key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset INTEGER NOT NULL);`);
 if(!db.prepare('SELECT id FROM content WHERE id=1').get())db.prepare('INSERT INTO content(id,json) VALUES(1,?)').run(readFileSync(join(root,'content/site.json'),'utf8'));
-initEmailOutbox(db);const mailConfig=emailConfig(),email=createEmailService(db,mailConfig);const clientPortal=process.env.CLIENT_PORTAL_ENABLED==='true';
+initEmailOutbox(db);
+const mailSettings=initMailSettings(db,dataDir);
+function configuredEmail(){
+ const saved=mailSettings.load();
+ return saved?emailConfig({...process.env,EMAIL_ENABLED:String(saved.enabled),SMTP_HOST:'smtp.gmail.com',SMTP_PORT:'465',
+  SMTP_USER:saved.from,BOOKING_EMAIL_TO:saved.owner,SMTP_APP_PASSWORD:saved.appPassword,
+  GOOGLE_CLIENT_ID:'',GOOGLE_CLIENT_SECRET:'',GOOGLE_REFRESH_TOKEN:'',SMTP_RELAY_IP_AUTH:'false'}):emailConfig();
+}
+let mailConfig=configuredEmail(),email=createEmailService(db,mailConfig);
+const clientPortal=process.env.CLIENT_PORTAL_ENABLED==='true';
 const emailTimer=setInterval(()=>email.drain().catch(()=>{}),15000);emailTimer.unref();
 const prod=process.env.NODE_ENV==='production';
 const publicOrigin=process.env.PUBLIC_ORIGIN||'';
@@ -156,8 +166,24 @@ const server=http.createServer(async(req,res)=>{
     if(action==='messages'){addMessage(id,'isaac',b.message);return reply(res,201,{ok:true});}
     if(!Array.isArray(b.ids)||b.ids.length>500||b.ids.some(id=>typeof id!=='string'||id.length>50))fail(400,'Ugyldige meldinger.');transaction(()=>{for(const messageId of b.ids)db.prepare("UPDATE enquiry_messages SET seen=1 WHERE id=? AND enquiry_id=? AND author='arrangor'").run(messageId,id);});return reply(res,200,{ok:true});
    }
-   if(req.method==='GET'&&path==='/api/admin/email')return reply(res,200,email.status());
-   if(req.method==='POST'&&path==='/api/admin/email/verify')return reply(res,200,await email.verify());
+   if(req.method==='GET'&&path==='/api/admin/email')return reply(res,200,{...email.status(),settings:mailSettings.overview(mailConfig)});
+   if(req.method==='PUT'&&path==='/api/admin/email/settings'){
+     rate('mail-settings:'+ip,12,3600000);
+     const submitted=await body(req,4000);
+     mailSettings.save(submitted);
+     mailConfig=configuredEmail();
+     email=createEmailService(db,mailConfig);
+     return reply(res,200,{...email.status(),settings:mailSettings.overview(mailConfig)});
+    }
+    if(req.method==='POST'&&path==='/api/admin/email/verify'){
+     rate('mail-verify:'+ip,10,3600000);
+     return reply(res,200,await email.verify());
+    }
+    if(req.method==='POST'&&path==='/api/admin/email/test'){
+     rate('mail-send-test:'+ip,3,3600000);
+     const input=await body(req,2000);
+     return reply(res,200,await email.sendTest(input.to));
+    }
    if(req.method==='POST'&&path==='/api/admin/email/retry'){email.retry();setImmediate(()=>email.drain().catch(()=>{}));return reply(res,200,{ok:true});}
    if(req.method==='PUT'&&path==='/api/admin/content'){
     let b=await body(req);validateContent(b.content);let row=db.prepare('SELECT * FROM content WHERE id=1').get();if(row.revision!==b.revision)fail(409,'Innholdet er endret. Last inn siden på nytt før du lagrer.');

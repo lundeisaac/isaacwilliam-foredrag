@@ -2,6 +2,18 @@
 
 Eieren bekreftet 7. november 2026 at adressen er **post@isaacwilliam.no**, ikke post@isaacwilliamlunde.no. Arbeidet med e-post er gjenopptatt. Google Workspace er eksisterende leverandør. Ingen DNS-endringer er gjort.
 
+## Google Workspace direkte i eierkontrollpanelet (fra neste utrulling)
+
+1. Logg inn på `/min-side` og åpne **E-post → Google Workspace-oppsett**.
+2. Skriv avsenderadresse (`post@isaacwilliam.no`), varselmottaker og Google-app-passord. Ikke bruk det vanlige Google-passordet; et innlimt app-passord med mellomrom normaliseres.
+3. La automatisk sending være **av**. Lagre, velg **Test SMTP-tilkobling**, og deretter **Send testmelding** til en adresse eieren kontrollerer. Bekreft faktisk innboks/spam.
+4. Først etter godkjent testsending: aktiver automatiske varsler og kvitteringer i samme skjema. Denne bryteren åpner ikke booking- eller kontaktskjemaene.
+
+SMTP er begrenset til `smtp.gmail.com:465` med TLS. Lagrede eierinnstillinger overstyrer de eldre `EMAIL_ENABLED`/SMTP-miljøverdiene uten container-recreate. Uten eierinnstillinger gjelder fortsatt serverens app-passord, OAuth2 eller administratorgodkjente relay-oppsett under.
+
+App-passordet lagres med AES-256-GCM i en privat SQLite-tabell og beskyttes av separat `DATA_DIR/.mail-settings.key` (filrettighet 0600). Passord og nøkkel er ikke i JSON-innholdseksport, offentlig API, GitHub eller statusvisning. **Ta kryptert backup av hele DATA_DIR**, inkludert nøkkelfilen. Den som har tilgang til både datamappen og nøkkelen, kan dekryptere passordet, så begrens host- og backuptilgang. Ved restore må nøkkel og database følge hverandre.
+
+Oppsett, SMTP-test og testsending krever eierøkt, Origin og CSRF. Testmelding er begrenset til én mottaker og tre forsøk per time per klient-IP, uten å lage noen booking eller utboksjobb. SMTP-aksept er ikke bevis på faktisk innbokslevering.
 ## Kontroll 10. november 2026
 
 DNS viste Google MX, SPF med Google-inkludering, publisert google._domainkey og DMARC p=none. Dette bekrefter ikke aktiv DKIM-signering, SMTP-autorisasjon eller innboksmottak. Ingen DNS ble endret. Tilgjengelig Gmail-tilkobling er fortsatt en management-konto; nettstedets Google-sender er ikke autorisert i dette arbeidsmiljøet. FlowCreate-dokumentasjonen oppgir EMAIL_ENABLED=false. Se LAUNCH-AUDIT.md for funn på eksisterende server og gjenstående leveringsprøve.
@@ -18,7 +30,7 @@ Klienten sender en forespørsel uten konto eller privat lenke. Nettsiden lagrer 
 
 Videre svar mottas i Google Workspace og importeres ikke automatisk til kontrollpanelet. Kontrollpanelet er eierens interne oversikt og innholdsredigering. Fakturering skjer utenfor nettsiden. `CLIENT_PORTAL_ENABLED=false` er standard; den tidligere private-lenke-funksjonen brukes ikke i denne klientflyten.
 
-## Oppsett på driftsserveren
+## Alternativt oppsett direkte på driftsserveren
 
 1. Installer låste avhengigheter med `npm ci --omit=dev --ignore-scripts` eller bygg Docker-imaget. Sett opp vedvarende lagring, HTTPS og eierpassord som beskrevet i DRIFT.md.
 2. Autoriser Google-sending på serveren. Velg én av metodene Google tillater for kontoen:

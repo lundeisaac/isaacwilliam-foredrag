@@ -31,7 +31,7 @@ Krever **Node.js 24 eller nyere**. SMTP-sending bruker Nodemailer. Installer de 
 
 For å prøve innsending må både `BOOKING_ENABLED=true` i servermiljøet og «Åpne skjemaene» i administrasjonens innstillinger være aktivert. Begge er av som standard. Bruk kun testopplysninger du kontrollerer. `npm test` prøver hele forløpet i en egen midlertidig database uten å påvirke driftsdata.
 
-**E-postsending er klargjort, men fortsatt deaktivert.** Henvendelser lagres i kontrollpanelet. Google Workspace kan sende varsel og kvittering når serveren er autorisert; videre svar leses i postkassen. Ingen reell sending eller innbokslevering er verifisert ennå. Se [E-postoppsett](docs/EMAIL.md).
+**E-postsending er av som standard.** Google Workspace-oppsett kan nå lagres av eieren i `/min-side` → **E-post**: avsender, varselmottaker og app-passord, tilkoblingstest og reell testmelding. Passordet lagres kryptert separat fra nettsideinnholdet, med en privat nøkkelfil som må inngå i sikkerhetskopien av DATA_DIR. Eksisterende servermiljøoppsett fungerer fortsatt som fallback. Innboksmottak må verifiseres på den faktiske serveren før lansering. Se [E-postoppsett](docs/EMAIL.md).
 
 ## Rediger selv
 

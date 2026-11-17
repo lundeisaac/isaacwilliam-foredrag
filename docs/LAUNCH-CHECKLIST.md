@@ -83,9 +83,9 @@ Ingen nettbetaling. Tilbud, bekreftelse og fakturering avtales skriftlig. Foresl
 
 Vanlig sending/mottak i Workspace beviser ikke at app-serveren er autorisert.
 
-- [ ] Følg EMAIL.md. Velg Google-app-passord dersom tillatt, OAuth2 eller administratorgodkjent Workspace-relay.
-- [ ] Sett SMTP_USER=post@isaacwilliam.no og BOOKING_EMAIL_TO=post@isaacwilliam.no. Hold hemmeligheter i vertens sikre miljøoppsett.
-- [ ] Aktiver EMAIL_ENABLED=true først når konfigurasjonen er komplett, og gjenskap containeren.
+- [ ] Følg EMAIL.md. Logg inn i `/min-side` → **E-post**, lagre avsender, varselmottaker og Google-app-passord; test forbindelsen og send en ekte testmelding mens automatisk sending er av.
+- [ ] Bekreft mottak i innboks og søppelpost. Aktiver deretter automatiske varsler og kvitteringer i panelet. Den private `.mail-settings.key` må være med i kryptert backup av DATA_DIR.
+- [ ] Hvis eieroppsett ikke brukes: beholde serverbasert app-passord, OAuth2 eller relay i private miljøvariabler og gjenskap containeren ved endring.
 - [ ] Bruk «Kontroller Google-forbindelsen» i dashboardets e-postdel. Dette beviser bare forbindelsen, ikke levering.
 - [ ] Send en avtalt testhenvendelse med adresse Isaac kontrollerer. Verifiser varsel i post-innboksen, kvittering hos testklienten, spammappe og Reply-To begge veier.
 - [ ] Kontroller utboks og feilhåndtering. SMTP-aksept/«sendt» er ikke bevis på innbokslevering.

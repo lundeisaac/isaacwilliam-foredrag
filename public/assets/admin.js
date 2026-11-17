@@ -20,7 +20,69 @@ function wireConversation(el,r){el.querySelector('.message-reply').onsubmit=asyn
  el.querySelector('.mark-read')?.addEventListener('click',async()=>{try{await api('/api/admin/enquiries/'+r.id+'/read','POST',{ids:(r.messages||[]).filter(m=>m.author==='arrangor'&&!m.seen).map(m=>m.id)});await load();notify('Meldingene er markert som lest.');}catch(err){notify(err.message);}});
  el.querySelector('.rotate-access').onclick=async()=>{if(!confirm('Lage ny lenke? Den gamle slutter å virke. Del den nye bare med den verifiserte arrangøren.'))return;try{const result=await api('/api/admin/enquiries/'+r.id+'/access','POST',{});const url=location.origin+'/foresporsel#'+result.token;el.querySelector('.private-link-result').innerHTML=`<p>Denne lenken vises bare nå. Del den privat med arrangøren.</p><label>Ny privat lenke<input readonly value="${e(url)}"></label><p class="small">Gyldig til ${e(new Date(result.expires).toLocaleDateString('nb-NO'))}.</p>`;}catch(err){notify(err.message);}};
 }
-async function emailView(){const view=$('#view');view.innerHTML='<h2>E-post</h2><p>Laster leveringsstatus …</p>';try{const mail=await api('/api/admin/email');if(tab!=='email')return;view.innerHTML=`<h2>E-post og varsler</h2><p>Klienter sender en forespørsel uten konto og fortsetter samtalen på e-post. Dette kontrollpanelet er bare for deg. Svar som kommer i Google Workspace, leses der og importeres ikke automatisk hit.</p><div class="panel"><h3>${mail.enabled?'E-postsending er aktivert':'E-postsending er ikke aktivert'}</h3><p>Avsender: ${e(mail.from||'Ikke konfigurert')}<br>Mottaker for henvendelser: ${e(mail.owner||'Ikke konfigurert')}</p><p>${mail.enabled?'Konfigurasjonen finnes. Kontroller Google-forbindelsen og test faktisk mottak før åpning.':'Google Workspace må autoriseres i serverens sikre miljøinnstillinger. Vanlig Google-passord skal ikke legges inn i nettstedets innholdsredigering.'}</p><p class="small">ChatGPTs Gmail-tilkobling er separat fra serverens sending. Verifisering tester SMTP-forbindelsen uten å sende e-post; faktisk levering må testes separat.</p><button id="verify-email" class="button secondary mini" ${mail.enabled?'':'disabled'}>Kontroller Google-forbindelsen</button></div><div class="dashboard-metrics"><div><span>Venter på sending</span><strong>${mail.counts.pending+mail.counts.sending}</strong></div><div><span>Levert til e-postserver</span><strong>${mail.counts.sent}</strong></div><div><span>Feilet etter nye forsøk</span><strong>${mail.counts.failed}</strong></div></div><p class="small">«Levert til e-postserver» bekrefter ikke at meldingen kom i innboksen. Ingen forespørsler går tapt fra kontrollpanelet ved e-postfeil.</p><button id="retry-email" class="button secondary mini" ${mail.enabled&&mail.counts.failed?'':'disabled'}>Prøv feilede e-poster på nytt</button><button id="refresh-email" class="button secondary mini">Oppdater status</button><div class="panel"><h3>Siste leveringsforsøk</h3>${mail.recent.length?mail.recent.map(j=>`<p>${e(j.kind==='owner'?'Varsel til deg':'Kvittering til arrangør')} · ${e(j.recipient)} · ${e(j.status)} ${j.error_code?`(${e(j.error_code)})`:''}</p>`).join(''):'<p>Ingen e-poster er lagt i kø ennå.</p>'}</div>`;$('#refresh-email').onclick=emailView;$('#verify-email').onclick=async()=>{const btn=$('#verify-email');btn.disabled=true;try{const result=await api('/api/admin/email/verify','POST',{});notify(result.message);}catch(error){notify(error.message);}finally{btn.disabled=false;}};$('#retry-email').onclick=async()=>{try{await api('/api/admin/email/retry','POST',{});notify('Feilede e-poster er lagt tilbake i køen.');await emailView();}catch(error){notify(error.message);}};}catch(error){notify(error.message);view.innerHTML='<h2>E-post</h2><p>Kunne ikke hente leveringsstatus.</p>';}}
+async function emailView(){
+ const view=$('#view');
+ view.innerHTML='<h2>E-post</h2><p>Laster e-postoppsett og leveringsstatus …</p>';
+ try{
+  const mail=await api('/api/admin/email');
+  if(tab!=='email')return;
+  const pref=mail.settings||{},canTest=mail.configured&&!demoRequest;
+  view.innerHTML=
+   '<h2>E-post og Google Workspace</h2>'+
+   '<p>Sett opp avsenderen direkte her. Forespørsler lagres i kontrollpanelet; e-postvarsler og kvitteringer sendes når du aktiverer sending. Kundesvar leses i Google Workspace.</p>'+
+   '<section class="panel"><h3>Google Workspace-oppsett</h3>'+
+   '<p>Status: <strong>'+(mail.enabled?'Automatisk sending på':'Automatisk sending av')+'</strong> · '+
+   (mail.configured?'Avsender konfigurert':'Mangler Google-app-passord')+'</p>'+
+   (demoRequest?'<p class="notice">Dette er en demo. Oppsett og testsending krever innlogging på den virkelige serveren.</p>':'')+
+   '<form id="mail-settings-form" autocomplete="off"><div class="row">'+
+   '<label>Avsenderadresse (Google Workspace)<input name="from" type="email" maxlength="254" required value="'+e(pref.from||mail.from||'post@isaacwilliam.no')+'" '+(demoRequest?'disabled':'')+'></label>'+
+   '<label>Varsler til (mottaker)<input name="owner" type="email" maxlength="254" required value="'+e(pref.owner||mail.owner||'post@isaacwilliam.no')+'" '+(demoRequest?'disabled':'')+'></label></div>'+
+   '<label>Google-app-passord<input name="appPassword" type="password" maxlength="128" autocomplete="new-password" placeholder="'+(pref.hasAppPassword?'La stå tomt for å beholde eksisterende passord':'Lim inn 16-tegns app-passord')+'" '+(demoRequest?'disabled':'')+'></label>'+
+   '<p class="small">Bruk et app-passord fra Google Workspace, ikke det vanlige Google-passordet. SMTP er låst til smtp.gmail.com på port 465 med TLS. Passordet vises aldri på nytt i kontrollpanelet.</p>'+
+   '<label class="check"><input name="enabled" type="checkbox" '+(pref.enabled?'checked':'')+' '+(demoRequest?'disabled':'')+'><span>Aktiver automatiske e-postvarsler og kundekvitteringer</span></label>'+
+   '<p class="small">Lagre oppsettet først og test det før sending aktiveres. Oppsettet lagres privat på serveren, ikke i nettsideinnholdet eller GitHub. Booking- og kontaktskjemaene åpnes ikke av denne bryteren.</p>'+
+   '<button class="button" type="submit" '+(demoRequest?'disabled':'')+'>Lagre e-postoppsett</button><p class="form-status" id="mail-save-result" role="status"></p></form></section>'+
+   '<section class="panel"><h3>Test Google Workspace</h3><p>Kontroller forbindelsen først. Send deretter en ekte testmelding til en adresse du selv kontrollerer, og sjekk innboks og søppelpost. SMTP-svar bekrefter ikke innbokslevering.</p>'+
+   '<button id="verify-email" type="button" class="button secondary mini" '+(canTest?'':'disabled')+'>Test SMTP-tilkobling</button>'+
+   '<form id="mail-test-form"><div class="row"><label>Testmottaker<input name="to" type="email" maxlength="254" placeholder="din-testadresse@eksempel.no" required '+(canTest?'':'disabled')+'></label>'+
+   '<button class="button mini" type="submit" '+(canTest?'':'disabled')+'>Send testmelding</button></div><p id="mail-test-result" role="status" class="form-status"></p></form></section>'+
+   '<h3>Leveringsstatus</h3><div class="dashboard-metrics"><div><span>Venter på sending</span><strong>'+Number(mail.counts.pending+mail.counts.sending)+'</strong></div>'+
+   '<div><span>Akseptert av e-postserver</span><strong>'+Number(mail.counts.sent)+'</strong></div>'+
+   '<div><span>Feilet etter forsøk</span><strong>'+Number(mail.counts.failed)+'</strong></div></div>'+
+   '<p class="small">Meldinger blir liggende i kontrollpanelet selv om e-postsending feiler. Sendt-status betyr ikke at mottakeren har lest meldingen.</p>'+
+   '<button id="retry-email" class="button secondary mini" '+(mail.enabled&&mail.counts.failed&&!demoRequest?'':'disabled')+'>Prøv feilede e-poster på nytt</button> '+
+   '<button id="refresh-email" class="button secondary mini">Oppdater status</button>'+
+   '<div class="panel"><h3>Siste leveringsforsøk</h3>'+
+   (mail.recent.length?mail.recent.map(j=>'<p>'+e(j.kind==='owner'?'Varsel til deg':'Kvittering til arrangør')+' · '+e(j.recipient)+' · '+e(j.status)+(j.error_code?' ('+e(j.error_code)+')':'')+'</p>').join(''):'<p>Ingen e-poster er lagt i kø ennå.</p>')+
+   '</div>';
+  $('#refresh-email').onclick=emailView;
+  $('#mail-settings-form').onsubmit=async ev=>{
+   ev.preventDefault();
+   const form=ev.currentTarget,button=form.querySelector('button[type="submit"]'),msg=$('#mail-save-result');
+   if(!form.reportValidity())return;
+   button.disabled=true;msg.textContent='Lagrer oppsett …';
+   try{
+    await api('/api/admin/email/settings','PUT',{from:form.elements.from.value.trim(),owner:form.elements.owner.value.trim(),
+      appPassword:form.elements.appPassword.value,enabled:form.elements.enabled.checked});
+    notify('Google Workspace-oppsettet er lagret. Test tilkoblingen og testmeldingen.');
+    await emailView();
+   }catch(error){msg.textContent=error.message;button.disabled=false;}
+  };
+  $('#verify-email').onclick=async()=>{
+   const button=$('#verify-email'),result=$('#mail-test-result');button.disabled=true;result.textContent='Tester SMTP …';
+   try{const response=await api('/api/admin/email/verify','POST',{});result.textContent=response.message;}
+   catch(error){result.textContent=error.message;}finally{button.disabled=false;}
+  };
+  $('#mail-test-form').onsubmit=async ev=>{
+   ev.preventDefault();const form=ev.currentTarget,button=form.querySelector('button[type="submit"]'),result=$('#mail-test-result');
+   if(!form.reportValidity())return;
+   button.disabled=true;result.textContent='Sender testmelding …';
+   try{const response=await api('/api/admin/email/test','POST',{to:form.elements.to.value.trim()});result.textContent=response.message;}
+   catch(error){result.textContent=error.message;}finally{button.disabled=false;}
+  };
+  $('#retry-email').onclick=async()=>{try{await api('/api/admin/email/retry','POST',{});notify('Feilede meldinger er lagt tilbake i køen.');await emailView();}catch(error){notify(error.message);}};
+ }catch(error){notify(error.message);view.innerHTML='<h2>E-post</h2><p>Kunne ikke hente e-postoppsettet.</p>';}
+}
 function calendar(){let booked=records.enquiries.filter(r=>r.status==='Bekreftet').sort((a,b)=>a.payload.date.localeCompare(b.payload.date));$('#view').innerHTML=`<h2>Kalender</h2><p>Alle klokkeslett gjelder norsk tid (Europe/Oslo). Bekreftede bookinger og sperrede perioder vises som opptatt i det offentlige skjemaet. Navn og årsak vises bare her.</p><div class="panel"><h3>Bekreftede oppdrag</h3>${booked.length?booked.map(r=>`<p><strong>${e(r.payload.date)}</strong> ${e(r.payload.time)} · ${e(r.payload.organisation)} · ${e(r.payload.location)}</p>`).join(''):'<p>Ingen bekreftede oppdrag.</p>'}</div><div class="panel"><h3>Sperr en dato eller periode</h3><form id="block-form"><div class="row"><label>Fra dato<input name="start" type="date" required></label><label>Til dato<input name="end" type="date" required></label><label>Internt navn<input name="label" maxlength="200" placeholder="For eksempel ferie"></label></div><button class="button mini">Sperr perioden</button></form></div><h3>Sperrede perioder</h3>${records.blocks.map(b=>`<div class="panel row"><span>${e(b.start)} – ${e(b.end)} · ${e(b.label)}</span><button class="button secondary mini" data-remove-block="${e(b.id)}">Fjern sperring</button></div>`).join('')||'<p>Ingen sperrede perioder.</p>'}`;
  $('#block-form').onsubmit=async ev=>{ev.preventDefault();let b=Object.fromEntries(new FormData(ev.target));try{await api('/api/admin/blocks','POST',b);await load();notify('Perioden er sperret.');}catch(err){notify(err.message);}};document.querySelectorAll('[data-remove-block]').forEach(b=>b.onclick=async()=>{try{await api('/api/admin/blocks/'+b.dataset.removeBlock,'DELETE',{});await load();notify('Sperringen er fjernet.');}catch(err){notify(err.message);}});}
 function field(label,value,path,multi=false){return `<label>${e(label)}${multi?`<textarea data-path="${e(path)}" rows="${String(value).length>400?8:3}">${e(value)}</textarea>`:`<input data-path="${e(path)}" value="${e(value)}">`}</label>`;}
